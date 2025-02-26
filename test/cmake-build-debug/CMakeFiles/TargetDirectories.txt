@@ -1,3 +1,0 @@
-D:/Desktop/newCarryCar/test/cmake-build-debug/CMakeFiles/test.elf.dir
-D:/Desktop/newCarryCar/test/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Desktop/newCarryCar/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

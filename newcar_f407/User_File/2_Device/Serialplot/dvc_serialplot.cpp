@@ -32,7 +32,9 @@
  * @param __Data_Type 传输数据类型, 默认float
  * @param __Frame_Header 帧头标识符
  */
-void Class_Serialplot::Init(UART_HandleTypeDef *huart, Enum_Serialplot_Checksum_8 __Checksum_8, uint8_t __Rx_Variable_Assignment_Num, char **__Rx_Variable_Assignment_List, Enum_Serialplot_Data_Type __Data_Type, uint8_t __Frame_Header)
+void Class_Serialplot::Init(UART_HandleTypeDef* huart, Enum_Serialplot_Checksum_8 __Checksum_8,
+                            uint8_t __Rx_Variable_Assignment_Num, char** __Rx_Variable_Assignment_List,
+                            Enum_Serialplot_Data_Type __Data_Type, uint8_t __Frame_Header)
 {
     if (huart->Instance == USART1)
     {
@@ -58,20 +60,12 @@ void Class_Serialplot::Init(UART_HandleTypeDef *huart, Enum_Serialplot_Checksum_
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-    else if (huart->Instance == UART7)
-    {
-        UART_Manage_Object = &UART7_Manage_Object;
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART_Manage_Object = &UART8_Manage_Object;
-    }
 
-    Checksum_8 = __Checksum_8;
-    Rx_Variable_Num = __Rx_Variable_Assignment_Num;
+    Checksum_8       = __Checksum_8;
+    Rx_Variable_Num  = __Rx_Variable_Assignment_Num;
     Rx_Variable_List = __Rx_Variable_Assignment_List;
-    Tx_Data_Type = __Data_Type;
-    Frame_Header = __Frame_Header;
+    Tx_Data_Type     = __Data_Type;
+    Frame_Header     = __Frame_Header;
 
     UART_Manage_Object->Tx_Buffer[0] = __Frame_Header;
 }
@@ -81,7 +75,7 @@ void Class_Serialplot::Init(UART_HandleTypeDef *huart, Enum_Serialplot_Checksum_
  *
  * @param Rx_Data 接收的数据
  */
-void Class_Serialplot::UART_RxCpltCallback(uint8_t *Rx_Data, uint16_t Length)
+void Class_Serialplot::UART_RxCpltCallback(uint8_t* Rx_Data, uint16_t Length)
 {
     Data_Process(Length);
 }
@@ -95,7 +89,7 @@ void Class_Serialplot::TIM_1ms_Write_PeriodElapsedCallback()
     Output();
 
     size_t data_length = 1;
-    if(Checksum_8 == Serialplot_Checksum_8_ENABLE)
+    if (Checksum_8 == Serialplot_Checksum_8_ENABLE)
     {
         data_length++;
     }
@@ -181,7 +175,9 @@ uint8_t Class_Serialplot::_Judge_Variable_Name(uint16_t Length)
     int flag;
 
     // 记录变量名并标记等号位置
-    for (flag = 0; UART_Manage_Object->Rx_Buffer[flag] != '=' && flag < Length && UART_Manage_Object->Rx_Buffer[flag] != 0; flag++)
+    for (flag = 0;
+         UART_Manage_Object->Rx_Buffer[flag] != '=' && flag < Length && UART_Manage_Object->Rx_Buffer[flag] != 0;
+         flag++)
     {
         tmp_variable_name[flag] = UART_Manage_Object->Rx_Buffer[flag];
     }
@@ -191,7 +187,8 @@ uint8_t Class_Serialplot::_Judge_Variable_Name(uint16_t Length)
     for (int i = 0; i < Rx_Variable_Num; i++)
     {
         // 如果在则标记变量名编号
-        if (strcmp(tmp_variable_name, (char *) ((int) Rx_Variable_List + SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH * i)) == 0)
+        if (strcmp(tmp_variable_name,
+                   (char*)((int)Rx_Variable_List + SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH * i)) == 0)
         {
             Variable_Index = i;
             return (flag + 1);
@@ -213,9 +210,9 @@ void Class_Serialplot::_Judge_Variable_Value(uint16_t Length, int flag)
     // 小数点位置, 是否有负号
     int tmp_dot_flag, tmp_sign_coefficient, i;
 
-    tmp_dot_flag = 0;
+    tmp_dot_flag         = 0;
     tmp_sign_coefficient = 1;
-    Variable_Value = 0.0f;
+    Variable_Value       = 0.0f;
 
     // 列表里没有, 没必要比对直接返回
     if (Variable_Index == -1)
@@ -231,7 +228,8 @@ void Class_Serialplot::_Judge_Variable_Value(uint16_t Length, int flag)
     }
 
     // 计算值并注意小数点是否存在及其位置
-    for (i = flag; UART_Manage_Object->Rx_Buffer[i] != '#' && i < Length && UART_Manage_Object->Rx_Buffer[flag] != 0; i++)
+    for (i = flag; UART_Manage_Object->Rx_Buffer[i] != '#' && i < Length && UART_Manage_Object->Rx_Buffer[flag] != 0;
+         i++)
     {
         if (UART_Manage_Object->Rx_Buffer[i] == '.')
         {
@@ -258,7 +256,7 @@ void Class_Serialplot::_Judge_Variable_Value(uint16_t Length, int flag)
  */
 void Class_Serialplot::Output()
 {
-    uint8_t *tmp_buffer = UART_Manage_Object->Tx_Buffer;
+    uint8_t* tmp_buffer = UART_Manage_Object->Tx_Buffer;
 
     memset(tmp_buffer, 0, UART_BUFFER_SIZE);
 
@@ -273,7 +271,7 @@ void Class_Serialplot::Output()
             memcpy(tmp_buffer + i * sizeof(uint8_t) + 1, Data[i], sizeof(uint8_t));
         }
 
-        if(Checksum_8 != Serialplot_Checksum_8_DISABLE)
+        if (Checksum_8 != Serialplot_Checksum_8_DISABLE)
         {
             tmp_buffer[1 + Data_Number * sizeof(uint8_t)] = Math_Sum_8(tmp_buffer + 1, Data_Number * sizeof(uint8_t));
         }
@@ -285,19 +283,20 @@ void Class_Serialplot::Output()
             memcpy(tmp_buffer + i * sizeof(uint16_t) + 1, Data[i], sizeof(uint16_t));
         }
 
-        if(Checksum_8 != Serialplot_Checksum_8_DISABLE)
+        if (Checksum_8 != Serialplot_Checksum_8_DISABLE)
         {
             tmp_buffer[1 + Data_Number * sizeof(uint16_t)] = Math_Sum_8(tmp_buffer + 1, Data_Number * sizeof(uint16_t));
         }
     }
-    else if (Tx_Data_Type == Serialplot_Data_Type_UINT32 || Tx_Data_Type == Serialplot_Data_Type_INT32 || Tx_Data_Type == Serialplot_Data_Type_FLOAT)
+    else if (Tx_Data_Type == Serialplot_Data_Type_UINT32 || Tx_Data_Type == Serialplot_Data_Type_INT32 ||
+             Tx_Data_Type == Serialplot_Data_Type_FLOAT)
     {
         for (int i = 0; i < Data_Number; i++)
         {
             memcpy(tmp_buffer + i * sizeof(uint32_t) + 1, Data[i], sizeof(uint32_t));
         }
 
-        if(Checksum_8 != Serialplot_Checksum_8_DISABLE)
+        if (Checksum_8 != Serialplot_Checksum_8_DISABLE)
         {
             tmp_buffer[1 + Data_Number * sizeof(uint32_t)] = Math_Sum_8(tmp_buffer + 1, Data_Number * sizeof(uint32_t));
         }
@@ -309,7 +308,7 @@ void Class_Serialplot::Output()
             memcpy(tmp_buffer + i * sizeof(uint64_t) + 1, Data[i], sizeof(uint64_t));
         }
 
-        if(Checksum_8 != Serialplot_Checksum_8_DISABLE)
+        if (Checksum_8 != Serialplot_Checksum_8_DISABLE)
         {
             tmp_buffer[1 + Data_Number * sizeof(uint64_t)] = Math_Sum_8(tmp_buffer + 1, Data_Number * sizeof(uint64_t));
         }

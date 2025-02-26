@@ -32,7 +32,7 @@
  * @param __Data_Type 传输数据类型, 默认float
  * @param __Frame_Header 帧头标识符
  */
-void Class_Powermeter::Init(UART_HandleTypeDef *huart, uint8_t __Frame_Header)
+void Class_Powermeter::Init(UART_HandleTypeDef* huart, uint8_t __Frame_Header)
 {
     if (huart->Instance == USART1)
     {
@@ -58,14 +58,6 @@ void Class_Powermeter::Init(UART_HandleTypeDef *huart, uint8_t __Frame_Header)
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-    else if (huart->Instance == UART7)
-    {
-        UART_Manage_Object = &UART7_Manage_Object;
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART_Manage_Object = &UART8_Manage_Object;
-    }
 
     Frame_Header = __Frame_Header;
 }
@@ -75,7 +67,7 @@ void Class_Powermeter::Init(UART_HandleTypeDef *huart, uint8_t __Frame_Header)
  *
  * @param Rx_Data 接收的数据
  */
-void Class_Powermeter::UART_RxCpltCallback(uint8_t *Rx_Data, uint16_t Length)
+void Class_Powermeter::UART_RxCpltCallback(uint8_t* Rx_Data, uint16_t Length)
 {
     Data_Process(Length);
 }
@@ -87,9 +79,9 @@ void Class_Powermeter::UART_RxCpltCallback(uint8_t *Rx_Data, uint16_t Length)
 void Class_Powermeter::Data_Process(uint16_t Length)
 {
     // 数据处理过程
-    Struct_Powermeter_UART_Data *tmp_buffer;
+    Struct_Powermeter_UART_Data* tmp_buffer;
 
-    tmp_buffer = (Struct_Powermeter_UART_Data *)UART_Manage_Object->Rx_Buffer;
+    tmp_buffer = (Struct_Powermeter_UART_Data*)UART_Manage_Object->Rx_Buffer;
 
     // 未通过头校验
     if (tmp_buffer->Frame_Header != Frame_Header)
@@ -97,7 +89,7 @@ void Class_Powermeter::Data_Process(uint16_t Length)
         return;
     }
     // 未通过校验和校验
-    if (Math_Sum_8((uint8_t *)tmp_buffer + 1, sizeof(Struct_Powermeter_UART_Data) - 2) != tmp_buffer->Checksum)
+    if (Math_Sum_8((uint8_t*)tmp_buffer + 1, sizeof(Struct_Powermeter_UART_Data) - 2) != tmp_buffer->Checksum)
     {
         return;
     }
@@ -109,7 +101,7 @@ void Class_Powermeter::Data_Process(uint16_t Length)
 
     Data.Current = tmp_buffer->Current;
     Data.Voltage = tmp_buffer->Voltage;
-    Data.Power = tmp_buffer->Power;
+    Data.Power   = tmp_buffer->Power;
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

@@ -29,8 +29,7 @@
  */
 void Class_Posture::Init()
 {
-    AHRS_Chassis.Init(&huart7);
-    AHRS_Gimbal.Init(&huart8);
+
 }
 
 /**

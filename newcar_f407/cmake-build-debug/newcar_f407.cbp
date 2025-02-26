@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="newcar_f407"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="newcar_f407.elf">
+				<Option output="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/newcar_f407.elf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DARM_MATH_CM4"/>
+					<Add option="-DARM_MATH_MATRIX_CHECK"/>
+					<Add option="-DARM_MATH_ROUNDING"/>
+					<Add option="-D__FPU_PRESENT=1"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DUSE_HAL_DRIVER"/>
+					<Add option="-DSTM32F407xx"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Core/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/Target"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/ARM/DSP/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/User_File"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/User_Third_Party/eigen-3.3.9"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include/c++/13.3.0"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include/c++/13.3.0/arm-none-eabi"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include/c++/13.3.0/backward"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/include-fixed"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 newcar_f407.elf"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="newcar_f407.elf/fast">
+				<Option output="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/newcar_f407.elf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DARM_MATH_CM4"/>
+					<Add option="-DARM_MATH_MATRIX_CHECK"/>
+					<Add option="-DARM_MATH_ROUNDING"/>
+					<Add option="-D__FPU_PRESENT=1"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DUSE_HAL_DRIVER"/>
+					<Add option="-DSTM32F407xx"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Core/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/Target"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/ARM/DSP/Inc"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/User_File"/>
+					<Add directory="D:/Desktop/newCarryCar/newcar_f407/User_Third_Party/eigen-3.3.9"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include/c++/13.3.0"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include/c++/13.3.0/arm-none-eabi"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include/c++/13.3.0/backward"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/include-fixed"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 newcar_f407.elf/fast"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;D:/Desktop/newCarryCar/newcar_f407/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/adc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/can.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/dma.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/gpio.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/iwdg.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/main.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/spi.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/stm32f4xx_hal_conf.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/stm32f4xx_it.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/tim.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Inc/usart.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/adc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/can.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/dma.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/gpio.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/iwdg.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/main.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/spi.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/stm32f4xx_hal_msp.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/stm32f4xx_it.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/syscalls.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/sysmem.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/system_stm32f4xx.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/tim.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Src/usart.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Core/Startup/startup_stm32f407vetx.s">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Device/ST/STM32F4xx/LICENSE.txt">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cachel1_armv7.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_armcc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_armclang.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_armclang_ltm.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_compiler.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_gcc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_iccarm.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/cmsis_version.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_armv81mml.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_armv8mbl.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_armv8mml.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm0.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm0plus.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm1.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm23.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm3.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm33.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm35p.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm4.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm55.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm7.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_cm85.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_sc000.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_sc300.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/core_starmc1.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/mpu_armv7.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/mpu_armv8.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/pac_armv81.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/pmu_armv8.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/Include/tz_context.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/CMSIS/LICENSE.txt">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_cortex.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_iwdg.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_spi.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_system.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/LICENSE.txt">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_iwdg.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_adc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/ARM/DSP/Inc/arm_math.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/ARM/DSP/Lib/libarm_cortexM4lf_math.a">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/ST/STM32_USB_Device_Library/LICENSE.txt">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/Middlewares/Third_Party/ARM/DSP/LICENSE.txt">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/STM32F407VETX_FLASH.ld">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App/usb_device.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App/usb_device.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App/usbd_cdc_if.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App/usbd_cdc_if.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App/usbd_desc.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/App/usbd_desc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/Target/usbd_conf.c">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/USB_DEVICE/Target/usbd_conf.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/ADC/drv_adc.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/ADC/drv_adc.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/BSP/drv_djiboarda.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/BSP/drv_djiboarda.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/CAN/drv_can.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/Math/drv_math.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/Math/drv_math.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/SPI/drv_spi.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/SPI/drv_spi.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/TIM/drv_tim.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/UART/drv_uart.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/WDG/drv_wdg.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/1_Driver/WDG/drv_wdg.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/FSM/alg_fsm.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/FSM/alg_fsm.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Filter/alg_filter.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Filter/alg_filter.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/PID/alg_pid.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/PID/alg_pid.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Queue/alg_queue.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Queue/alg_queue.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Timer/alg_timer.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/1_Middleware/2_Algorithm/Timer/alg_timer.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/DR16/dvc_dr16.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/DR16/dvc_dr16.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Manifold/dvc_manifold.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Manifold/dvc_manifold.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Motor/Motor_DJI/dvc_motor_dji.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Motor/Motor_DJI/dvc_motor_dji.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Motor/Motor_DM/dvc_motor_dm.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Motor/Motor_DM/dvc_motor_dm.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Powermeter/dvc_powermeter.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Powermeter/dvc_powermeter.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Referee/dvc_referee.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Referee/dvc_referee.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Sampler/dvc_sampler.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Sampler/dvc_sampler.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Serialplot/dvc_serialplot.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Serialplot/dvc_serialplot.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Supercap/Supercap_23/dvc_supercap_23.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Supercap/Supercap_23/dvc_supercap_23.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Supercap/Supercap_24/dvc_supercap_24.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/2_Device/Supercap/Supercap_24/dvc_supercap_24.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Booster/Booster_Motor/crt_booster_motor.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Booster/Booster_Motor/crt_booster_motor.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Booster/crt_booster.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Booster/crt_booster.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Chassis/crt_chassis.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Chassis/crt_chassis.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Gimbal/Gimbal_Motor/crt_gimbal_motor.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Gimbal/Gimbal_Motor/crt_gimbal_motor.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Gimbal/crt_gimbal.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/1_Module/Gimbal/crt_gimbal.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/2_Posture/Posture/crt_posture.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/3_Chariot/2_Posture/Posture/crt_posture.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/4_Interaction/ita_robot.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/4_Interaction/ita_robot.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/5_Task/tsk_config_and_callback.cpp">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/User_File/5_Task/tsk_config_and_callback.h">
+			<Option target="newcar_f407.elf"/>
+		</Unit>
+		<Unit filename="D:/Desktop/newCarryCar/newcar_f407/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,5 +1,5 @@
 CMakeFiles/newcar_f407.elf.dir/Core/Src/syscalls.c.obj: \
- D:\Desktop\new_carrycar\newcar_f407\Core\Src\syscalls.c \
+ D:\Desktop\newCarryCar\newcar_f407\Core\Src\syscalls.c \
  C:/msys64/mingw64/arm-none-eabi/include/sys/stat.h \
  C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
  C:/msys64/mingw64/arm-none-eabi/include/newlib.h \

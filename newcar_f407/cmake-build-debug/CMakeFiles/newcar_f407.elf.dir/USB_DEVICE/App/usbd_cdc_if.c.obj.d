@@ -1,10 +1,10 @@
 CMakeFiles/newcar_f407.elf.dir/USB_DEVICE/App/usbd_cdc_if.c.obj: \
- D:\Desktop\new_carrycar\newcar_f407\USB_DEVICE\App\usbd_cdc_if.c \
- D:\Desktop\new_carrycar\newcar_f407\USB_DEVICE\App\usbd_cdc_if.h \
- D:\Desktop\new_carrycar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc/usbd_cdc.h \
- D:\Desktop\new_carrycar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_ioreq.h \
- D:\Desktop\new_carrycar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_def.h \
- D:\Desktop\new_carrycar\newcar_f407\USB_DEVICE\Target/usbd_conf.h \
+ D:\Desktop\newCarryCar\newcar_f407\USB_DEVICE\App\usbd_cdc_if.c \
+ D:\Desktop\newCarryCar\newcar_f407\USB_DEVICE\App\usbd_cdc_if.h \
+ D:\Desktop\newCarryCar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc/usbd_cdc.h \
+ D:\Desktop\newCarryCar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_ioreq.h \
+ D:\Desktop\newCarryCar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_def.h \
+ D:\Desktop\newCarryCar\newcar_f407\USB_DEVICE\Target/usbd_conf.h \
  C:/msys64/mingw64/arm-none-eabi/include/stdio.h \
  C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
  C:/msys64/mingw64/arm-none-eabi/include/newlib.h \
@@ -29,48 +29,48 @@ CMakeFiles/newcar_f407.elf.dir/USB_DEVICE/App/usbd_cdc_if.c.obj: \
  C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
- D:\Desktop\new_carrycar\newcar_f407\Core\Inc/main.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h \
- D:\Desktop\new_carrycar\newcar_f407\Core\Inc/stm32f4xx_hal_conf.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_rcc.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_def.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Device\ST\STM32F4xx\Include/stm32f4xx.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Device\ST\STM32F4xx\Include/stm32f407xx.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Include/core_cm4.h \
+ D:\Desktop\newCarryCar\newcar_f407\Core\Inc/main.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h \
+ D:\Desktop\newCarryCar\newcar_f407\Core\Inc/stm32f4xx_hal_conf.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_rcc.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_def.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Device\ST\STM32F4xx\Include/stm32f4xx.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Device\ST\STM32F4xx\Include/stm32f407xx.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Include/core_cm4.h \
  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Include/cmsis_version.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Include/cmsis_compiler.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Include/cmsis_gcc.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Include/mpu_armv7.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\CMSIS\Device\ST\STM32F4xx\Include/system_stm32f4xx.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/Legacy/stm32_hal_legacy.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_rcc_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_gpio.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_gpio_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_exti.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_dma.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_dma_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_cortex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_adc.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_ll_adc.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_adc_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_can.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_flash.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_flash_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_flash_ramfunc.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_iwdg.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pwr.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pwr_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_spi.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pcd.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_ll_usb.h \
- D:\Desktop\new_carrycar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pcd_ex.h \
- D:\Desktop\new_carrycar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_core.h \
- D:\Desktop\new_carrycar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_ioreq.h \
- D:\Desktop\new_carrycar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_ctlreq.h
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Include/cmsis_version.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Include/cmsis_compiler.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Include/cmsis_gcc.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Include/mpu_armv7.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\CMSIS\Device\ST\STM32F4xx\Include/system_stm32f4xx.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/Legacy/stm32_hal_legacy.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_rcc_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_gpio.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_gpio_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_exti.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_dma.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_dma_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_cortex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_adc.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_ll_adc.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_adc_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_can.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_flash.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_flash_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_flash_ramfunc.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_iwdg.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pwr.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pwr_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_spi.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pcd.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_ll_usb.h \
+ D:\Desktop\newCarryCar\newcar_f407\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pcd_ex.h \
+ D:\Desktop\newCarryCar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_core.h \
+ D:\Desktop\newCarryCar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_ioreq.h \
+ D:\Desktop\newCarryCar\newcar_f407\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_ctlreq.h

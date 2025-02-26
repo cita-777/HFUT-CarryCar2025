@@ -390,8 +390,6 @@ void Task_Init()
     UART_Init(&huart2, Serialplot_UART2_Callback, SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH);
     UART_Init(&huart3, Manifold_UART3_Callback, 128);
     UART_Init(&huart6, Referee_UART6_Callback, 512);
-    UART_Init(&huart7, Chassis_AHRS_UART7_Callback, 128);
-    UART_Init(&huart8, Gimbal_AHRS_UART8_Callback, 128);
     // 定时器初始化
     TIM_Init(&htim4, Task100us_TIM4_Callback);
     TIM_Init(&htim5, Task1ms_TIM5_Callback);

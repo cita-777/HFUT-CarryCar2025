@@ -31,7 +31,7 @@
  * @param huart 指定的UART
  * @param __Frame_Rear 数据包头标
  */
-void Class_Manifold::Init(UART_HandleTypeDef *huart, uint16_t __Frame_Header)
+void Class_Manifold::Init(UART_HandleTypeDef* huart, uint16_t __Frame_Header)
 {
     if (huart->Instance == USART1)
     {
@@ -57,15 +57,7 @@ void Class_Manifold::Init(UART_HandleTypeDef *huart, uint16_t __Frame_Header)
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-    else if (huart->Instance == UART7)
-    {
-        UART_Manage_Object = &UART7_Manage_Object;
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART_Manage_Object = &UART8_Manage_Object;
-    }
-    Frame_Header = __Frame_Header;
+    Frame_Header         = __Frame_Header;
     Tx_Data.Frame_Header = __Frame_Header;
 }
 
@@ -74,9 +66,9 @@ void Class_Manifold::Init(UART_HandleTypeDef *huart, uint16_t __Frame_Header)
  *
  * @param Rx_Data 接收的数据
  */
-void Class_Manifold::UART_RxCpltCallback(uint8_t *Rx_Data, uint16_t Length)
+void Class_Manifold::UART_RxCpltCallback(uint8_t* Rx_Data, uint16_t Length)
 {
-    //滑动窗口, 判断视觉Manifold是否在线
+    // 滑动窗口, 判断视觉Manifold是否在线
     Flag += 1;
 
     Data_Process(Length);
@@ -88,7 +80,7 @@ void Class_Manifold::UART_RxCpltCallback(uint8_t *Rx_Data, uint16_t Length)
  */
 void Class_Manifold::TIM_1000ms_Alive_PeriodElapsedCallback()
 {
-    //判断该时间段内是否接收过视觉Manifold数据
+    // 判断该时间段内是否接收过视觉Manifold数据
     if (Flag == Pre_Flag)
     {
         // 视觉Manifold断开连接
@@ -123,7 +115,7 @@ void Class_Manifold::TIM_10ms_Send_PeriodElapsedCallback()
 void Class_Manifold::Data_Process(uint16_t Length)
 {
     // 数据处理过程
-    Struct_Manifold_UART_Rx_Data *tmp_buffer = (Struct_Manifold_UART_Rx_Data *) UART_Manage_Object->Rx_Buffer;
+    Struct_Manifold_UART_Rx_Data* tmp_buffer = (Struct_Manifold_UART_Rx_Data*)UART_Manage_Object->Rx_Buffer;
 
     // 未通过头校验
     if (tmp_buffer->Frame_Header != Frame_Header)
@@ -134,14 +126,14 @@ void Class_Manifold::Data_Process(uint16_t Length)
     Rx_Data.Shoot_Flag = tmp_buffer->Shoot_Flag;
 
     // pitch角度增量
-    if(isnormal(tmp_buffer->Gimbal_Pitch_Angle_Increment) == true)
+    if (isnormal(tmp_buffer->Gimbal_Pitch_Angle_Increment) == true)
     {
         Rx_Data.Gimbal_Pitch_Angle_Increment = tmp_buffer->Gimbal_Pitch_Angle_Increment + Gimbal_Pitch_Angle_Offset;
-        if(Rx_Data.Gimbal_Pitch_Angle_Increment > Gimbal_Pitch_Angle_Increment_Max)
+        if (Rx_Data.Gimbal_Pitch_Angle_Increment > Gimbal_Pitch_Angle_Increment_Max)
         {
             Rx_Data.Gimbal_Pitch_Angle_Increment = Gimbal_Pitch_Angle_Increment_Max;
         }
-        else if(Rx_Data.Gimbal_Pitch_Angle_Increment < -Gimbal_Pitch_Angle_Increment_Max)
+        else if (Rx_Data.Gimbal_Pitch_Angle_Increment < -Gimbal_Pitch_Angle_Increment_Max)
         {
             Rx_Data.Gimbal_Pitch_Angle_Increment = -Gimbal_Pitch_Angle_Increment_Max;
         }
@@ -151,14 +143,14 @@ void Class_Manifold::Data_Process(uint16_t Length)
         Rx_Data.Gimbal_Pitch_Angle_Increment = 0.0f;
     }
     // yaw角度增量
-    if(isnormal(tmp_buffer->Gimbal_Yaw_Angle_Increment) == true)
+    if (isnormal(tmp_buffer->Gimbal_Yaw_Angle_Increment) == true)
     {
         Rx_Data.Gimbal_Yaw_Angle_Increment = tmp_buffer->Gimbal_Yaw_Angle_Increment + Gimbal_Yaw_Angle_Offset;
-        if(Rx_Data.Gimbal_Yaw_Angle_Increment > Gimbal_Yaw_Angle_Increment_Max)
+        if (Rx_Data.Gimbal_Yaw_Angle_Increment > Gimbal_Yaw_Angle_Increment_Max)
         {
             Rx_Data.Gimbal_Yaw_Angle_Increment = Gimbal_Yaw_Angle_Increment_Max;
         }
-        else if(Rx_Data.Gimbal_Yaw_Angle_Increment < -Gimbal_Yaw_Angle_Increment_Max)
+        else if (Rx_Data.Gimbal_Yaw_Angle_Increment < -Gimbal_Yaw_Angle_Increment_Max)
         {
             Rx_Data.Gimbal_Yaw_Angle_Increment = -Gimbal_Yaw_Angle_Increment_Max;
         }
@@ -168,7 +160,7 @@ void Class_Manifold::Data_Process(uint16_t Length)
         Rx_Data.Gimbal_Yaw_Angle_Increment = 0.0f;
     }
     // pitch角速度前馈
-    if(isnormal(tmp_buffer->Gimbal_Pitch_Omega_FeedForward) == true)
+    if (isnormal(tmp_buffer->Gimbal_Pitch_Omega_FeedForward) == true)
     {
         Rx_Data.Gimbal_Pitch_Omega_FeedForward = tmp_buffer->Gimbal_Pitch_Omega_FeedForward;
     }
@@ -177,7 +169,7 @@ void Class_Manifold::Data_Process(uint16_t Length)
         Rx_Data.Gimbal_Pitch_Omega_FeedForward = 0.0f;
     }
     // yaw角速度前馈
-    if(isnormal(tmp_buffer->Gimbal_Yaw_Omega_FeedForward) == true)
+    if (isnormal(tmp_buffer->Gimbal_Yaw_Omega_FeedForward) == true)
     {
         Rx_Data.Gimbal_Yaw_Omega_FeedForward = tmp_buffer->Gimbal_Yaw_Omega_FeedForward;
     }
@@ -186,10 +178,10 @@ void Class_Manifold::Data_Process(uint16_t Length)
         Rx_Data.Gimbal_Yaw_Omega_FeedForward = 0.0f;
     }
 
-    Rx_Data.Enemy_ID = tmp_buffer->Enemy_ID;
+    Rx_Data.Enemy_ID         = tmp_buffer->Enemy_ID;
     Rx_Data.Confidence_Level = tmp_buffer->Confidence_Level;
 
-    Target_Gimbal_Yaw = Now_Gimbal_Yaw + Rx_Data.Gimbal_Yaw_Angle_Increment;
+    Target_Gimbal_Yaw   = Now_Gimbal_Yaw + Rx_Data.Gimbal_Yaw_Angle_Increment;
     Target_Gimbal_Pitch = Now_Gimbal_Pitch + Rx_Data.Gimbal_Pitch_Angle_Increment;
 }
 
@@ -199,13 +191,13 @@ void Class_Manifold::Data_Process(uint16_t Length)
  */
 void Class_Manifold::Output()
 {
-    Struct_Manifold_UART_Tx_Data *tmp_buffer = (Struct_Manifold_UART_Tx_Data *) UART_Manage_Object->Tx_Buffer;
+    Struct_Manifold_UART_Tx_Data* tmp_buffer = (Struct_Manifold_UART_Tx_Data*)UART_Manage_Object->Tx_Buffer;
 
-    tmp_buffer->Frame_Header = Tx_Data.Frame_Header;
+    tmp_buffer->Frame_Header    = Tx_Data.Frame_Header;
     tmp_buffer->Aiming_Priority = Tx_Data.Aiming_Priority;
-    tmp_buffer->Velocity_X = Tx_Data.Velocity_X;
-    tmp_buffer->Velocity_Y = Tx_Data.Velocity_Y;
-    tmp_buffer->Enemy_Color = Tx_Data.Enemy_Color;
+    tmp_buffer->Velocity_X      = Tx_Data.Velocity_X;
+    tmp_buffer->Velocity_Y      = Tx_Data.Velocity_Y;
+    tmp_buffer->Enemy_Color     = Tx_Data.Enemy_Color;
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

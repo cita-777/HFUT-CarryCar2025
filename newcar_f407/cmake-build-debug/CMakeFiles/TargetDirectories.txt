@@ -1,0 +1,3 @@
+D:/Desktop/new_carrycar/newcar_f407/cmake-build-debug/CMakeFiles/newcar_f407.elf.dir
+D:/Desktop/new_carrycar/newcar_f407/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Desktop/new_carrycar/newcar_f407/cmake-build-debug/CMakeFiles/rebuild_cache.dir

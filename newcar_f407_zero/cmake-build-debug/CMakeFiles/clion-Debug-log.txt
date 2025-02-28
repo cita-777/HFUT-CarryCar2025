@@ -1,0 +1,5 @@
+"D:\Program Files(D)\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe -DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/arm-none-eabi-g++.exe -G "MinGW Makefiles" -S D:\Desktop\new_carrycar\newcar_f407_zero -B D:\Desktop\new_carrycar\newcar_f407_zero\cmake-build-debug
+-- Minimal optimization, debug info included
+-- Configuring done (0.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug

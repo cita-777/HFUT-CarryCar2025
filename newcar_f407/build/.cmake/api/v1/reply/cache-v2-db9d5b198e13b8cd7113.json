@@ -147,7 +147,7 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
+					"value" : "No help, variable specified on the command line."
 				}
 			],
 			"type" : "STRING",
@@ -163,7 +163,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug"
+			"value" : "d:/Desktop/newCarryCar/newcar_f407/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -187,7 +187,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "30"
+			"value" : "31"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -199,19 +199,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "5"
-		},
-		{
-			"name" : "CMAKE_COLOR_DIAGNOSTICS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable colored diagnostics throughout."
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
+			"value" : "6"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -223,7 +211,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/bin/cmake.exe"
+			"value" : "C:/msys64/mingw64/bin/cmake.exe"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -235,7 +223,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/bin/cpack.exe"
+			"value" : "C:/msys64/mingw64/bin/cpack.exe"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -247,23 +235,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/bin/ctest.exe"
-		},
-		{
-			"name" : "CMAKE_CXX_COMPILER",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-g++.exe"
+			"value" : "C:/msys64/mingw64/bin/ctest.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -376,22 +348,6 @@
 			],
 			"type" : "STRING",
 			"value" : "-O2 -g -DNDEBUG"
-		},
-		{
-			"name" : "CMAKE_C_COMPILER",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -614,6 +570,34 @@
 			"value" : ""
 		},
 		{
+			"name" : "CMAKE_EXPORT_BUILD_DATABASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable/Disable output of build database during the build."
+				}
+			],
+			"type" : "BOOL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "TRUE"
+		},
+		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
 			"properties" : 
 			[
@@ -635,7 +619,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "D:/Desktop/newCarryCar/newcar_f407/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +631,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "MinGW Makefiles"
+			"value" : "Ninja"
 		},
 		{
 			"name" : "CMAKE_GENERATOR_INSTANCE",
@@ -695,7 +679,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero"
+			"value" : "D:/Desktop/newCarryCar/newcar_f407"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -707,7 +691,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/newcar_f407_zero"
+			"value" : "C:/Program Files (x86)/newcar_f407"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -735,11 +719,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Path to a program."
+					"value" : "Program used to build from build.ninja files."
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/mingw32-make.exe"
+			"value" : "C:/msys64/mingw64/bin/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -895,7 +879,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "newcar_f407_zero"
+			"value" : "newcar_f407"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -939,7 +923,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/share/cmake-3.30"
+			"value" : "C:/msys64/mingw64/share/cmake"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1182,7 +1166,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "newcar_f407_zero_BINARY_DIR",
+			"name" : "newcar_f407_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1191,10 +1175,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug"
+			"value" : "D:/Desktop/newCarryCar/newcar_f407/build"
 		},
 		{
-			"name" : "newcar_f407_zero_IS_TOP_LEVEL",
+			"name" : "newcar_f407_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1206,7 +1190,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "newcar_f407_zero_SOURCE_DIR",
+			"name" : "newcar_f407_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1215,7 +1199,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero"
+			"value" : "D:/Desktop/newCarryCar/newcar_f407"
 		}
 	],
 	"kind" : "cache",

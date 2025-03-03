@@ -200,7 +200,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PC10     ------> UART4_TX
     PC11     ------> UART4_RX
     */
-    GPIO_InitStruct.Pin = SERVO_Pin|SERVOC11_Pin;
+    GPIO_InitStruct.Pin = SERVO_TX_Pin|SERVO_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -271,19 +271,19 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PC12     ------> UART5_TX
     PD2     ------> UART5_RX
     */
-    GPIO_InitStruct.Pin = JETSON_Pin;
+    GPIO_InitStruct.Pin = JETSON_TX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
-    HAL_GPIO_Init(JETSON_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(JETSON_TX_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = JETSOND2_Pin;
+    GPIO_InitStruct.Pin = JETSON_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
-    HAL_GPIO_Init(JETSOND2_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(JETSON_RX_GPIO_Port, &GPIO_InitStruct);
 
     /* UART5 DMA Init */
     /* UART5_RX Init */
@@ -348,7 +348,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PA9     ------> USART1_TX
     PA10     ------> USART1_RX
     */
-    GPIO_InitStruct.Pin = Display_Pin|DisplayA10_Pin;
+    GPIO_InitStruct.Pin = DISPLAY_TX_Pin|DISPLAY_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -397,7 +397,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PA2     ------> USART2_TX
     PA3     ------> USART2_RX
     */
-    GPIO_InitStruct.Pin = IMU_Pin|IMUA3_Pin;
+    GPIO_InitStruct.Pin = IMU_TX_Pin|IMU_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -467,7 +467,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PB10     ------> USART3_TX
     PB11     ------> USART3_RX
     */
-    GPIO_InitStruct.Pin = usart3tx_Pin|usart3rx_Pin;
+    GPIO_InitStruct.Pin = WIFI_TX_Pin|WIFI_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -541,7 +541,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PC10     ------> UART4_TX
     PC11     ------> UART4_RX
     */
-    HAL_GPIO_DeInit(GPIOC, SERVO_Pin|SERVOC11_Pin);
+    HAL_GPIO_DeInit(GPIOC, SERVO_TX_Pin|SERVO_RX_Pin);
 
     /* UART4 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmarx);
@@ -565,9 +565,9 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PC12     ------> UART5_TX
     PD2     ------> UART5_RX
     */
-    HAL_GPIO_DeInit(JETSON_GPIO_Port, JETSON_Pin);
+    HAL_GPIO_DeInit(JETSON_TX_GPIO_Port, JETSON_TX_Pin);
 
-    HAL_GPIO_DeInit(JETSOND2_GPIO_Port, JETSOND2_Pin);
+    HAL_GPIO_DeInit(JETSON_RX_GPIO_Port, JETSON_RX_Pin);
 
     /* UART5 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmarx);
@@ -591,7 +591,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PA9     ------> USART1_TX
     PA10     ------> USART1_RX
     */
-    HAL_GPIO_DeInit(GPIOA, Display_Pin|DisplayA10_Pin);
+    HAL_GPIO_DeInit(GPIOA, DISPLAY_TX_Pin|DISPLAY_RX_Pin);
 
     /* USART1 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmatx);
@@ -614,7 +614,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PA2     ------> USART2_TX
     PA3     ------> USART2_RX
     */
-    HAL_GPIO_DeInit(GPIOA, IMU_Pin|IMUA3_Pin);
+    HAL_GPIO_DeInit(GPIOA, IMU_TX_Pin|IMU_RX_Pin);
 
     /* USART2 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmarx);
@@ -638,7 +638,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PB10     ------> USART3_TX
     PB11     ------> USART3_RX
     */
-    HAL_GPIO_DeInit(GPIOB, usart3tx_Pin|usart3rx_Pin);
+    HAL_GPIO_DeInit(GPIOB, WIFI_TX_Pin|WIFI_RX_Pin);
 
     /* USART3 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmarx);

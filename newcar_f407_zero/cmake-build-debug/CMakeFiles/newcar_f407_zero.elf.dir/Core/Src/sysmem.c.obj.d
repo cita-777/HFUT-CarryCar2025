@@ -1,5 +1,5 @@
 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/sysmem.c.obj: \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Src\sysmem.c \
+ D:\Desktop\new_carrycar\newcar_f407_zero\Core\Src\sysmem.c \
  C:/msys64/mingw64/arm-none-eabi/include/errno.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/errno.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/reent.h \

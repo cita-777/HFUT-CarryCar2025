@@ -82,8 +82,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Queue/alg_queue.cpp.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.cpp.obj"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.cpp.obj.d"
-  "CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Timer/alg_timer.cpp.obj"
-  "CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Timer/alg_timer.cpp.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp.obj"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj"

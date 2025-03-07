@@ -1,69 +1,131 @@
 /**
- * @file drv_tim.h
- * @author yssickjgd (1345578933@qq.com)
- * @brief 仿照SCUT-Robotlab改写的TIM定时器初始化与配置流程
- * @version 0.1
- * @date 2023-08-29 0.1 23赛季定稿
- *
- * @copyright USTC-RoboWalker (c) 2023
- *
+ * *****************************************************************************
+ * @file        drv_tim.h
+ * @brief
+ * @author      cita (juricek.chen@gmail.com)
+ * @date        2025-03-07
+ * @copyright   cita
+ * *****************************************************************************
  */
+
 
 #ifndef DRV_TIM_H
 #define DRV_TIM_H
 
-/* Includes ------------------------------------------------------------------*/
-
-#include "stm32f4xx_hal.h"
-
-/* Exported macros -----------------------------------------------------------*/
-
-/* Exported types ------------------------------------------------------------*/
-
-/**
- * @brief TIM定时器回调函数数据类型
- *
- */
-typedef void (*TIM_Call_Back)();
-
-/**
- * @brief TIM定时器处理结构体
- *
- */
-struct Struct_TIM_Manage_Object
-{
-    TIM_HandleTypeDef *TIM_Handler;
-    TIM_Call_Back Callback_Function;
-};
-
-/* Exported variables --------------------------------------------------------*/
-
-extern bool init_finished;
-
-extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim4;
-extern TIM_HandleTypeDef htim5;
-extern TIM_HandleTypeDef htim12;
-
-extern Struct_TIM_Manage_Object TIM1_Manage_Object;
-extern Struct_TIM_Manage_Object TIM2_Manage_Object;
-extern Struct_TIM_Manage_Object TIM3_Manage_Object;
-extern Struct_TIM_Manage_Object TIM4_Manage_Object;
-extern Struct_TIM_Manage_Object TIM5_Manage_Object;
-extern Struct_TIM_Manage_Object TIM6_Manage_Object;
-extern Struct_TIM_Manage_Object TIM7_Manage_Object;
-extern Struct_TIM_Manage_Object TIM8_Manage_Object;
-extern Struct_TIM_Manage_Object TIM9_Manage_Object;
-extern Struct_TIM_Manage_Object TIM10_Manage_Object;
-extern Struct_TIM_Manage_Object TIM11_Manage_Object;
-extern Struct_TIM_Manage_Object TIM12_Manage_Object;
-extern Struct_TIM_Manage_Object TIM13_Manage_Object;
-extern Struct_TIM_Manage_Object TIM14_Manage_Object;
-
-/* Exported function declarations --------------------------------------------*/
-
-void TIM_Init(TIM_HandleTypeDef *htim, TIM_Call_Back Callback_Function);
-
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-/************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/
+
+/*----------------------------------include-----------------------------------*/
+#include "stm32f4xx_hal.h"
+#include "tim.h"
+#include <string.h>
+/*-----------------------------------macro------------------------------------*/
+
+/*----------------------------------typedef-----------------------------------*/
+/**
+ * @brief 状态
+ *
+ */
+enum Enum_Timer_Status
+{
+    Timer_Status_RESET = 0,
+    Timer_Status_WAIT,
+    Timer_Status_TRIGGER,
+    Timer_Status_TIMEOUT,
+};
+
+/**
+ * @brief Reusable, 定时器本体, 一般以1ms为界
+ *
+ */
+class Class_Timer
+{
+public:
+    void Init(uint32_t __Delay);
+
+    inline uint32_t Get_Tick();
+
+    inline Enum_Timer_Status Get_Now_Status();
+
+    inline void Set_Delay(uint32_t __Delay);
+
+    void TIM_1ms_Calculate_PeriodElapsedCallback();
+
+protected:
+    // 初始化相关常量
+
+    // 常量
+
+    // 内部变量
+
+    // 读变量
+
+    // 时钟计数
+    uint32_t Tick = 0;
+
+    // 写变量
+
+    // 延迟时间单元数
+    uint32_t Delay = 0;
+
+    // 读写变量
+
+    // 当前状态
+    Enum_Timer_Status Now_Status = Timer_Status_RESET;
+
+    // 内部函数
+};
+
+/*----------------------------------variable----------------------------------*/
+extern Class_Timer TIM_1ms;
+/*-------------------------------------os-------------------------------------*/
+
+/*----------------------------------function----------------------------------*/
+/**
+ * @brief 获取时钟计数
+ *
+ * @return 时钟计数
+ */
+inline uint32_t Class_Timer::Get_Tick()
+{
+    return (Tick);
+}
+
+/**
+ * @brief 获取当前状态
+ *
+ * @return 当前状态
+ */
+inline Enum_Timer_Status Class_Timer::Get_Now_Status()
+{
+    return (Now_Status);
+}
+
+/**
+ * @brief 设定当前状态
+ *
+ * @param __Now_Status 当前状态
+ */
+inline void Class_Timer::Set_Delay(uint32_t __Delay)
+{
+    Delay = __Delay;
+    Tick  = 0;
+    if (Delay != 0)
+    {
+        Now_Status = Timer_Status_WAIT;
+    }
+    else
+    {
+        Now_Status = Timer_Status_RESET;
+    }
+}
+
+/*------------------------------------test------------------------------------*/
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* DRV_TIM_H */

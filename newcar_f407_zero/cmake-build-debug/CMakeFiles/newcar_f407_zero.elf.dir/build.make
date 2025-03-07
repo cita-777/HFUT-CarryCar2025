@@ -728,6 +728,20 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s"
 	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c.s
 
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.c
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\vofa.c
+
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.i"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\vofa.c > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.i
+
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.s"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\vofa.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.s
+
 # Object files for target newcar_f407_zero.elf
 newcar_f407_zero_elf_OBJECTS = \
 "CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/can.c.obj" \
@@ -776,7 +790,8 @@ newcar_f407_zero_elf_OBJECTS = \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp.obj" \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj" \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj" \
-"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj"
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj" \
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj"
 
 # External object files for target newcar_f407_zero.elf
 newcar_f407_zero_elf_EXTERNAL_OBJECTS =
@@ -828,9 +843,11 @@ newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHR
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/build.make
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/objects1.rsp
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Linking CXX executable newcar_f407_zero.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Linking CXX executable newcar_f407_zero.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\newcar_f407_zero.elf.dir\link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building D:/Desktop/newCarryCar/newcar_f407_zero/cmake-build-debug/newcar_f407_zero.hex"
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building D:/Desktop/newCarryCar/newcar_f407_zero/cmake-build-debug/newcar_f407_zero.bin"

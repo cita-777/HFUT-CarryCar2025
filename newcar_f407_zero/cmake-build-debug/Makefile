@@ -1247,6 +1247,30 @@ User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s
 .PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s
 
+User_File/2_Device/Vofa/vofa.obj: User_File/2_Device/Vofa/vofa.c.obj
+.PHONY : User_File/2_Device/Vofa/vofa.obj
+
+# target to build an object file
+User_File/2_Device/Vofa/vofa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
+.PHONY : User_File/2_Device/Vofa/vofa.c.obj
+
+User_File/2_Device/Vofa/vofa.i: User_File/2_Device/Vofa/vofa.c.i
+.PHONY : User_File/2_Device/Vofa/vofa.i
+
+# target to preprocess a source file
+User_File/2_Device/Vofa/vofa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.i
+.PHONY : User_File/2_Device/Vofa/vofa.c.i
+
+User_File/2_Device/Vofa/vofa.s: User_File/2_Device/Vofa/vofa.c.s
+.PHONY : User_File/2_Device/Vofa/vofa.s
+
+# target to generate assembly for a file
+User_File/2_Device/Vofa/vofa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.s
+.PHONY : User_File/2_Device/Vofa/vofa.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -1396,6 +1420,9 @@ help:
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.obj
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.i
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.s
+	@echo ... User_File/2_Device/Vofa/vofa.obj
+	@echo ... User_File/2_Device/Vofa/vofa.i
+	@echo ... User_File/2_Device/Vofa/vofa.s
 .PHONY : help
 
 

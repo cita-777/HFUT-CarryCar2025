@@ -10,10 +10,11 @@ void Vofa_FireWater(const char* format, ...)
     n = vsnprintf((char*)txBuffer, 100, format, args);
 
     //....在此替换你的串口发送函数...........
-    HAL_UART_Transmit_DMA(&huart3, (uint8_t*)txBuffer, n);
+    HAL_UART_Transmit_DMA(&huart1, (uint8_t*)txBuffer, n);
     //......................................
 
     va_end(args);
+    HAL_Delay(0);
 }
 
 // 输入个数和数组地址
@@ -29,7 +30,8 @@ void Vofa_JustFloat(float* _data, uint8_t _num)
     memcpy(&tempData[_num * 4], &temp_end[0], 4);
 
     //....在此替换你的串口发送函数...........
-    HAL_UART_Transmit_DMA(&huart3, tempData, (_num + 1) * 4);
+    HAL_UART_Transmit_DMA(&huart1, tempData, (_num + 1) * 4);
+    //HAL_Delay(0);
     //......................................
 }
 

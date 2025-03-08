@@ -8,7 +8,22 @@
 *** CSDN博客：http s://blog.csdn.net/zhangdatou666
 *** qq交流群：262438510
 **********************************************************/
+uint8_t ZDT_X42_V2_Init(void)
+{
+    USER_CAN1_Filter_Init();   // 初始化CAN滤波器
+    if (HAL_CAN_Start(&hcan1) != HAL_OK)
+    {
+        return 1;
+        Error_Handler();
 
+    }   // 启动CAN控制器
+    if (HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+    {
+        return 1;
+        Error_Handler();
+    }   // 使能CAN控制器接收中断
+    return 0;
+}
 /**
  * @brief    将当前位置清零
  * @param    addr  ：电机地址
@@ -452,7 +467,7 @@ uint8_t ZDT_X42_V2_Receive_Data_Right()
     while (can.rxData[0] != 0xFD || can.rxData[1] != 0x9F)
     {
         // 可以添加一些延时，避免过度占用CPU资源
-        //HAL_Delay(1);
+        // HAL_Delay(1);
     }
 
     if (can.rxData[0] == 0xFD && can.rxData[1] == 0x9F)

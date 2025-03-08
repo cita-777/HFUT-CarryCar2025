@@ -14,7 +14,9 @@
 **********************************************************/
 
 #define ABS(x) ((x) > 0 ? (x) : -(x))
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 typedef enum
 {
     S_VER   = 0,  /* 读取固件版本和对应的硬件版本 */
@@ -40,27 +42,32 @@ typedef enum
     S_State = 20, /* 读取系统状态参数 */
 } SysParams_t;
 
-void ZDT_X42_V2_Reset_CurPos_To_Zero(uint8_t addr);                            // 将当前位置清零
-void ZDT_X42_V2_Reset_Clog_Pro(uint8_t addr);                                  // 解除堵转保护
-void ZDT_X42_V2_Read_Sys_Params(uint8_t addr, SysParams_t s);                  // 读取参数
-void ZDT_X42_V2_Modify_Ctrl_Mode(uint8_t addr, bool svF, uint8_t ctrl_mode);   // 发送命令切换开环/闭环控制模式
-void ZDT_X42_V2_En_Control(uint8_t addr, bool state, uint8_t snF);             // 电机使能控制
-void ZDT_X42_V2_Torque_Control(uint8_t addr, uint8_t sign, uint16_t t_ramp, uint16_t torque,
-                               uint8_t snF);   // 力矩模式控制
-void ZDT_X42_V2_Velocity_Control(uint8_t addr, uint8_t dir, uint16_t v_ramp, float velocity,
-                                 uint8_t snF);   // 速度模式控制
-void ZDT_X42_V2_Bypass_Position_LV_Control(uint8_t addr, uint8_t dir, float velocity, float position, uint8_t raf,
-                                           uint8_t snF);   // 直通限速位置模式控制
-void ZDT_X42_V2_Traj_Position_Control(uint8_t addr, uint8_t dir, uint16_t acc, uint16_t dec, float velocity,
-                                      float position, uint8_t raf, uint8_t snF);   // 梯形曲线加减速位置模式控制
-void ZDT_X42_V2_Stop_Now(uint8_t addr, uint8_t snF);                               // 让电机立即停止运动
-void ZDT_X42_V2_Synchronous_motion(uint8_t addr);                                  // 触发多机同步开始运动
-void ZDT_X42_V2_Origin_Set_O(uint8_t addr, bool svF);                              // 设置单圈回零的零点位置
-void ZDT_X42_V2_Origin_Modify_Params(uint8_t addr, bool svF, uint8_t o_mode, uint8_t o_dir, uint16_t o_vel,
-                                     uint32_t o_tm, uint16_t sl_vel, uint16_t sl_ma, uint16_t sl_ms,
-                                     bool potF);                                 // 修改回零参数
-void ZDT_X42_V2_Origin_Trigger_Return(uint8_t addr, uint8_t o_mode, bool snF);   // 发送命令触发回零
-void ZDT_X42_V2_Origin_Interrupt(uint8_t addr);                                  // 强制中断并退出回零
-uint8_t ZDT_X42_V2_Receive_Data_Right();            // 返回数据接收函数
+uint8_t ZDT_X42_V2_Init(void);                                                    // 初始化
+void    ZDT_X42_V2_Reset_CurPos_To_Zero(uint8_t addr);                            // 将当前位置清零
+void    ZDT_X42_V2_Reset_Clog_Pro(uint8_t addr);                                  // 解除堵转保护
+void    ZDT_X42_V2_Read_Sys_Params(uint8_t addr, SysParams_t s);                  // 读取参数
+void    ZDT_X42_V2_Modify_Ctrl_Mode(uint8_t addr, bool svF, uint8_t ctrl_mode);   // 发送命令切换开环/闭环控制模式
+void    ZDT_X42_V2_En_Control(uint8_t addr, bool state, uint8_t snF);             // 电机使能控制
+void    ZDT_X42_V2_Torque_Control(uint8_t addr, uint8_t sign, uint16_t t_ramp, uint16_t torque,
+                                  uint8_t snF);   // 力矩模式控制
+void    ZDT_X42_V2_Velocity_Control(uint8_t addr, uint8_t dir, uint16_t v_ramp, float velocity,
+                                    uint8_t snF);   // 速度模式控制
+void    ZDT_X42_V2_Bypass_Position_LV_Control(uint8_t addr, uint8_t dir, float velocity, float position, uint8_t raf,
+                                              uint8_t snF);   // 直通限速位置模式控制
+void    ZDT_X42_V2_Traj_Position_Control(uint8_t addr, uint8_t dir, uint16_t acc, uint16_t dec, float velocity,
+                                         float position, uint8_t raf, uint8_t snF);   // 梯形曲线加减速位置模式控制
+void    ZDT_X42_V2_Stop_Now(uint8_t addr, uint8_t snF);                               // 让电机立即停止运动
+void    ZDT_X42_V2_Synchronous_motion(uint8_t addr);                                  // 触发多机同步开始运动
+void    ZDT_X42_V2_Origin_Set_O(uint8_t addr, bool svF);                              // 设置单圈回零的零点位置
+void    ZDT_X42_V2_Origin_Modify_Params(uint8_t addr, bool svF, uint8_t o_mode, uint8_t o_dir, uint16_t o_vel,
+                                        uint32_t o_tm, uint16_t sl_vel, uint16_t sl_ma, uint16_t sl_ms,
+                                        bool potF);                                 // 修改回零参数
+void    ZDT_X42_V2_Origin_Trigger_Return(uint8_t addr, uint8_t o_mode, bool snF);   // 发送命令触发回零
+void    ZDT_X42_V2_Origin_Interrupt(uint8_t addr);                                  // 强制中断并退出回零
+uint8_t ZDT_X42_V2_Receive_Data_Right();                                            // 返回数据接收函数
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

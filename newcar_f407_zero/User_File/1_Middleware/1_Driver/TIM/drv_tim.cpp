@@ -10,6 +10,7 @@
 
 /*----------------------------------include-----------------------------------*/
 #include "drv_tim.h"
+#include "4_Task\task_config.h"
 /*-----------------------------------macro------------------------------------*/
 
 /*----------------------------------typedef-----------------------------------*/
@@ -55,13 +56,50 @@ void Class_Timer::TIM_1ms_Calculate_PeriodElapsedCallback()
         Now_Status = Timer_Status_TIMEOUT;
     }
 }
+bool Class_Timer::DelayNonBlocking(uint32_t __Delay)
+{
+    // 使用静态变量记录是否已启动延时
+    static bool delayInitialized = false;
+    if (!delayInitialized)
+    {
+        // 未启动则初始化延时
+        Set_Delay(__Delay);
+        delayInitialized = true;
+        return false;   // 延时开始，但还未完成
+    }
 
+    // 检查当前延时状态
+    if (Get_Now_Status() == Timer_Status_TRIGGER || Get_Now_Status() == Timer_Status_TIMEOUT)
+    {
+        // 延时结束，复位标志，便于下次调用启动新延时
+        delayInitialized = false;
+        return true;
+    }
+    return false;
+}
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     if (htim == (&htim6))   // 0.001s触发一次中断
     {
-        TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
+        static int count_num1 = 0;
+        static int count_num2 = 0;
+        count_num1++;
+        count_num2++;
+        if (count_num1 == 1)
+        {
+            count_num1 = 0;
+
+            Task_EnableHandle("feed_dog");
+
+            TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
+        }
+        if (count_num2 == 10)
+        {
+            Task_EnableHandle("test");
+            // Task_EnableHandle("another_task");
+            count_num2 = 0;
+        }
     }
 }
 /*------------------------------------test------------------------------------*/

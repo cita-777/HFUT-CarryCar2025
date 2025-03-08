@@ -43,15 +43,14 @@ enum Enum_Timer_Status
 class Class_Timer
 {
 public:
-    void Init(uint32_t __Delay);
-
-    inline uint32_t Get_Tick();
-
+    void                     Init(uint32_t __Delay);
+    inline uint32_t          Get_Tick();
     inline Enum_Timer_Status Get_Now_Status();
+    inline void              Set_Delay(uint32_t __Delay);
+    void                     TIM_1ms_Calculate_PeriodElapsedCallback();
 
-    inline void Set_Delay(uint32_t __Delay);
-
-    void TIM_1ms_Calculate_PeriodElapsedCallback();
+    // 新增非阻塞延时接口，返回 true 表示延时结束，false 表示延时进行中
+    bool DelayNonBlocking(uint32_t __Delay);
 
 protected:
     // 初始化相关常量

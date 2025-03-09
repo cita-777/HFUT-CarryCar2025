@@ -10,6 +10,7 @@
 #include "task_config.h"
 #include "1_Middleware/1_Driver/TIM/drv_tim.h"
 #include "1_Middleware/1_Driver/WDG/drv_wdg.h"
+#include "2_Device/Jetson/jetson.h"
 #include "2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h"
 #include "2_Device/Vofa/vofa.h"
 #include "2_Device/tjc_screen/tjc.h"
@@ -69,21 +70,22 @@ void test()
     a += 0.01;
     b = arm_sin_f32(a);
 
-    // 仅每50ms打印一次数据(每5次执行打印一次)
-    // if (counter % 5 == 0)
-    // {
-    //     Vofa_FireWater("%f,%f\r\n", a, b);
-    // }
+    // 仅每5ms打印一次数据(每5次执行打印一次)
+    if (counter % 50 == 0)
+    {
+        // Vofa_FireWater("%f,%f\r\n", a, b);
+        // TJC_Send_Format("t2.txt=\"%.2f\"", b);
+    }
 
     // 添加调试信息验证通信状态
     if (ZDT_X42_V2_Receive_Data_Right())
     {
-        // 仅每30ms控制一次电机(每3次执行控制一次)
+        // 仅每1ms控制一次电机(每3次执行控制一次)
         if (counter % 1 == 0)
         {
-            if (b> 0)
+            if (b > 0)
             {
-                ZDT_X42_V2_Traj_Position_Control(1, 0, 2000, 2000, 3000, b * 10000, 1, 1);
+                ZDT_X42_V2_Traj_Position_Control(1, 0, 500, 500, 3000, b * 10000, 1, 1);
                 HAL_Delay(0);
                 ZDT_X42_V2_Synchronous_motion(0);
             }
@@ -93,7 +95,6 @@ void test()
                 HAL_Delay(0);
                 ZDT_X42_V2_Synchronous_motion(0);
             }
-
         }
     }
     else
@@ -116,14 +117,18 @@ void feed_dog()
 // 任务初始化, 可在此函数中初始化任务状态，默认为使能状态
 void Task_InitAll(void)
 {
-    //  启动TIM6定时器
-    HAL_TIM_Base_Start_IT(&htim6);
-    while (ZDT_X42_V2_Init());
 
+    while (ZDT_X42_V2_Init());
+asccas
     HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
     HAL_Delay(1);
     while (TJC_Init(&huart1));
+    static JetsonCommunicator jc(&huart5);
+    jc.init();
+    g_jetson->send(0x01);   // 发送数据到Jetson
+    // 启动TIM6定时器
+    HAL_TIM_Base_Start_IT(&htim6);
     for (int i = 0; i < TASK_MAX_NUM; i++)
     {
         // 如果任务函数不为空，可以设置为默认启用状态

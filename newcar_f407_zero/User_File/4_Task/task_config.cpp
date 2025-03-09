@@ -70,21 +70,32 @@ void test()
     b = arm_sin_f32(a);
 
     // 仅每50ms打印一次数据(每5次执行打印一次)
-    if (counter % 5 == 0)
-    {
-        Vofa_FireWater("%f,%f\r\n", a, b);
-    }
-
-    //添加调试信息验证通信状态
-    // if (ZDT_X42_V2_Receive_Data_Right())
+    // if (counter % 5 == 0)
     // {
-    //     // 仅每30ms控制一次电机(每3次执行控制一次)
-    //     if (counter % 3 == 0)
-    //     {
-    //         ZDT_X42_V2_Traj_Position_Control(1, 1, 500, 500, 2000, b * 10, 1, 0);
-    //         // ZDT_X42_V2_Synchronous_motion(0);
-    //     }
+    //     Vofa_FireWater("%f,%f\r\n", a, b);
     // }
+
+    // 添加调试信息验证通信状态
+    if (ZDT_X42_V2_Receive_Data_Right())
+    {
+        // 仅每30ms控制一次电机(每3次执行控制一次)
+        if (counter % 1 == 0)
+        {
+            if (b> 0)
+            {
+                ZDT_X42_V2_Traj_Position_Control(1, 0, 2000, 2000, 3000, b * 10000, 1, 1);
+                HAL_Delay(0);
+                ZDT_X42_V2_Synchronous_motion(0);
+            }
+            else
+            {
+                ZDT_X42_V2_Traj_Position_Control(1, 1, 2000, 2000, 3000, b * 10000, 1, 1);
+                HAL_Delay(0);
+                ZDT_X42_V2_Synchronous_motion(0);
+            }
+
+        }
+    }
     else
     {
         // 如果通信异常，每100次执行打印一次错误信息
@@ -108,8 +119,9 @@ void Task_InitAll(void)
     //  启动TIM6定时器
     HAL_TIM_Base_Start_IT(&htim6);
     while (ZDT_X42_V2_Init());
+
     HAL_Delay(1);
-    ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 300, 1, 0);
+    ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
     HAL_Delay(1);
     while (TJC_Init(&huart1));
     for (int i = 0; i < TASK_MAX_NUM; i++)

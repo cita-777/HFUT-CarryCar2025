@@ -1675,8 +1675,6 @@ Discarded input sections
                 0x00000000       0x98 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
  .text.ZDT_X42_V2_Stop_Now
                 0x00000000       0x3c CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
- .text.ZDT_X42_V2_Synchronous_motion
-                0x00000000       0x30 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
  .text.ZDT_X42_V2_Origin_Set_O
                 0x00000000       0x3c CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
  .text.ZDT_X42_V2_Origin_Modify_Params
@@ -1685,8 +1683,6 @@ Discarded input sections
                 0x00000000       0x38 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
  .text.ZDT_X42_V2_Origin_Interrupt
                 0x00000000       0x30 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
- .text.ZDT_X42_V2_Receive_Data_Right
-                0x00000000       0x2c CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
  .text          0x00000000        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
  .data          0x00000000        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
  .bss           0x00000000        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
@@ -2406,7 +2402,7 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/c
                 0x08000000                g_pfnVectors
                 0x08000188                        . = ALIGN (0x4)
 
-.text           0x080001c0     0xbdec
+.text           0x080001c0     0xbe70
                 0x080001c0                        . = ALIGN (0x4)
  *(.text)
  .text          0x080001c0      0x378 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
@@ -3103,369 +3099,374 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/c
  .text.ZDT_X42_V2_Traj_Position_Control
                 0x0800ac1c       0xd8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
                 0x0800ac1c                ZDT_X42_V2_Traj_Position_Control
+ .text.ZDT_X42_V2_Synchronous_motion
+                0x0800acf4       0x30 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
+                0x0800acf4                ZDT_X42_V2_Synchronous_motion
+ .text.ZDT_X42_V2_Receive_Data_Right
+                0x0800ad24       0x2c CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
+                0x0800ad24                ZDT_X42_V2_Receive_Data_Right
  .text.Vofa_FireWater
-                0x0800acf4       0x34 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
-                0x0800acf4                Vofa_FireWater
+                0x0800ad50       0x34 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
+                0x0800ad50                Vofa_FireWater
  .text._Z17TJC_UART_CallbackPht
-                0x0800ad28       0x24 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
-                0x0800ad28                TJC_UART_Callback(unsigned char*, unsigned short)
+                0x0800ad84       0x24 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ad84                TJC_UART_Callback(unsigned char*, unsigned short)
  .text.TJC_Init
-                0x0800ad4c       0x60 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
-                0x0800ad4c                TJC_Init
+                0x0800ada8       0x68 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ada8                TJC_Init
  .text.TJC_Check_Receive
-                0x0800adac       0x1c CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
-                0x0800adac                TJC_Check_Receive
+                0x0800ae10       0x1c CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ae10                TJC_Check_Receive
  .text.TJC_Send_Command
-                0x0800adc8       0x60 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
-                0x0800adc8                TJC_Send_Command
+                0x0800ae2c       0x60 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ae2c                TJC_Send_Command
  .text._ZL5Task1v
-                0x0800ae28        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800ae8c        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
  .text._ZL10State_Donev
-                0x0800ae2c        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800ae90        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
  .text._ZL5Task2v
-                0x0800ae30        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800ae94        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
  .text._ZL5Task3v
-                0x0800ae34        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800ae98        0x4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
  .text.main_proc_run
-                0x0800ae38       0x34 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
-                0x0800ae38                main_proc_run
+                0x0800ae9c       0x34 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800ae9c                main_proc_run
  .text._Z8feed_dogv
-                0x0800ae6c       0x40 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
-                0x0800ae6c                feed_dog()
- *fill*         0x0800aeac        0x4 
+                0x0800aed0       0x40 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800aed0                feed_dog()
  .text._Z4testv
-                0x0800aeb0       0xec CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
-                0x0800aeb0                test()
+                0x0800af10      0x110 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800af10                test()
  .text._Z19tjc_start_detectionv
-                0x0800af9c       0x4c CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
-                0x0800af9c                tjc_start_detection()
+                0x0800b020       0x4c CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800b020                tjc_start_detection()
  .text.Task_InitAll
-                0x0800afe8       0xc4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
-                0x0800afe8                Task_InitAll
+                0x0800b06c       0xc4 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800b06c                Task_InitAll
  .text.Task_RunAll
-                0x0800b0ac       0x20 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
-                0x0800b0ac                Task_RunAll
+                0x0800b130       0x20 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800b130                Task_RunAll
  .text.Task_EnableHandle
-                0x0800b0cc       0x38 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
-                0x0800b0cc                Task_EnableHandle
+                0x0800b150       0x38 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800b150                Task_EnableHandle
  .text.arm_sin_f32
-                0x0800b104       0x8c D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
-                0x0800b104                arm_sin_f32
+                0x0800b188       0x8c D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
+                0x0800b188                arm_sin_f32
  .text.__udivmoddi4
-                0x0800b190      0x2a0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
-                0x0800b190                __udivmoddi4
+                0x0800b214      0x2a0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x0800b214                __udivmoddi4
  .text.selfrel_offset31
-                0x0800b430       0x12 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b4b4       0x12 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.search_EIT_table
-                0x0800b442       0x60 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
- *fill*         0x0800b4a2        0x2 
+                0x0800b4c6       0x60 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+ *fill*         0x0800b526        0x2 
  .text.__gnu_unwind_get_pr_addr
-                0x0800b4a4       0x28 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b528       0x28 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.get_eit_entry
-                0x0800b4cc       0x8c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b550       0x8c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.restore_non_core_regs
-                0x0800b558       0x4e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b5dc       0x4e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text._Unwind_decode_typeinfo_ptr.constprop.0
-                0x0800b5a6        0xa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b62a        0xa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text._Unwind_DebugHook
-                0x0800b5b0        0x2 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b634        0x2 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.unwind_phase2
-                0x0800b5b2       0x3a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b636       0x3a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.unwind_phase2_forced
-                0x0800b5ec       0xba C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b670       0xba C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.__gnu_Unwind_RaiseException
-                0x0800b6a6       0x5a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b6a6                __gnu_Unwind_RaiseException
+                0x0800b72a       0x5a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b72a                __gnu_Unwind_RaiseException
  .text.__gnu_Unwind_ForcedUnwind
-                0x0800b700       0x14 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b700                __gnu_Unwind_ForcedUnwind
+                0x0800b784       0x14 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b784                __gnu_Unwind_ForcedUnwind
  .text.__gnu_Unwind_Resume
-                0x0800b714       0x40 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b714                __gnu_Unwind_Resume
+                0x0800b798       0x40 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b798                __gnu_Unwind_Resume
  .text.__gnu_Unwind_Resume_or_Rethrow
-                0x0800b754       0x12 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b754                __gnu_Unwind_Resume_or_Rethrow
+                0x0800b7d8       0x12 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b7d8                __gnu_Unwind_Resume_or_Rethrow
  .text._Unwind_VRS_Get
-                0x0800b766       0x30 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b766                _Unwind_VRS_Get
+                0x0800b7ea       0x30 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b7ea                _Unwind_VRS_Get
  .text._Unwind_GetGR
-                0x0800b796       0x18 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b81a       0x18 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text._Unwind_VRS_Set
-                0x0800b7ae       0x32 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b7ae                _Unwind_VRS_Set
+                0x0800b832       0x32 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b832                _Unwind_VRS_Set
  .text._Unwind_SetGR
-                0x0800b7e0       0x18 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b864       0x18 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.__gnu_Unwind_Backtrace
-                0x0800b7f8       0x6c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800b7f8                __gnu_Unwind_Backtrace
+                0x0800b87c       0x6c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b87c                __gnu_Unwind_Backtrace
  .text.__gnu_unwind_pr_common
-                0x0800b864      0x24c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800b8e8      0x24c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .text.__aeabi_unwind_cpp_pr0
-                0x0800bab0        0x6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800bab0                __aeabi_unwind_cpp_pr0
+                0x0800bb34        0x6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800bb34                __aeabi_unwind_cpp_pr0
  .text.__aeabi_unwind_cpp_pr1
-                0x0800bab6        0x6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800bab6                __aeabi_unwind_cpp_pr1
+                0x0800bb3a        0x6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800bb3a                __aeabi_unwind_cpp_pr1
  .text.__aeabi_unwind_cpp_pr2
-                0x0800babc        0x6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800babc                __aeabi_unwind_cpp_pr2
+                0x0800bb40        0x6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800bb40                __aeabi_unwind_cpp_pr2
  .text._Unwind_VRS_Pop
-                0x0800bac2      0x226 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
-                0x0800bac2                _Unwind_VRS_Pop
+                0x0800bb46      0x226 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800bb46                _Unwind_VRS_Pop
  .text.next_unwind_byte
-                0x0800bce8       0x30 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
+                0x0800bd6c       0x30 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
  .text.__gnu_unwind_execute
-                0x0800bd18      0x268 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
-                0x0800bd18                __gnu_unwind_execute
- .text.startup  0x0800bf80       0x14 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
+                0x0800bd9c      0x268 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
+                0x0800bd9c                __gnu_unwind_execute
+ .text.startup  0x0800c004       0x14 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
  *(.glue_7)
- .glue_7        0x0800bf94        0x0 linker stubs
+ .glue_7        0x0800c018        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800bf94        0x0 linker stubs
+ .glue_7t       0x0800c018        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0800bf94        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x0800c018        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x0800bf94        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crti.o
-                0x0800bf94                _init
- .init          0x0800bf98        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x0800c018        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crti.o
+                0x0800c018                _init
+ .init          0x0800c01c        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0800bfa0        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crti.o
-                0x0800bfa0                _fini
- .fini          0x0800bfa4        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtn.o
-                0x0800bfac                        . = ALIGN (0x4)
-                0x0800bfac                        _etext = .
+ .fini          0x0800c024        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crti.o
+                0x0800c024                _fini
+ .fini          0x0800c028        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtn.o
+                0x0800c030                        . = ALIGN (0x4)
+                0x0800c030                        _etext = .
 
-.vfp11_veneer   0x0800bfac        0x0
- .vfp11_veneer  0x0800bfac        0x0 linker stubs
+.vfp11_veneer   0x0800c030        0x0
+ .vfp11_veneer  0x0800c030        0x0 linker stubs
 
-.v4_bx          0x0800bfac        0x0
- .v4_bx         0x0800bfac        0x0 linker stubs
+.v4_bx          0x0800c030        0x0
+ .v4_bx         0x0800c030        0x0 linker stubs
 
-.iplt           0x0800bfac        0x0
- .iplt          0x0800bfac        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x0800c030        0x0
+ .iplt          0x0800c030        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x0800bfb0      0xc68
-                0x0800bfb0                        . = ALIGN (0x4)
+.rodata         0x0800c030      0xc60
+                0x0800c030                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0800bfb0       0x20 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
- .rodata        0x0800bfd0      0x128 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
-                0x0800bfe0                __mprec_tens
-                0x0800c0a8                __mprec_tinytens
-                0x0800c0d0                __mprec_bigtens
- .rodata        0x0800c0f8      0x101 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ctype_.o)
-                0x0800c0f8                _ctype_
- *fill*         0x0800c1f9        0x3 
- .rodata        0x0800c1fc       0x20 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
+ .rodata        0x0800c030       0x20 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
+ .rodata        0x0800c050      0x128 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
+                0x0800c060                __mprec_tens
+                0x0800c128                __mprec_tinytens
+                0x0800c150                __mprec_bigtens
+ .rodata        0x0800c178      0x101 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ctype_.o)
+                0x0800c178                _ctype_
+ *fill*         0x0800c279        0x3 
+ .rodata        0x0800c27c       0x20 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
  *(.rodata*)
  .rodata.APBPrescTable
-                0x0800c21c        0x8 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/system_stm32f4xx.c.obj
-                0x0800c21c                APBPrescTable
+                0x0800c29c        0x8 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/system_stm32f4xx.c.obj
+                0x0800c29c                APBPrescTable
  .rodata.AHBPrescTable
-                0x0800c224       0x10 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/system_stm32f4xx.c.obj
-                0x0800c224                AHBPrescTable
+                0x0800c2a4       0x10 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/system_stm32f4xx.c.obj
+                0x0800c2a4                AHBPrescTable
  .rodata.flagBitshiftOffset.0
-                0x0800c234        0x8 CMakeFiles/newcar_f407_zero.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
+                0x0800c2b4        0x8 CMakeFiles/newcar_f407_zero.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
  .rodata.HAL_TIM_PeriodElapsedCallback.str1.4
-                0x0800c23c      0x1c7 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
+                0x0800c2bc      0x1bf CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
                                  0x11 (size before relaxing)
  .rodata.TJC_Init.str1.4
-                0x0800c403       0x19 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
- *fill*         0x0800c403        0x1 
+                0x0800c47b       0x19 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+ *fill*         0x0800c47b        0x1 
  .rodata._ZL12procHandlers
-                0x0800c404       0x10 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800c47c       0x10 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
  .rodata._Z8feed_dogv.str1.4
-                0x0800c414        0x9 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800c48c        0x9 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .rodata._Z4testv.str1.4
-                0x0800c414       0x29 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800c48c       0x21 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .rodata._Z19tjc_start_detectionv.str1.4
-                0x0800c414       0x1d CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800c48c       0x1d CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .rodata.str1.4
-                0x0800c414       0x24 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800c48c       0x24 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .rodata.sinTable_f32
-                0x0800c414      0x804 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
-                0x0800c414                sinTable_f32
+                0x0800c48c      0x804 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+                0x0800c48c                sinTable_f32
  .rodata.str1.4
-                0x0800cc18       0x42 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
+                0x0800cc90       0x42 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
  .rodata.str1.4
-                0x0800cc18       0x63 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-dtoa.o)
+                0x0800cc90       0x63 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-dtoa.o)
  .rodata.str1.4
-                0x0800cc18       0x50 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
+                0x0800cc90       0x50 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
  .rodata.str1.4
-                0x0800cc18       0x12 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-locale.o)
+                0x0800cc90       0x12 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-locale.o)
  .rodata.str1.4
-                0x0800cc18       0x43 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-assert.o)
+                0x0800cc90       0x43 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-assert.o)
  .rodata.str1.4
-                0x0800cc18       0x2f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
-                0x0800cc7c                        . = ALIGN (0x4)
+                0x0800cc90       0x2f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
+                0x0800ccf4                        . = ALIGN (0x4)
 
-.ARM.extab      0x0800cc18        0x0
-                0x0800cc18                        . = ALIGN (0x4)
+.ARM.extab      0x0800cc90        0x0
+                0x0800cc90                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800cc18                        . = ALIGN (0x4)
+                0x0800cc90                        . = ALIGN (0x4)
 
-.ARM            0x0800cc18      0x108
-                0x0800cc18                        . = ALIGN (0x4)
-                0x0800cc18                        __exidx_start = .
+.ARM            0x0800cc90      0x108
+                0x0800cc90                        . = ALIGN (0x4)
+                0x0800cc90                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0800cc18        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strcmp.o)
- .ARM.exidx     0x0800cc20        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memcpy.o)
+ .ARM.exidx     0x0800cc90        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strcmp.o)
+ .ARM.exidx     0x0800cc98        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memcpy.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0800cc20        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strlen.o)
+ .ARM.exidx     0x0800cc98        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strlen.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0800cc20        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memchr.o)
+ .ARM.exidx     0x0800cc98        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memchr.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.USER_CAN1_Filter_Init
-                0x0800cc20        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp.obj
+                0x0800cc98        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp.obj
  .ARM.exidx.text.can_SendCmd
-                0x0800cc28        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp.obj
+                0x0800cca0        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp.obj
  .ARM.exidx.text.HAL_TIM_PeriodElapsedCallback
-                0x0800cc30        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
+                0x0800cca8        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
  .ARM.exidx.text._Z9UART_InitP20__UART_HandleTypeDefPFvPhtEt
-                0x0800cc38        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
+                0x0800ccb0        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
  .ARM.exidx.text._Z14UART_Send_DataP20__UART_HandleTypeDefPht
-                0x0800cc40        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
+                0x0800ccb8        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text.HAL_UARTEx_RxEventCallback
-                0x0800cc40        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
+                0x0800ccb8        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
  .ARM.exidx.text.HAL_UART_ErrorCallback
-                0x0800cc48        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
+                0x0800ccc0        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
  .ARM.exidx.text._Z34TIM_1ms_IWDG_PeriodElapsedCallbackv
-                0x0800cc50        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/WDG/drv_wdg.cpp.obj
+                0x0800ccc8        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/WDG/drv_wdg.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Z17TJC_UART_CallbackPht
-                0x0800cc50        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ccc8        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text.TJC_Init
-                0x0800cc50        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ccc8        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
  .ARM.exidx.text.TJC_Check_Receive
-                0x0800cc58        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ccd0        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
  .ARM.exidx.text.TJC_Send_Command
-                0x0800cc60        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0800ccd8        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
  .ARM.exidx.text._ZL5Task1v
-                0x0800cc68        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800cce0        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL10State_Donev
-                0x0800cc68        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800cce0        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL5Task2v
-                0x0800cc68        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800cce0        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL5Task3v
-                0x0800cc68        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800cce0        0x0 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
                                   0x8 (size before relaxing)
  .ARM.exidx.text.main_proc_run
-                0x0800cc68        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+                0x0800cce0        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
  .ARM.exidx.text._Z8feed_dogv
-                0x0800cc70        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800cce8        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .ARM.exidx.text._Z4testv
-                0x0800cc78        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800ccf0        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .ARM.exidx.text._Z19tjc_start_detectionv
-                0x0800cc80        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800ccf8        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .ARM.exidx.text.Task_InitAll
-                0x0800cc88        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800cd00        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .ARM.exidx.text.Task_RunAll
-                0x0800cc90        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800cd08        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .ARM.exidx.text.Task_EnableHandle
-                0x0800cc98        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+                0x0800cd10        0x8 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .ARM.exidx.text.__udivmoddi4
-                0x0800cca0        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x0800cd18        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.selfrel_offset31
-                0x0800cca0        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd18        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.search_EIT_table
-                0x0800cca0        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd18        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__gnu_unwind_get_pr_addr
-                0x0800cca0        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd18        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.get_eit_entry
-                0x0800cca0        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd18        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.restore_non_core_regs
-                0x0800cca8        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd20        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text._Unwind_decode_typeinfo_ptr.constprop.0
-                0x0800ccb0        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd28        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text._Unwind_DebugHook
-                0x0800ccb8        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd30        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.unwind_phase2
-                0x0800ccb8        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd30        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.unwind_phase2_forced
-                0x0800ccc0        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd38        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_RaiseException
-                0x0800ccc8        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd40        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_ForcedUnwind
-                0x0800ccd0        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd48        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_Resume
-                0x0800ccd8        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd50        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_Resume_or_Rethrow
-                0x0800cce0        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd58        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text._Unwind_VRS_Get
-                0x0800cce8        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd60        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_GetGR
-                0x0800cce8        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd60        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_VRS_Set
-                0x0800cce8        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd60        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_SetGR
-                0x0800cce8        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd60        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__gnu_Unwind_Backtrace
-                0x0800cce8        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd60        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_unwind_pr_common
-                0x0800ccf0        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd68        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__aeabi_unwind_cpp_pr0
-                0x0800ccf8        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd70        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__aeabi_unwind_cpp_pr1
-                0x0800cd00        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd78        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__aeabi_unwind_cpp_pr2
-                0x0800cd00        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd78        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_VRS_Pop
-                0x0800cd00        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+                0x0800cd78        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
  .ARM.exidx.text.next_unwind_byte
-                0x0800cd08        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
+                0x0800cd80        0x8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
  .ARM.exidx.text.__gnu_unwind_execute
-                0x0800cd10       0x10 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
+                0x0800cd88       0x10 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
                                   0x8 (size before relaxing)
-                0x0800cd20                        __exidx_end = .
-                0x0800cd20                        . = ALIGN (0x4)
+                0x0800cd98                        __exidx_end = .
+                0x0800cd98                        . = ALIGN (0x4)
 
-.preinit_array  0x0800cd20        0x0
-                0x0800cd20                        . = ALIGN (0x4)
-                0x0800cd20                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0800cd98        0x0
+                0x0800cd98                        . = ALIGN (0x4)
+                0x0800cd98                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0800cd20                        PROVIDE (__preinit_array_end = .)
-                0x0800cd20                        . = ALIGN (0x4)
+                0x0800cd98                        PROVIDE (__preinit_array_end = .)
+                0x0800cd98                        . = ALIGN (0x4)
 
-.init_array     0x0800cd20        0x8
-                0x0800cd20                        . = ALIGN (0x4)
-                0x0800cd20                        PROVIDE (__init_array_start = .)
+.init_array     0x0800cd98        0x8
+                0x0800cd98                        . = ALIGN (0x4)
+                0x0800cd98                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x0800cd20        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
+                0x0800cd98        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x0800cd24        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x0800cd28                        PROVIDE (__init_array_end = .)
-                0x0800cd28                        . = ALIGN (0x4)
+ .init_array    0x0800cd9c        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0800cda0                        PROVIDE (__init_array_end = .)
+                0x0800cda0                        . = ALIGN (0x4)
 
-.fini_array     0x0800cd28        0x4
-                0x0800cd28                        . = ALIGN (0x4)
-                0x0800cd28                        PROVIDE (__fini_array_start = .)
+.fini_array     0x0800cda0        0x4
+                0x0800cda0                        . = ALIGN (0x4)
+                0x0800cda0                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0800cd28        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x0800cd2c                        PROVIDE (__fini_array_end = .)
-                0x0800cd2c                        . = ALIGN (0x4)
-                0x0800cd2c                        _sidata = LOADADDR (.data)
+ .fini_array    0x0800cda0        0x4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0800cda4                        PROVIDE (__fini_array_end = .)
+                0x0800cda4                        . = ALIGN (0x4)
+                0x0800cda4                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x0800cd2c        0x0
- .rel.iplt      0x0800cd2c        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x0800cda4        0x0
+ .rel.iplt      0x0800cda4        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.data           0x20000000      0x740 load address 0x0800cd2c
+.data           0x20000000      0x740 load address 0x0800cda4
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -3502,12 +3503,12 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/c
  *(.RamFunc*)
                 0x20000740                        . = ALIGN (0x4)
                 0x20000740                        _edata = .
-                0x0800d46c                        _siccmram = LOADADDR (.ccmram)
+                0x0800d4e4                        _siccmram = LOADADDR (.ccmram)
 
-.igot.plt       0x20000740        0x0 load address 0x0800d46c
+.igot.plt       0x20000740        0x0 load address 0x0800d4e4
  .igot.plt      0x20000740        0x0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.ccmram         0x10000000        0x0 load address 0x0800d46c
+.ccmram         0x10000000        0x0 load address 0x0800d4e4
                 0x10000000                        . = ALIGN (0x4)
                 0x10000000                        _sccmram = .
  *(.ccmram)
@@ -3890,7 +3891,7 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-
 LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000    0x3f9fe
+.debug_info     0x00000000    0x3fa2a
  .debug_info    0x00000000      0xb5d CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/can.c.obj
  .debug_info    0x00000b5d      0x97a CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/dma.c.obj
  .debug_info    0x000014d7      0x4ea CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/gpio.c.obj
@@ -3922,77 +3923,77 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\l
  .debug_info    0x00019094      0x840 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
  .debug_info    0x000198d4      0xc97 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
  .debug_info    0x0001a56b      0x228 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
- .debug_info    0x0001a793     0x2571 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
- .debug_info    0x0001cd04     0x1874 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
- .debug_info    0x0001e578     0x1e86 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
- .debug_info    0x000203fe       0xd3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x000204d1       0x3f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_truncdfsf2.o)
- .debug_info    0x00020510       0x24 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_info    0x00020534      0x703 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
- .debug_info    0x00020c37     0x1eb9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
- .debug_info    0x00022af0       0xb7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(libunwind.o)
- .debug_info    0x00022ba7      0x960 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
- .debug_info    0x00023507       0x3c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
- .debug_info    0x00023543       0xd8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-abort.o)
- .debug_info    0x0002361b      0x118 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-atexit.o)
- .debug_info    0x00023733     0x10da C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-findfp.o)
- .debug_info    0x0002480d      0x7ee C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fwalk.o)
- .debug_info    0x00024ffb      0xa6c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-stdio.o)
- .debug_info    0x00025a67      0x976 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vsnprintf.o)
- .debug_info    0x000263dd      0x135 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memset.o)
- .debug_info    0x00026512      0xc4f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signal.o)
- .debug_info    0x00027161      0x774 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-closer.o)
- .debug_info    0x000278d5      0x835 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reent.o)
- .debug_info    0x0002810a      0x733 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-impure.o)
- .debug_info    0x0002883d      0x7b4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lseekr.o)
- .debug_info    0x00028ff1      0x7cb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-readr.o)
- .debug_info    0x000297bc      0x7fb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signalr.o)
- .debug_info    0x00029fb7      0x7d1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-writer.o)
- .debug_info    0x0002a788      0x719 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-errno.o)
- .debug_info    0x0002aea1      0x10b C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-init.o)
- .debug_info    0x0002afac       0xf7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fini.o)
- .debug_info    0x0002b0a3      0x20a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lock.o)
- .debug_info    0x0002b2ad       0x33 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strcmp.o)
- .debug_info    0x0002b2e0       0x33 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memcpy.o)
- .debug_info    0x0002b313       0x33 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strlen.o)
- .debug_info    0x0002b346      0x25f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__atexit.o)
- .debug_info    0x0002b5a5      0x2dd C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
- .debug_info    0x0002b882      0xb53 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-freer.o)
- .debug_info    0x0002c3d5      0xcfc C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mallocr.o)
- .debug_info    0x0002d0d1      0x789 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mlock.o)
- .debug_info    0x0002d85a     0x1a46 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
- .debug_info    0x0002f2a0      0x84a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssprint_r.o)
- .debug_info    0x0002faea      0x8e5 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fclose.o)
- .debug_info    0x000303cf      0xab7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fflush.o)
- .debug_info    0x00030e86      0x14a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strncpy.o)
- .debug_info    0x00030fd0      0xa36 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-localeconv.o)
- .debug_info    0x00031a06      0x79a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sbrkr.o)
- .debug_info    0x000321a0       0xc1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sysconf.o)
- .debug_info    0x00032261       0x25 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memchr.o)
- .debug_info    0x00032286      0x1e0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libm_a-s_frexp.o)
- .debug_info    0x00032466     0x18e9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-dtoa.o)
- .debug_info    0x00033d4f     0x1e42 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
- .debug_info    0x00035b91      0x8cc C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssputs_r.o)
- .debug_info    0x0003645d      0x148 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memmove.o)
- .debug_info    0x000365a5      0xbe1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-locale.o)
- .debug_info    0x00037186      0x83b C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-assert.o)
- .debug_info    0x000379c1      0x8d1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-callocr.o)
- .debug_info    0x00038292      0xac0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mbtowc_r.o)
- .debug_info    0x00038d52      0xbcd C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reallocr.o)
- .debug_info    0x0003991f      0xa7c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wctomb_r.o)
- .debug_info    0x0003a39b       0xb9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ctype_.o)
- .debug_info    0x0003a454      0x86a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fiprintf.o)
- .debug_info    0x0003acbe     0x1384 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
- .debug_info    0x0003c042      0x809 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sprint_r.o)
- .debug_info    0x0003c84b      0xb19 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fvwrite.o)
- .debug_info    0x0003d364      0x7d9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wsetup.o)
- .debug_info    0x0003db3d      0xc0c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-makebuf.o)
- .debug_info    0x0003e749      0x993 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fstatr.o)
- .debug_info    0x0003f0dc      0x774 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-isattyr.o)
- .debug_info    0x0003f850       0x57 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x0003f8a7       0xdf C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_cmpdf2.o)
- .debug_info    0x0003f986       0x3c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_unorddf2.o)
- .debug_info    0x0003f9c2       0x3c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_fixdfsi.o)
+ .debug_info    0x0001a793     0x259d CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+ .debug_info    0x0001cd30     0x1874 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
+ .debug_info    0x0001e5a4     0x1e86 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+ .debug_info    0x0002042a       0xd3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x000204fd       0x3f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_truncdfsf2.o)
+ .debug_info    0x0002053c       0x24 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_info    0x00020560      0x703 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_info    0x00020c63     0x1eb9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+ .debug_info    0x00022b1c       0xb7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(libunwind.o)
+ .debug_info    0x00022bd3      0x960 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
+ .debug_info    0x00023533       0x3c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+ .debug_info    0x0002356f       0xd8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-abort.o)
+ .debug_info    0x00023647      0x118 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-atexit.o)
+ .debug_info    0x0002375f     0x10da C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-findfp.o)
+ .debug_info    0x00024839      0x7ee C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fwalk.o)
+ .debug_info    0x00025027      0xa6c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-stdio.o)
+ .debug_info    0x00025a93      0x976 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vsnprintf.o)
+ .debug_info    0x00026409      0x135 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memset.o)
+ .debug_info    0x0002653e      0xc4f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signal.o)
+ .debug_info    0x0002718d      0x774 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-closer.o)
+ .debug_info    0x00027901      0x835 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reent.o)
+ .debug_info    0x00028136      0x733 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-impure.o)
+ .debug_info    0x00028869      0x7b4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lseekr.o)
+ .debug_info    0x0002901d      0x7cb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-readr.o)
+ .debug_info    0x000297e8      0x7fb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signalr.o)
+ .debug_info    0x00029fe3      0x7d1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-writer.o)
+ .debug_info    0x0002a7b4      0x719 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-errno.o)
+ .debug_info    0x0002aecd      0x10b C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-init.o)
+ .debug_info    0x0002afd8       0xf7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fini.o)
+ .debug_info    0x0002b0cf      0x20a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lock.o)
+ .debug_info    0x0002b2d9       0x33 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strcmp.o)
+ .debug_info    0x0002b30c       0x33 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memcpy.o)
+ .debug_info    0x0002b33f       0x33 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strlen.o)
+ .debug_info    0x0002b372      0x25f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__atexit.o)
+ .debug_info    0x0002b5d1      0x2dd C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
+ .debug_info    0x0002b8ae      0xb53 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-freer.o)
+ .debug_info    0x0002c401      0xcfc C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mallocr.o)
+ .debug_info    0x0002d0fd      0x789 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mlock.o)
+ .debug_info    0x0002d886     0x1a46 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
+ .debug_info    0x0002f2cc      0x84a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssprint_r.o)
+ .debug_info    0x0002fb16      0x8e5 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fclose.o)
+ .debug_info    0x000303fb      0xab7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fflush.o)
+ .debug_info    0x00030eb2      0x14a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strncpy.o)
+ .debug_info    0x00030ffc      0xa36 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-localeconv.o)
+ .debug_info    0x00031a32      0x79a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sbrkr.o)
+ .debug_info    0x000321cc       0xc1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sysconf.o)
+ .debug_info    0x0003228d       0x25 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memchr.o)
+ .debug_info    0x000322b2      0x1e0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libm_a-s_frexp.o)
+ .debug_info    0x00032492     0x18e9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-dtoa.o)
+ .debug_info    0x00033d7b     0x1e42 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
+ .debug_info    0x00035bbd      0x8cc C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssputs_r.o)
+ .debug_info    0x00036489      0x148 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memmove.o)
+ .debug_info    0x000365d1      0xbe1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-locale.o)
+ .debug_info    0x000371b2      0x83b C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-assert.o)
+ .debug_info    0x000379ed      0x8d1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-callocr.o)
+ .debug_info    0x000382be      0xac0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mbtowc_r.o)
+ .debug_info    0x00038d7e      0xbcd C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reallocr.o)
+ .debug_info    0x0003994b      0xa7c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wctomb_r.o)
+ .debug_info    0x0003a3c7       0xb9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ctype_.o)
+ .debug_info    0x0003a480      0x86a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fiprintf.o)
+ .debug_info    0x0003acea     0x1384 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
+ .debug_info    0x0003c06e      0x809 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sprint_r.o)
+ .debug_info    0x0003c877      0xb19 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fvwrite.o)
+ .debug_info    0x0003d390      0x7d9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wsetup.o)
+ .debug_info    0x0003db69      0xc0c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-makebuf.o)
+ .debug_info    0x0003e775      0x993 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fstatr.o)
+ .debug_info    0x0003f108      0x774 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-isattyr.o)
+ .debug_info    0x0003f87c       0x57 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x0003f8d3       0xdf C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_cmpdf2.o)
+ .debug_info    0x0003f9b2       0x3c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_unorddf2.o)
+ .debug_info    0x0003f9ee       0x3c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_fixdfsi.o)
 
 .debug_abbrev   0x00000000     0xc838
  .debug_abbrev  0x00000000      0x24a CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/can.c.obj
@@ -4137,15 +4138,15 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\l
  .debug_loclists
                 0x0000bc5f       0x5a CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp.obj
  .debug_loclists
-                0x0000bcb9       0xd9 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
+                0x0000bcb9       0xc2 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
  .debug_loclists
-                0x0000bd92      0x30a CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
+                0x0000bd7b      0x30a CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
  .debug_loclists
-                0x0000c09c      0x646 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
+                0x0000c085      0x646 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
  .debug_loclists
-                0x0000c6e2       0xbd CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
+                0x0000c6cb       0xbd CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
  .debug_loclists
-                0x0000c79f      0x204 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+                0x0000c788      0x21b CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
  .debug_loclists
                 0x0000c9a3      0x17e CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .debug_loclists
@@ -4568,7 +4569,7 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\l
  .debug_rnglists
                 0x00001c27       0x31 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-makebuf.o)
 
-.debug_line     0x00000000    0x254b9
+.debug_line     0x00000000    0x254f7
  .debug_line    0x00000000      0x346 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/can.c.obj
  .debug_line    0x00000346      0x2a2 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/dma.c.obj
  .debug_line    0x000005e8      0x25f CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/gpio.c.obj
@@ -4593,84 +4594,84 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\l
  .debug_line    0x0000d737     0x17b7 CMakeFiles/newcar_f407_zero.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj
  .debug_line    0x0000eeee     0x4020 CMakeFiles/newcar_f407_zero.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
  .debug_line    0x00012f0e      0x43f CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/CAN/drv_can.cpp.obj
- .debug_line    0x0001334d      0x43d CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
- .debug_line    0x0001378a      0x493 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
- .debug_line    0x00013c1d      0x234 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/WDG/drv_wdg.cpp.obj
- .debug_line    0x00013e51      0xaa9 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
- .debug_line    0x000148fa      0x342 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
- .debug_line    0x00014c3c      0x690 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
- .debug_line    0x000152cc      0x2c5 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
- .debug_line    0x00015591      0xb90 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
- .debug_line    0x00016121      0x284 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
- .debug_line    0x000163a5      0x1f7 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
- .debug_line    0x0001659c      0x16f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x0001670b       0x76 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_truncdfsf2.o)
- .debug_line    0x00016781       0x4e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_line    0x000167cf      0x503 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
- .debug_line    0x00016cd2      0xff0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
- .debug_line    0x00017cc2       0x97 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(libunwind.o)
- .debug_line    0x00017d59      0x50a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
- .debug_line    0x00018263       0x4a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
- .debug_line    0x000182ad      0x110 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-abort.o)
- .debug_line    0x000183bd       0xc8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-atexit.o)
- .debug_line    0x00018485      0x63e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-findfp.o)
- .debug_line    0x00018ac3      0x1d4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fwalk.o)
- .debug_line    0x00018c97      0x235 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-stdio.o)
- .debug_line    0x00018ecc      0x347 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vsnprintf.o)
- .debug_line    0x00019213      0x1cd C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memset.o)
- .debug_line    0x000193e0      0x61c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signal.o)
- .debug_line    0x000199fc      0x199 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-closer.o)
- .debug_line    0x00019b95      0x1fa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reent.o)
- .debug_line    0x00019d8f       0xfb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-impure.o)
- .debug_line    0x00019e8a      0x19f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lseekr.o)
- .debug_line    0x0001a029      0x19e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-readr.o)
- .debug_line    0x0001a1c7      0x1cb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signalr.o)
- .debug_line    0x0001a392      0x19f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-writer.o)
- .debug_line    0x0001a531      0x120 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-errno.o)
- .debug_line    0x0001a651      0x144 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-init.o)
- .debug_line    0x0001a795       0xf4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fini.o)
- .debug_line    0x0001a889       0xd7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lock.o)
- .debug_line    0x0001a960      0x10e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strcmp.o)
- .debug_line    0x0001aa6e       0xb9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memcpy.o)
- .debug_line    0x0001ab27       0x86 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strlen.o)
- .debug_line    0x0001abad      0x17a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__atexit.o)
- .debug_line    0x0001ad27      0x23d C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
- .debug_line    0x0001af64      0x530 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-freer.o)
- .debug_line    0x0001b494      0x8d0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mallocr.o)
- .debug_line    0x0001bd64      0x162 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mlock.o)
- .debug_line    0x0001bec6     0x1c8a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
- .debug_line    0x0001db50      0x1ee C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssprint_r.o)
- .debug_line    0x0001dd3e      0x2d3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fclose.o)
- .debug_line    0x0001e011      0x4a1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fflush.o)
- .debug_line    0x0001e4b2      0x195 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strncpy.o)
- .debug_line    0x0001e647      0x188 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-localeconv.o)
- .debug_line    0x0001e7cf      0x199 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sbrkr.o)
- .debug_line    0x0001e968       0xe7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sysconf.o)
- .debug_line    0x0001ea4f       0x84 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memchr.o)
- .debug_line    0x0001ead3      0x1d0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libm_a-s_frexp.o)
- .debug_line    0x0001eca3     0x14d3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-dtoa.o)
- .debug_line    0x00020176     0x164e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
- .debug_line    0x000217c4      0x288 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssputs_r.o)
- .debug_line    0x00021a4c      0x207 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memmove.o)
- .debug_line    0x00021c53      0x292 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-locale.o)
- .debug_line    0x00021ee5      0x1aa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-assert.o)
- .debug_line    0x0002208f      0x211 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-callocr.o)
- .debug_line    0x000222a0      0x217 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mbtowc_r.o)
- .debug_line    0x000224b7      0x6aa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reallocr.o)
- .debug_line    0x00022b61      0x201 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wctomb_r.o)
- .debug_line    0x00022d62       0x9c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ctype_.o)
- .debug_line    0x00022dfe      0x1b3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fiprintf.o)
- .debug_line    0x00022fb1     0x104f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
- .debug_line    0x00024000      0x193 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sprint_r.o)
- .debug_line    0x00024193      0x60a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fvwrite.o)
- .debug_line    0x0002479d      0x2da C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wsetup.o)
- .debug_line    0x00024a77      0x3ad C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-makebuf.o)
- .debug_line    0x00024e24      0x218 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fstatr.o)
- .debug_line    0x0002503c      0x19a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-isattyr.o)
- .debug_line    0x000251d6      0x184 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x0002535a       0xa6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_cmpdf2.o)
- .debug_line    0x00025400       0x57 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_unorddf2.o)
- .debug_line    0x00025457       0x62 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_fixdfsi.o)
+ .debug_line    0x0001334d      0x43c CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/TIM/drv_tim.cpp.obj
+ .debug_line    0x00013789      0x493 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/UART/drv_uart.cpp.obj
+ .debug_line    0x00013c1c      0x234 CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/WDG/drv_wdg.cpp.obj
+ .debug_line    0x00013e50      0xaa9 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
+ .debug_line    0x000148f9      0x342 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
+ .debug_line    0x00014c3b      0x695 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+ .debug_line    0x000152d0      0x2c5 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
+ .debug_line    0x00015595      0xbca CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+ .debug_line    0x0001615f      0x284 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
+ .debug_line    0x000163e3      0x1f7 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+ .debug_line    0x000165da      0x16f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x00016749       0x76 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_truncdfsf2.o)
+ .debug_line    0x000167bf       0x4e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_line    0x0001680d      0x503 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_line    0x00016d10      0xff0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(unwind-arm.o)
+ .debug_line    0x00017d00       0x97 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(libunwind.o)
+ .debug_line    0x00017d97      0x50a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(pr-support.o)
+ .debug_line    0x000182a1       0x4a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+ .debug_line    0x000182eb      0x110 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-abort.o)
+ .debug_line    0x000183fb       0xc8 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-atexit.o)
+ .debug_line    0x000184c3      0x63e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-findfp.o)
+ .debug_line    0x00018b01      0x1d4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fwalk.o)
+ .debug_line    0x00018cd5      0x235 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-stdio.o)
+ .debug_line    0x00018f0a      0x347 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vsnprintf.o)
+ .debug_line    0x00019251      0x1cd C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memset.o)
+ .debug_line    0x0001941e      0x61c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signal.o)
+ .debug_line    0x00019a3a      0x199 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-closer.o)
+ .debug_line    0x00019bd3      0x1fa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reent.o)
+ .debug_line    0x00019dcd       0xfb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-impure.o)
+ .debug_line    0x00019ec8      0x19f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lseekr.o)
+ .debug_line    0x0001a067      0x19e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-readr.o)
+ .debug_line    0x0001a205      0x1cb C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-signalr.o)
+ .debug_line    0x0001a3d0      0x19f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-writer.o)
+ .debug_line    0x0001a56f      0x120 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-errno.o)
+ .debug_line    0x0001a68f      0x144 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-init.o)
+ .debug_line    0x0001a7d3       0xf4 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fini.o)
+ .debug_line    0x0001a8c7       0xd7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-lock.o)
+ .debug_line    0x0001a99e      0x10e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strcmp.o)
+ .debug_line    0x0001aaac       0xb9 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memcpy.o)
+ .debug_line    0x0001ab65       0x86 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strlen.o)
+ .debug_line    0x0001abeb      0x17a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__atexit.o)
+ .debug_line    0x0001ad65      0x23d C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-__call_atexit.o)
+ .debug_line    0x0001afa2      0x530 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-freer.o)
+ .debug_line    0x0001b4d2      0x8d0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mallocr.o)
+ .debug_line    0x0001bda2      0x162 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mlock.o)
+ .debug_line    0x0001bf04     0x1c8a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-svfprintf.o)
+ .debug_line    0x0001db8e      0x1ee C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssprint_r.o)
+ .debug_line    0x0001dd7c      0x2d3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fclose.o)
+ .debug_line    0x0001e04f      0x4a1 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fflush.o)
+ .debug_line    0x0001e4f0      0x195 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-strncpy.o)
+ .debug_line    0x0001e685      0x188 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-localeconv.o)
+ .debug_line    0x0001e80d      0x199 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sbrkr.o)
+ .debug_line    0x0001e9a6       0xe7 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sysconf.o)
+ .debug_line    0x0001ea8d       0x84 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memchr.o)
+ .debug_line    0x0001eb11      0x1d0 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libm_a-s_frexp.o)
+ .debug_line    0x0001ece1     0x14d3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-dtoa.o)
+ .debug_line    0x000201b4     0x164e C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mprec.o)
+ .debug_line    0x00021802      0x288 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ssputs_r.o)
+ .debug_line    0x00021a8a      0x207 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-memmove.o)
+ .debug_line    0x00021c91      0x292 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-locale.o)
+ .debug_line    0x00021f23      0x1aa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-assert.o)
+ .debug_line    0x000220cd      0x211 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-callocr.o)
+ .debug_line    0x000222de      0x217 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-mbtowc_r.o)
+ .debug_line    0x000224f5      0x6aa C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-reallocr.o)
+ .debug_line    0x00022b9f      0x201 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wctomb_r.o)
+ .debug_line    0x00022da0       0x9c C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-ctype_.o)
+ .debug_line    0x00022e3c      0x1b3 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fiprintf.o)
+ .debug_line    0x00022fef     0x104f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-vfiprintf.o)
+ .debug_line    0x0002403e      0x193 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-sprint_r.o)
+ .debug_line    0x000241d1      0x60a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fvwrite.o)
+ .debug_line    0x000247db      0x2da C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-wsetup.o)
+ .debug_line    0x00024ab5      0x3ad C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-makebuf.o)
+ .debug_line    0x00024e62      0x218 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-fstatr.o)
+ .debug_line    0x0002507a      0x19a C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(libc_a-isattyr.o)
+ .debug_line    0x00025214      0x184 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x00025398       0xa6 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_cmpdf2.o)
+ .debug_line    0x0002543e       0x57 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_unorddf2.o)
+ .debug_line    0x00025495       0x62 C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_fixdfsi.o)
 
 .debug_str      0x00000000     0xa50c
  .debug_str     0x00000000     0xa50c CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/can.c.obj
@@ -4705,7 +4706,7 @@ LOAD C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\l
  .debug_str     0x0000a50c      0x77b CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
  .debug_str     0x0000a50c      0xa09 CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
  .debug_str     0x0000a50c      0x3b9 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
- .debug_str     0x0000a50c     0x190a CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
+ .debug_str     0x0000a50c     0x1946 CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
  .debug_str     0x0000a50c      0xfb7 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_sin_f32.o)
  .debug_str     0x0000a50c      0xf92 D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
  .debug_str     0x0000a50c      0x12f C:/msys64/mingw64/bin/../lib/gcc/arm-none-eabi/13.3.0/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)

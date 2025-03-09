@@ -91,12 +91,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
             count_num1 = 0;
 
             Task_EnableHandle("feed_dog");
-
+            Task_EnableHandle("test");
             TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
         }
         if (count_num2 == 10)
         {
-            Task_EnableHandle("test");
+
             // Task_EnableHandle("another_task");
             count_num2 = 0;
         }

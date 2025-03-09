@@ -76,11 +76,11 @@ uint8_t TJC_Init(UART_HandleTypeDef* huart)
     memset(tjc_handle.rx_data, 0, sizeof(tjc_handle.rx_data));
 
     // 确保DMA通道已正确配置
-    // if (huart->hdmarx == NULL)
-    // {
-    //     // DMA未配置，尝试初始化DMA
-    //     return 1;   // 返回错误
-    // }
+    if (huart->hdmarx == NULL)
+    {
+        // DMA未配置，尝试初始化DMA
+        return 1;   // 返回错误
+    }
     // 初始化串口，设置回调函数
     UART_Init(huart, TJC_UART_Callback, TJC_RX_BUFFER_SIZE);
 

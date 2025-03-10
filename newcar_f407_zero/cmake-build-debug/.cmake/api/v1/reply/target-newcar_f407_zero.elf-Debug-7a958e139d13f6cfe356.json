@@ -302,8 +302,8 @@
 				106,
 				107,
 				108,
-				144,
-				146
+				146,
+				152
 			]
 		},
 		{
@@ -588,9 +588,12 @@
 				136,
 				138,
 				140,
+				142,
 				148,
 				150,
-				152
+				154,
+				156,
+				158
 			]
 		}
 	],
@@ -764,11 +767,14 @@
 				137,
 				139,
 				141,
-				145,
+				143,
 				147,
 				149,
 				151,
-				153
+				153,
+				155,
+				157,
+				159
 			]
 		},
 		{
@@ -820,11 +826,14 @@
 				136,
 				138,
 				140,
-				144,
+				142,
 				146,
 				148,
 				150,
-				152
+				152,
+				154,
+				156,
+				158
 			]
 		},
 		{
@@ -837,9 +846,9 @@
 				90,
 				110,
 				111,
-				142,
-				143,
-				154
+				144,
+				145,
+				160
 			]
 		}
 	],
@@ -1603,6 +1612,17 @@
 		},
 		{
 			"backtrace" : 1,
+			"compileGroupIndex" : 2,
+			"path" : "User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"path" : "User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.bak",
 			"sourceGroupIndex" : 2
 		},
@@ -1620,6 +1640,28 @@
 		{
 			"backtrace" : 1,
 			"path" : "User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 2,
+			"path" : "User_File/2_Device/Servo/dvc_fsuServo.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "User_File/2_Device/Servo/dvc_fsuServo.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 2,
+			"path" : "User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.h",
 			"sourceGroupIndex" : 0
 		},
 		{

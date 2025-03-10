@@ -1223,6 +1223,30 @@ User_File/2_Device/Jetson/dvc_jetson.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.s
 .PHONY : User_File/2_Device/Jetson/dvc_jetson.cpp.s
 
+User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.obj: User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.obj
+.PHONY : User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.obj
+
+# target to build an object file
+User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.obj
+.PHONY : User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.obj
+
+User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.i: User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.i
+.PHONY : User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.i
+
+# target to preprocess a source file
+User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.i
+.PHONY : User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.i
+
+User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.s: User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.s
+.PHONY : User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.s
+
+# target to generate assembly for a file
+User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.s
+.PHONY : User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.s
+
 User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.obj: User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj
 .PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.obj
 
@@ -1246,6 +1270,54 @@ User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.s: User_File/2_Device/Motor/Mot
 User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s
 .PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s
+
+User_File/2_Device/Servo/dvc_fsuServo.obj: User_File/2_Device/Servo/dvc_fsuServo.cpp.obj
+.PHONY : User_File/2_Device/Servo/dvc_fsuServo.obj
+
+# target to build an object file
+User_File/2_Device/Servo/dvc_fsuServo.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/dvc_fsuServo.cpp.obj
+.PHONY : User_File/2_Device/Servo/dvc_fsuServo.cpp.obj
+
+User_File/2_Device/Servo/dvc_fsuServo.i: User_File/2_Device/Servo/dvc_fsuServo.cpp.i
+.PHONY : User_File/2_Device/Servo/dvc_fsuServo.i
+
+# target to preprocess a source file
+User_File/2_Device/Servo/dvc_fsuServo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/dvc_fsuServo.cpp.i
+.PHONY : User_File/2_Device/Servo/dvc_fsuServo.cpp.i
+
+User_File/2_Device/Servo/dvc_fsuServo.s: User_File/2_Device/Servo/dvc_fsuServo.cpp.s
+.PHONY : User_File/2_Device/Servo/dvc_fsuServo.s
+
+# target to generate assembly for a file
+User_File/2_Device/Servo/dvc_fsuServo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/dvc_fsuServo.cpp.s
+.PHONY : User_File/2_Device/Servo/dvc_fsuServo.cpp.s
+
+User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.obj: User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.obj
+.PHONY : User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.obj
+
+# target to build an object file
+User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.obj
+.PHONY : User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.obj
+
+User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.i: User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.i
+.PHONY : User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.i
+
+# target to preprocess a source file
+User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.i
+.PHONY : User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.i
+
+User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.s: User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.s
+.PHONY : User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.s
+
+# target to generate assembly for a file
+User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.s
+.PHONY : User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.cpp.s
 
 User_File/2_Device/Vofa/dvc_vofa.obj: User_File/2_Device/Vofa/dvc_vofa.c.obj
 .PHONY : User_File/2_Device/Vofa/dvc_vofa.obj
@@ -1489,9 +1561,18 @@ help:
 	@echo ... User_File/2_Device/Jetson/dvc_jetson.obj
 	@echo ... User_File/2_Device/Jetson/dvc_jetson.i
 	@echo ... User_File/2_Device/Jetson/dvc_jetson.s
+	@echo ... User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.obj
+	@echo ... User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.i
+	@echo ... User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.s
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.obj
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.i
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.s
+	@echo ... User_File/2_Device/Servo/dvc_fsuServo.obj
+	@echo ... User_File/2_Device/Servo/dvc_fsuServo.i
+	@echo ... User_File/2_Device/Servo/dvc_fsuServo.s
+	@echo ... User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.obj
+	@echo ... User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.i
+	@echo ... User_File/2_Device/Servo/lib/FashionStar_UartServoProtocol.s
 	@echo ... User_File/2_Device/Vofa/dvc_vofa.obj
 	@echo ... User_File/2_Device/Vofa/dvc_vofa.i
 	@echo ... User_File/2_Device/Vofa/dvc_vofa.s

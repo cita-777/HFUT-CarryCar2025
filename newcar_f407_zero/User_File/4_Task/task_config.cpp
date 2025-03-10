@@ -1,7 +1,7 @@
 /**
  * *****************************************************************************
  * @file        task_config.cpp
- * @brief       任务配置文件实现 (非RTOS版本)
+ * @brief       任务配置文件实现
  * @author      ciat-777
  * @date        2025-03-07
  * *****************************************************************************
@@ -13,6 +13,7 @@
 #include "2_Device/HWT101/dvc_hwt101.h"   // HWT101头文件
 #include "2_Device/Jetson/dvc_jetson.h"
 #include "2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h"
+#include "2_Device/Servo/dvc_fsuServo.h"
 #include "2_Device/Vofa/dvc_vofa.h"
 #include "2_Device/tjc_screen/dvc_tjc.h"
 #include "3_Car/main_proc.h"
@@ -23,21 +24,26 @@ void test();
 void delayed_task();
 void tjc_start_detection();
 void hwt101_proc();
+void servo_proc();
 // 任务配置表, 根据需要添加任务配置项，示例中默认使能状态为1（使能）
-// 若暂不使用任务，可将taskFunction置为NULL
+// 示例任务配置: {Task_Example, "Task_Example", 1},
+// 可添加任务项，比如:{NULL, NULL, 0},
 TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
-    // 示例任务配置: {Task_Example, "Task_Example", 1},
-    // 可继续添加任务项，比如:
-    // {NULL, NULL, 0},
-    {main_proc_run, "main_proc_run", 1},
-    {feed_dog, "feed_dog", 1},
-    {test, "test", 1},
-    {tjc_start_detection, "tjc_start_detection", 1},
-    {hwt101_proc, "hwt101_proc", 1},   // 添加HWT101处理任务
-    //{delayed_task, "delayed_task", 1},
+    {main_proc_run, "main_proc_run", 1},               // 跑地图主逻辑任务
+    {feed_dog, "feed_dog", 1},                         // 喂狗任务
+    {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
+    // {test, "test", 1},                                 // 电机等测试
+    // {hwt101_proc, "hwt101_proc", 1},                   // HWT101处理yaw任务
+    // {servo_proc, "servo_proc", 1},                     // 舵机控制任务（test）
+    // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
 };
-float a = 0.0f;
-float b = 0.0f;
+float                          a = 0.0f;
+float                          b = 0.0f;
+static HWT101Communicator      hwt101(&huart2);                                          // 使用UART2
+static JetsonCommunicator      jc(&huart5);                                              // 使用UART5
+static fsuservo::FSUS_Protocol servoProtocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);   // 使用UART6
+static fsuservo::FSUS_Servo    servo1(1, &servoProtocol);                                // ID为1的舵机
+static fsuservo::FSUS_Servo    servo2(2, &servoProtocol);                                // ID为2的舵机
 /**
  * @brief 任务执行频率配置
  */
@@ -47,8 +53,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
     {
         static int count_num1 = 0;
         static int count_num2 = 0;
+        static int count_num3 = 0;   // 为舵机控制添加计数器
+
         count_num1++;
         count_num2++;
+        count_num3++;
+
         if (count_num1 == 1)
         {
             count_num1 = 0;
@@ -56,14 +66,55 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
             Task_EnableHandle("test");
             TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
         }
+
+        // 每5ms控制一次舵机
+        if (count_num3 == 5)
+        {
+            count_num3 = 0;
+            Task_EnableHandle("servo_proc");
+        }
+
         if (count_num2 == 100)
         {
-
-            // Task_EnableHandle("another_task");
             Task_EnableHandle("feed_dog");
             count_num2 = 0;
         }
     }
+}
+/**
+ * @brief 舵机控制任务
+ */
+void servo_proc()
+{
+    static uint16_t counter = 0;
+    static float    angle   = 0.0f;
+
+    // 生成一个正弦波角度
+    angle = 45.0f * arm_sin_f32(a * 0.5f);
+
+    if (servo1.isOnline)
+    {
+        // 每隔一段时间设置舵机角度
+        if (counter % 50 == 0)
+        {
+            servo1.setAngle(angle);
+
+            // 调试输出
+            Vofa_FireWater("Servo angle: %.2f\r\n", angle);
+            TJC_Send_Format("t4.txt=\"Servo: %.1f°\"", angle);
+        }
+    }
+    else
+    {
+        // 如果舵机离线，尝试重新连接
+        if (counter % 200 == 0)
+        {
+            servo1.ping();
+        }
+    }
+
+    counter++;
+    Task_DisableHandle("servo_proc");
 }
 /**
  * @brief 处理HWT101数据的任务
@@ -172,16 +223,18 @@ void Task_InitAll(void)
     ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
     HAL_Delay(1);
     while (TJC_Init(&huart1));
-    // 初始化HWT101传感器 (假设使用UART3)
-    static HWT101Communicator hwt101(&huart3);
-    uint8_t                   ret = hwt101.init();
+    // 初始化HWT101传感器
+    uint8_t ret = hwt101.init();
     if (ret != 0)
     {
         Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
     }
-    static JetsonCommunicator jc(&huart5);
     jc.init();
     g_jetson->send(0x01);   // 发送数据到Jetson
+
+    servo1.init();
+    servo2.init();
+    Vofa_FireWater("Servo init done, servo1 online: %d, servo2 online: %d\r\n", servo1.isOnline, servo2.isOnline);
     // 启动TIM6定时器
     HAL_TIM_Base_Start_IT(&htim6);
     for (int i = 0; i < TASK_MAX_NUM; i++)

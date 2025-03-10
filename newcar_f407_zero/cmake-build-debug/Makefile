@@ -1175,6 +1175,30 @@ User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s
 .PHONY : User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s
 
+User_File/2_Device/Jetson/jetson.obj: User_File/2_Device/Jetson/jetson.cpp.obj
+.PHONY : User_File/2_Device/Jetson/jetson.obj
+
+# target to build an object file
+User_File/2_Device/Jetson/jetson.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj
+.PHONY : User_File/2_Device/Jetson/jetson.cpp.obj
+
+User_File/2_Device/Jetson/jetson.i: User_File/2_Device/Jetson/jetson.cpp.i
+.PHONY : User_File/2_Device/Jetson/jetson.i
+
+# target to preprocess a source file
+User_File/2_Device/Jetson/jetson.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.i
+.PHONY : User_File/2_Device/Jetson/jetson.cpp.i
+
+User_File/2_Device/Jetson/jetson.s: User_File/2_Device/Jetson/jetson.cpp.s
+.PHONY : User_File/2_Device/Jetson/jetson.s
+
+# target to generate assembly for a file
+User_File/2_Device/Jetson/jetson.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.s
+.PHONY : User_File/2_Device/Jetson/jetson.cpp.s
+
 User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.obj: User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj
 .PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.obj
 
@@ -1459,6 +1483,9 @@ help:
 	@echo ... User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.obj
 	@echo ... User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.i
 	@echo ... User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.s
+	@echo ... User_File/2_Device/Jetson/jetson.obj
+	@echo ... User_File/2_Device/Jetson/jetson.i
+	@echo ... User_File/2_Device/Jetson/jetson.s
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.obj
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.i
 	@echo ... User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.s

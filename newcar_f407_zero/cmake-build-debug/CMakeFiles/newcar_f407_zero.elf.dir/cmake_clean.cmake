@@ -86,6 +86,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj.d"
+  "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj"
+  "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj"

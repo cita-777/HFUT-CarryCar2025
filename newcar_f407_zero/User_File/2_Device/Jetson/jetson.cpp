@@ -11,7 +11,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "jetson.h"
 #include "2_Device/tjc_screen/tjc.h"   // 导入TJC屏幕头文件，用于显示二维码
-#include "staMachine.h"                // 导入状态机头文件，用于访问is_wait_jetson_grab
+//#include "staMachine.h"                // 导入状态机头文件，用于访问is_wait_jetson_grab
 
 /* 静态成员初始化 ----------------------------------------------------------*/
 JetsonCommunicator* JetsonCommunicator::_instance = nullptr;
@@ -243,8 +243,8 @@ void JetsonCommunicator::processGrabCommand()
         _canGrab = true;
 
         // 更新外部状态变量（与原代码兼容）
-        extern bool is_wait_jetson_grab;
-        is_wait_jetson_grab = 0;
+        //extern bool is_wait_jetson_grab;
+        //is_wait_jetson_grab = 0;
     }
     else
     {

@@ -119,7 +119,6 @@ void Task_InitAll(void)
 {
 
     while (ZDT_X42_V2_Init());
-asccas
     HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
     HAL_Delay(1);

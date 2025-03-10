@@ -1,15 +1,14 @@
 /**
  * *****************************************************************************
- * @file        jetson.h
+ * @file        dvc_jetson.h
  * @brief
  * @author      ciat-777 (juricek.chen@gmail.com)
  * @date        2025-03-09
  * @copyright   cita
  * *****************************************************************************
  */
-
-#ifndef JETSON_H
-#define JETSON_H
+#ifndef DVC_JETSON_H
+#define DVC_JETSON_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "1_Middleware/1_Driver/UART/drv_uart.h"
@@ -126,4 +125,4 @@ extern JetsonCommunicator* g_jetson;
 }
 #endif
 
-#endif /* JETSON_H */
+#endif /* DVC_JETSON_H */

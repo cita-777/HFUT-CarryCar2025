@@ -1,5 +1,5 @@
-#ifndef _VOFA_H
-#define _VOFA_H
+#ifndef _DVC_VOFA_H
+#define _DVC_VOFA_H
 #ifdef __cplusplus
 extern "C" {
 #endif

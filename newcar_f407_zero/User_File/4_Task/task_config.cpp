@@ -10,18 +10,19 @@
 #include "task_config.h"
 #include "1_Middleware/1_Driver/TIM/drv_tim.h"
 #include "1_Middleware/1_Driver/WDG/drv_wdg.h"
-#include "2_Device/Jetson/jetson.h"
-#include "2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h"
-#include "2_Device/Vofa/vofa.h"
-#include "2_Device/tjc_screen/tjc.h"
+#include "2_Device/HWT101/dvc_hwt101.h"   // HWT101头文件
+#include "2_Device/Jetson/dvc_jetson.h"
+#include "2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h"
+#include "2_Device/Vofa/dvc_vofa.h"
+#include "2_Device/tjc_screen/dvc_tjc.h"
 #include "3_Car/main_proc.h"
 #include "arm_math.h"
-#include "main.h"
 #include <string.h>
 void feed_dog();
 void test();
 void delayed_task();
 void tjc_start_detection();
+void hwt101_proc();
 // 任务配置表, 根据需要添加任务配置项，示例中默认使能状态为1（使能）
 // 若暂不使用任务，可将taskFunction置为NULL
 TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
@@ -32,11 +33,59 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {feed_dog, "feed_dog", 1},
     {test, "test", 1},
     {tjc_start_detection, "tjc_start_detection", 1},
+    {hwt101_proc, "hwt101_proc", 1},   // 添加HWT101处理任务
     //{delayed_task, "delayed_task", 1},
 };
 float a = 0.0f;
 float b = 0.0f;
-void  tjc_start_detection()
+/**
+ * @brief 任务执行频率配置
+ */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+{
+    if (htim == (&htim6))   // 0.001s触发一次中断
+    {
+        static int count_num1 = 0;
+        static int count_num2 = 0;
+        count_num1++;
+        count_num2++;
+        if (count_num1 == 1)
+        {
+            count_num1 = 0;
+            Task_EnableHandle("hwt101_proc");
+            Task_EnableHandle("test");
+            TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
+        }
+        if (count_num2 == 100)
+        {
+
+            // Task_EnableHandle("another_task");
+            Task_EnableHandle("feed_dog");
+            count_num2 = 0;
+        }
+    }
+}
+/**
+ * @brief 处理HWT101数据的任务
+ */
+void hwt101_proc()
+{
+    // 处理接收到的数据
+    g_hwt101->processData();
+
+    // 获取偏航角，可用于调试输出或控制逻辑
+    float yaw = g_hwt101->getYawAngle();
+
+    static uint16_t counter = 0;
+    if (counter++ % 200 == 0)   // 每200ms输出一次角度
+    {
+        // 输出到VOFA或TJC屏幕
+        Vofa_FireWater("Yaw: %.2f\r\n", yaw);
+        TJC_Send_Format("t3.txt=\"Yaw: %.1f°\"", yaw);
+    }
+    Task_DisableHandle("hwt101_proc");
+}
+void tjc_start_detection()
 {
     if (TJC_Check_Receive())
     {
@@ -123,6 +172,13 @@ void Task_InitAll(void)
     ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
     HAL_Delay(1);
     while (TJC_Init(&huart1));
+    // 初始化HWT101传感器 (假设使用UART3)
+    static HWT101Communicator hwt101(&huart3);
+    uint8_t                   ret = hwt101.init();
+    if (ret != 0)
+    {
+        Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
+    }
     static JetsonCommunicator jc(&huart5);
     jc.init();
     g_jetson->send(0x01);   // 发送数据到Jetson

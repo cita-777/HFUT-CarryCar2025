@@ -1,5 +1,8 @@
-CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/main.c.obj: \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Src\main.c \
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj: \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/CAN/drv_can.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/can.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/stm32f4xx_hal_conf.h \
@@ -40,40 +43,4 @@ CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/main.c.obj: \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/can.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/dma.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/iwdg.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/tim.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/usart.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/gpio.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/CAN/drv_can.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
- C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \
- C:/msys64/mingw64/arm-none-eabi/include/stdio.h \
- C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
- C:/msys64/mingw64/arm-none-eabi/include/newlib.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/config.h \
- C:/msys64/mingw64/arm-none-eabi/include/machine/ieeefp.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/cdefs.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/reent.h \
- C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/_types.h \
- C:/msys64/mingw64/arm-none-eabi/include/machine/_types.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/lock.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/stdio.h \
- C:/msys64/mingw64/arm-none-eabi/include/string.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
- C:/msys64/mingw64/arm-none-eabi/include/strings.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/4_Task/task_config.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Inc/arm_math.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\CMSIS\Include/cmsis_compiler.h \
- C:/msys64/mingw64/arm-none-eabi/include/math.h \
- C:/msys64/mingw64/arm-none-eabi/include/machine/fastmath.h \
- C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/float.h \
- C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/limits.h \
- C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/syslimits.h \
- C:/msys64/mingw64/arm-none-eabi/include/limits.h \
- C:/msys64/mingw64/arm-none-eabi/include/sys/syslimits.h
+ D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h

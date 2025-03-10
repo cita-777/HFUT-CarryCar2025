@@ -1,6 +1,6 @@
 /**
  * *****************************************************************************
- * @file        tjc.cpp
+ * @file        dvc_tjc.cpp
  * @brief       TJC串口屏驱动实现
  * @author      ciat-777 (juricek.chen@gmail.com)
  * @date        2025-03-08
@@ -9,7 +9,7 @@
  */
 
 /*----------------------------------include-----------------------------------*/
-#include "tjc.h"
+#include "dvc_tjc.h"
 #include "1_Middleware/1_Driver/UART/drv_uart.h"
 #include <stdarg.h>
 #include <stdio.h>

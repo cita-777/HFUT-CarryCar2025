@@ -1,5 +1,5 @@
-#ifndef __ZDT_X42_V2_H
-#define __ZDT_X42_V2_H
+#ifndef DVC_ZDT_X42_H
+#define DVC_ZDT_X42_H
 
 #include "1_Middleware/1_Driver/CAN/drv_can.h"
 #include "can.h"
@@ -70,4 +70,4 @@ uint8_t ZDT_X42_V2_Receive_Data_Right();                                        
 }
 #endif
 
-#endif
+#endif   // DVC_ZDT_X42_H

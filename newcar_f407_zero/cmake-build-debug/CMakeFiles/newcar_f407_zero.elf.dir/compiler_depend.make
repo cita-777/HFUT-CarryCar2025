@@ -245,8 +245,8 @@ CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/main.c.obj: D:/Desktop/newCarryCar/
   D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/Middlewares/ST/ARM/DSP/Inc/arm_math.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/CAN/drv_can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/4_Task/task_config.h
 
 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/Core/Src/stm32f4xx_hal_msp.c \
@@ -4632,7 +4632,7 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wi
   D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/misc/Kernel.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/misc/RealSvd2x2.h
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/jetson.cpp \
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.cpp \
   C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
   C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
   C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
@@ -4691,160 +4691,9 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj: D:
   D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/UART/drv_uart.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/jetson.h
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.h
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c \
-  C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
-  C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
-  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/features.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_hal_conf.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_compiler.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_gcc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_version.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/core_cm4.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/mpu_armv7.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/CAN/drv_can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.h
-
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c \
-  C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
-  C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
-  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/features.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_hal_conf.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_compiler.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_gcc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_version.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/core_cm4.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/mpu_armv7.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/CAN/drv_can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h
-
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.c \
-  C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
-  C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
-  C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
-  C:/msys64/mingw64/arm-none-eabi/include/machine/_types.h \
-  C:/msys64/mingw64/arm-none-eabi/include/machine/ieeefp.h \
-  C:/msys64/mingw64/arm-none-eabi/include/newlib.h \
-  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
-  C:/msys64/mingw64/arm-none-eabi/include/stdio.h \
-  C:/msys64/mingw64/arm-none-eabi/include/string.h \
-  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/_types.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/cdefs.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/config.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/features.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/lock.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/reent.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/stdio.h \
-  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h \
-  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_hal_conf.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/usart.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_compiler.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_gcc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_version.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/core_cm4.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/mpu_armv7.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.h
-
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.cpp \
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.cpp \
   C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
   C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
   C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
@@ -4903,7 +4752,174 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj: D
   D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/UART/drv_uart.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.h
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.h
+
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c \
+  C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/features.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/can.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_hal_conf.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_compiler.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_gcc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_version.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/core_cm4.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/mpu_armv7.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/CAN/drv_can.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h
+
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.c \
+  C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
+  C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/ieeefp.h \
+  C:/msys64/mingw64/arm-none-eabi/include/newlib.h \
+  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
+  C:/msys64/mingw64/arm-none-eabi/include/stdio.h \
+  C:/msys64/mingw64/arm-none-eabi/include/string.h \
+  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/cdefs.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/config.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/features.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/lock.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/reent.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/stdio.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_hal_conf.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/usart.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_compiler.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_gcc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_version.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/core_cm4.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/mpu_armv7.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.h
+
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.cpp \
+  C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
+  C:/msys64/mingw64/arm-none-eabi/include/_newlib_version.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/machine/ieeefp.h \
+  C:/msys64/mingw64/arm-none-eabi/include/newlib.h \
+  C:/msys64/mingw64/arm-none-eabi/include/stdint.h \
+  C:/msys64/mingw64/arm-none-eabi/include/stdio.h \
+  C:/msys64/mingw64/arm-none-eabi/include/string.h \
+  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_intsup.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/_types.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/cdefs.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/config.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/features.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/lock.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/reent.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/stdio.h \
+  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h \
+  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdint.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_hal_conf.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/usart.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_compiler.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_gcc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/cmsis_version.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/core_cm4.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/CMSIS/Include/mpu_armv7.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/UART/drv_uart.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.h
 
 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/3_Car/main_proc.cpp \
   C:/msys64/mingw64/arm-none-eabi/include/_ansi.h \
@@ -5080,19 +5096,24 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj: D:/Des
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/TIM/drv_tim.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/UART/drv_uart.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/WDG/drv_wdg.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/jetson.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.h \
-  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.h \
+  D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/3_Car/main_proc.h \
   D:/Desktop/newCarryCar/newcar_f407_zero/User_File/4_Task/task_config.h
 
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/jetson.h:
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.cpp:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.h:
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/jetson.cpp:
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.cpp:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.h:
 
@@ -5105,6 +5126,8 @@ D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/2_Algorithm/Queue
 D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/2_Algorithm/PID/alg_pid.cpp:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/2_Algorithm/Filter/alg_filter.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/2_Algorithm/Filter/alg_filter.cpp:
 
@@ -5198,6 +5221,8 @@ D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/C
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_File/4_Task/task_config.cpp:
 
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.cpp:
+
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Transpose.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Swap.h:
@@ -5243,6 +5268,12 @@ D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/C
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/BooleanRedux.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Block.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Replicate.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Assign.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/SVD:
 
@@ -5330,8 +5361,6 @@ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/string:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/streambuf:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c:
-
 D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/SVD/UpperBidiagonalization.h:
@@ -5392,14 +5421,6 @@ D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/stm32f4xx_it.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/sys/signal.h:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Replicate.h:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Assign.h:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.h:
-
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/stl_construct.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c:
@@ -5438,9 +5459,19 @@ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/unordered_map.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/Core/Src/stm32f4xx_it.c:
 
+C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/sstream:
+
+C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h:
+
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Cholesky/LDLT.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cstdint:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.c:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/SVD/JacobiSVD.h:
 
@@ -5558,12 +5589,6 @@ D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 
 D:/Desktop/newCarryCar/newcar_f407_zero/Core/Inc/main.h:
 
-C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/sstream:
-
-C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h:
-
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/util/Memory.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/math.h:
@@ -5613,8 +5638,6 @@ D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/1_Driver/CAN/drv_
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/stl_bvector.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/istream:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c:
 
@@ -5718,8 +5741,6 @@ D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4
 
 C:/msys64/mingw64/arm-none-eabi/include/sys/select.h:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.cpp:
-
 D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/arm-none-eabi/thumb/v7e-m+fp/hard/bits/c++locale.h:
@@ -5739,6 +5760,8 @@ D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/GlobalFunctions.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/sys/times.h:
+
+D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
@@ -5801,8 +5824,6 @@ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bit:
 D:/Desktop/newCarryCar/newcar_f407_zero/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/ptr_traits.h:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
 
@@ -5914,8 +5935,6 @@ D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/G
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/locale_classes.h:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.c:
-
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/locale_facets.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cwchar:
@@ -5958,6 +5977,12 @@ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/uniform_int_dist.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/stl_pair.h:
 
+D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Fuzzy.h:
+
+C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/climits:
+
+C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cerrno:
+
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cwctype:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/stl_tempbuf.h:
@@ -5970,8 +5995,6 @@ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/stringfwd.h:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/vector.tcc:
 
-D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c:
-
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/functors/NullaryFunctors.h:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/plugins/MatrixCwiseBinaryOps.h:
@@ -5979,12 +6002,6 @@ D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/p
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/locale_facets.tcc:
 
 C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cassert:
-
-D:/Desktop/newCarryCar/newcar_f407_zero/User_Third_Party/eigen-3.3.9/Eigen/src/Core/Fuzzy.h:
-
-C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cerrno:
-
-C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/climits:
 
 D:/Desktop/newCarryCar/newcar_f407_zero/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.h:
 

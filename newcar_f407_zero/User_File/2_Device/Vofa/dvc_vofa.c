@@ -1,4 +1,4 @@
-#include "vofa.h"
+#include "dvc_vofa.h"
 
 // 按printf格式写，最后必须加\r\n
 void Vofa_FireWater(const char* format, ...)
@@ -31,7 +31,7 @@ void Vofa_JustFloat(float* _data, uint8_t _num)
 
     //....在此替换你的串口发送函数...........
     HAL_UART_Transmit_DMA(&huart1, tempData, (_num + 1) * 4);
-    //HAL_Delay(0);
+    // HAL_Delay(0);
     //......................................
 }
 

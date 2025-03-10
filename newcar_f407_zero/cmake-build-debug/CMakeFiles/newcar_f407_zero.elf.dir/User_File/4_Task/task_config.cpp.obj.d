@@ -62,15 +62,16 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj: \
  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/WDG/drv_wdg.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/iwdg.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Jetson/jetson.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/HWT101/dvc_hwt101.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/UART/drv_uart.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/usart.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Jetson/dvc_jetson.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/CAN/drv_can.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/can.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Vofa/vofa.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/tjc_screen/tjc.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/2_Device/tjc_screen/dvc_tjc.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\User_File/3_Car/main_proc.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Inc/arm_math.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\CMSIS\Include/cmsis_compiler.h \

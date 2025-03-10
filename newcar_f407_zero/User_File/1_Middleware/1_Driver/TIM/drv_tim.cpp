@@ -77,29 +77,4 @@ bool Class_Timer::DelayNonBlocking(uint32_t __Delay)
     }
     return false;
 }
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
-{
-    if (htim == (&htim6))   // 0.001s触发一次中断
-    {
-        static int count_num1 = 0;
-        static int count_num2 = 0;
-        count_num1++;
-        count_num2++;
-        if (count_num1 == 1)
-        {
-            count_num1 = 0;
-
-            Task_EnableHandle("test");
-            TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
-        }
-        if (count_num2 == 100)
-        {
-
-            // Task_EnableHandle("another_task");
-            Task_EnableHandle("feed_dog");
-            count_num2 = 0;
-        }
-    }
-}
 /*------------------------------------test------------------------------------*/

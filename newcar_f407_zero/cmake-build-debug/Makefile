@@ -1175,125 +1175,125 @@ User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s
 .PHONY : User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s
 
-User_File/2_Device/Jetson/jetson.obj: User_File/2_Device/Jetson/jetson.cpp.obj
-.PHONY : User_File/2_Device/Jetson/jetson.obj
+User_File/2_Device/HWT101/dvc_hwt101.obj: User_File/2_Device/HWT101/dvc_hwt101.cpp.obj
+.PHONY : User_File/2_Device/HWT101/dvc_hwt101.obj
 
 # target to build an object file
-User_File/2_Device/Jetson/jetson.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj
-.PHONY : User_File/2_Device/Jetson/jetson.cpp.obj
+User_File/2_Device/HWT101/dvc_hwt101.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj
+.PHONY : User_File/2_Device/HWT101/dvc_hwt101.cpp.obj
 
-User_File/2_Device/Jetson/jetson.i: User_File/2_Device/Jetson/jetson.cpp.i
-.PHONY : User_File/2_Device/Jetson/jetson.i
+User_File/2_Device/HWT101/dvc_hwt101.i: User_File/2_Device/HWT101/dvc_hwt101.cpp.i
+.PHONY : User_File/2_Device/HWT101/dvc_hwt101.i
 
 # target to preprocess a source file
-User_File/2_Device/Jetson/jetson.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.i
-.PHONY : User_File/2_Device/Jetson/jetson.cpp.i
+User_File/2_Device/HWT101/dvc_hwt101.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.i
+.PHONY : User_File/2_Device/HWT101/dvc_hwt101.cpp.i
 
-User_File/2_Device/Jetson/jetson.s: User_File/2_Device/Jetson/jetson.cpp.s
-.PHONY : User_File/2_Device/Jetson/jetson.s
+User_File/2_Device/HWT101/dvc_hwt101.s: User_File/2_Device/HWT101/dvc_hwt101.cpp.s
+.PHONY : User_File/2_Device/HWT101/dvc_hwt101.s
 
 # target to generate assembly for a file
-User_File/2_Device/Jetson/jetson.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.s
-.PHONY : User_File/2_Device/Jetson/jetson.cpp.s
+User_File/2_Device/HWT101/dvc_hwt101.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.s
+.PHONY : User_File/2_Device/HWT101/dvc_hwt101.cpp.s
 
-User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.obj: User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.obj
+User_File/2_Device/Jetson/dvc_jetson.obj: User_File/2_Device/Jetson/dvc_jetson.cpp.obj
+.PHONY : User_File/2_Device/Jetson/dvc_jetson.obj
 
 # target to build an object file
-User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj
+User_File/2_Device/Jetson/dvc_jetson.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj
+.PHONY : User_File/2_Device/Jetson/dvc_jetson.cpp.obj
 
-User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.i: User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.i
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.i
+User_File/2_Device/Jetson/dvc_jetson.i: User_File/2_Device/Jetson/dvc_jetson.cpp.i
+.PHONY : User_File/2_Device/Jetson/dvc_jetson.i
 
 # target to preprocess a source file
-User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.i
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.i
+User_File/2_Device/Jetson/dvc_jetson.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.i
+.PHONY : User_File/2_Device/Jetson/dvc_jetson.cpp.i
 
-User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.s: User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.s
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.s
+User_File/2_Device/Jetson/dvc_jetson.s: User_File/2_Device/Jetson/dvc_jetson.cpp.s
+.PHONY : User_File/2_Device/Jetson/dvc_jetson.s
 
 # target to generate assembly for a file
-User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.s
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.s
+User_File/2_Device/Jetson/dvc_jetson.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.s
+.PHONY : User_File/2_Device/Jetson/dvc_jetson.cpp.s
 
-User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.obj: User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.obj
+User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.obj: User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj
+.PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.obj
 
 # target to build an object file
-User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
+User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj
+.PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj
 
-User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.i: User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.i
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.i
+User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.i: User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.i
+.PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.i
 
 # target to preprocess a source file
-User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.i
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.i
+User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.i
+.PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.i
 
-User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.s: User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.s
+User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.s: User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s
+.PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.s
 
 # target to generate assembly for a file
-User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s
-.PHONY : User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s
+User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s
+.PHONY : User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s
 
-User_File/2_Device/Vofa/vofa.obj: User_File/2_Device/Vofa/vofa.c.obj
-.PHONY : User_File/2_Device/Vofa/vofa.obj
+User_File/2_Device/Vofa/dvc_vofa.obj: User_File/2_Device/Vofa/dvc_vofa.c.obj
+.PHONY : User_File/2_Device/Vofa/dvc_vofa.obj
 
 # target to build an object file
-User_File/2_Device/Vofa/vofa.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
-.PHONY : User_File/2_Device/Vofa/vofa.c.obj
+User_File/2_Device/Vofa/dvc_vofa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj
+.PHONY : User_File/2_Device/Vofa/dvc_vofa.c.obj
 
-User_File/2_Device/Vofa/vofa.i: User_File/2_Device/Vofa/vofa.c.i
-.PHONY : User_File/2_Device/Vofa/vofa.i
+User_File/2_Device/Vofa/dvc_vofa.i: User_File/2_Device/Vofa/dvc_vofa.c.i
+.PHONY : User_File/2_Device/Vofa/dvc_vofa.i
 
 # target to preprocess a source file
-User_File/2_Device/Vofa/vofa.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.i
-.PHONY : User_File/2_Device/Vofa/vofa.c.i
+User_File/2_Device/Vofa/dvc_vofa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.i
+.PHONY : User_File/2_Device/Vofa/dvc_vofa.c.i
 
-User_File/2_Device/Vofa/vofa.s: User_File/2_Device/Vofa/vofa.c.s
-.PHONY : User_File/2_Device/Vofa/vofa.s
+User_File/2_Device/Vofa/dvc_vofa.s: User_File/2_Device/Vofa/dvc_vofa.c.s
+.PHONY : User_File/2_Device/Vofa/dvc_vofa.s
 
 # target to generate assembly for a file
-User_File/2_Device/Vofa/vofa.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.s
-.PHONY : User_File/2_Device/Vofa/vofa.c.s
+User_File/2_Device/Vofa/dvc_vofa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.s
+.PHONY : User_File/2_Device/Vofa/dvc_vofa.c.s
 
-User_File/2_Device/tjc_screen/tjc.obj: User_File/2_Device/tjc_screen/tjc.cpp.obj
-.PHONY : User_File/2_Device/tjc_screen/tjc.obj
+User_File/2_Device/tjc_screen/dvc_tjc.obj: User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj
+.PHONY : User_File/2_Device/tjc_screen/dvc_tjc.obj
 
 # target to build an object file
-User_File/2_Device/tjc_screen/tjc.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
-.PHONY : User_File/2_Device/tjc_screen/tjc.cpp.obj
+User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj
+.PHONY : User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj
 
-User_File/2_Device/tjc_screen/tjc.i: User_File/2_Device/tjc_screen/tjc.cpp.i
-.PHONY : User_File/2_Device/tjc_screen/tjc.i
+User_File/2_Device/tjc_screen/dvc_tjc.i: User_File/2_Device/tjc_screen/dvc_tjc.cpp.i
+.PHONY : User_File/2_Device/tjc_screen/dvc_tjc.i
 
 # target to preprocess a source file
-User_File/2_Device/tjc_screen/tjc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.i
-.PHONY : User_File/2_Device/tjc_screen/tjc.cpp.i
+User_File/2_Device/tjc_screen/dvc_tjc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.i
+.PHONY : User_File/2_Device/tjc_screen/dvc_tjc.cpp.i
 
-User_File/2_Device/tjc_screen/tjc.s: User_File/2_Device/tjc_screen/tjc.cpp.s
-.PHONY : User_File/2_Device/tjc_screen/tjc.s
+User_File/2_Device/tjc_screen/dvc_tjc.s: User_File/2_Device/tjc_screen/dvc_tjc.cpp.s
+.PHONY : User_File/2_Device/tjc_screen/dvc_tjc.s
 
 # target to generate assembly for a file
-User_File/2_Device/tjc_screen/tjc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.s
-.PHONY : User_File/2_Device/tjc_screen/tjc.cpp.s
+User_File/2_Device/tjc_screen/dvc_tjc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\newcar_f407_zero.elf.dir\build.make CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.s
+.PHONY : User_File/2_Device/tjc_screen/dvc_tjc.cpp.s
 
 User_File/3_Car/main_proc.obj: User_File/3_Car/main_proc.cpp.obj
 .PHONY : User_File/3_Car/main_proc.obj
@@ -1483,21 +1483,21 @@ help:
 	@echo ... User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.obj
 	@echo ... User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.i
 	@echo ... User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.s
-	@echo ... User_File/2_Device/Jetson/jetson.obj
-	@echo ... User_File/2_Device/Jetson/jetson.i
-	@echo ... User_File/2_Device/Jetson/jetson.s
-	@echo ... User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.obj
-	@echo ... User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.i
-	@echo ... User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.s
-	@echo ... User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.obj
-	@echo ... User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.i
-	@echo ... User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.s
-	@echo ... User_File/2_Device/Vofa/vofa.obj
-	@echo ... User_File/2_Device/Vofa/vofa.i
-	@echo ... User_File/2_Device/Vofa/vofa.s
-	@echo ... User_File/2_Device/tjc_screen/tjc.obj
-	@echo ... User_File/2_Device/tjc_screen/tjc.i
-	@echo ... User_File/2_Device/tjc_screen/tjc.s
+	@echo ... User_File/2_Device/HWT101/dvc_hwt101.obj
+	@echo ... User_File/2_Device/HWT101/dvc_hwt101.i
+	@echo ... User_File/2_Device/HWT101/dvc_hwt101.s
+	@echo ... User_File/2_Device/Jetson/dvc_jetson.obj
+	@echo ... User_File/2_Device/Jetson/dvc_jetson.i
+	@echo ... User_File/2_Device/Jetson/dvc_jetson.s
+	@echo ... User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.obj
+	@echo ... User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.i
+	@echo ... User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.s
+	@echo ... User_File/2_Device/Vofa/dvc_vofa.obj
+	@echo ... User_File/2_Device/Vofa/dvc_vofa.i
+	@echo ... User_File/2_Device/Vofa/dvc_vofa.s
+	@echo ... User_File/2_Device/tjc_screen/dvc_tjc.obj
+	@echo ... User_File/2_Device/tjc_screen/dvc_tjc.i
+	@echo ... User_File/2_Device/tjc_screen/dvc_tjc.s
 	@echo ... User_File/3_Car/main_proc.obj
 	@echo ... User_File/3_Car/main_proc.i
 	@echo ... User_File/3_Car/main_proc.s

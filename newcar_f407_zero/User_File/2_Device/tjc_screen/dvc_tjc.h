@@ -1,6 +1,6 @@
 /**
  * *****************************************************************************
- * @file        tjc.h
+ * @file        dvc_tjc.h
  * @brief       TJC串口屏驱动头文件
  * @author      ciat-777 (juricek.chen@gmail.com)
  * @date        2025-03-08
@@ -8,8 +8,8 @@
  * *****************************************************************************
  */
 
-#ifndef TJC_H
-#define TJC_H
+#ifndef DVC_TJC_H
+#define DVC_TJC_H
 
 #include "stm32f4xx_hal.h"
 
@@ -67,4 +67,4 @@ void TJC_Test(void);
 }
 #endif
 
-#endif /* TJC_H */
+#endif /* DVC_TJC_H */

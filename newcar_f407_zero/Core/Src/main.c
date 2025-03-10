@@ -28,8 +28,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 // #include "2_Device/Motor/Motor_ZDT42/Emm_V5.h"
-#include "2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.h"
-#include "2_Device/Vofa/vofa.h"
+#include "2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h"
+#include "2_Device/Vofa/dvc_vofa.h"
 #include "4_Task/task_config.h"
 #include "arm_math.h"
 /* USER CODE END Includes */

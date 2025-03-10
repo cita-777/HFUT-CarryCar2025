@@ -686,75 +686,75 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wi
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.s"
 	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\AHRS\AHRS_WIT\dvc_ahrs_wit.cpp -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\AHRS\AHRS_WIT\dvc_ahrs_wit.cpp.s
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/jetson.cpp
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj"
-	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\jetson.cpp.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\jetson.cpp.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Jetson\jetson.cpp
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.cpp
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\HWT101\dvc_hwt101.cpp.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\HWT101\dvc_hwt101.cpp.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\HWT101\dvc_hwt101.cpp
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.i"
-	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Jetson\jetson.cpp > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\jetson.cpp.i
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.i"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\HWT101\dvc_hwt101.cpp > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\HWT101\dvc_hwt101.cpp.i
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.s"
-	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Jetson\jetson.cpp -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\jetson.cpp.s
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.s"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\HWT101\dvc_hwt101.cpp -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\HWT101\dvc_hwt101.cpp.s
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.cpp
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\dvc_jetson.cpp.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\dvc_jetson.cpp.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Jetson\dvc_jetson.cpp
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.i"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c.i
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.i"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Jetson\dvc_jetson.cpp > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\dvc_jetson.cpp.i
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.s"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\Emm_V5.c.s
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.s"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Jetson\dvc_jetson.cpp -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Jetson\dvc_jetson.cpp.s
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.i"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c.i
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.i"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c.i
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.s"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\ZDT_X42_V2.c.s
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.s"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Motor\Motor_ZDT42\dvc_zdt_x42.c.s
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/vofa.c
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\vofa.c
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/Vofa/dvc_vofa.c
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\dvc_vofa.c.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\dvc_vofa.c.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\dvc_vofa.c
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.i"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\vofa.c > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.i
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.i"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\dvc_vofa.c > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\dvc_vofa.c.i
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.s"
-	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\vofa.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\vofa.c.s
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.s"
+	C:\msys64\mingw64\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\Vofa\dvc_vofa.c -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\Vofa\dvc_vofa.c.s
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/tjc.cpp
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj"
-	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\tjc.cpp.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\tjc.cpp.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\tjc_screen\tjc.cpp
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/2_Device/tjc_screen/dvc_tjc.cpp
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Desktop\newCarryCar\newcar_f407_zero\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj -MF CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\dvc_tjc.cpp.obj.d -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\dvc_tjc.cpp.obj -c D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\tjc_screen\dvc_tjc.cpp
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.i"
-	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\tjc_screen\tjc.cpp > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\tjc.cpp.i
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.i"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\tjc_screen\dvc_tjc.cpp > CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\dvc_tjc.cpp.i
 
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.s"
-	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\tjc_screen\tjc.cpp -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\tjc.cpp.s
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.s"
+	C:\msys64\mingw64\bin\arm-none-eabi-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Desktop\newCarryCar\newcar_f407_zero\User_File\2_Device\tjc_screen\dvc_tjc.cpp -o CMakeFiles\newcar_f407_zero.elf.dir\User_File\2_Device\tjc_screen\dvc_tjc.cpp.s
 
 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj: CMakeFiles/newcar_f407_zero.elf.dir/flags.make
 CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj: D:/Desktop/newCarryCar/newcar_f407_zero/User_File/3_Car/main_proc.cpp
@@ -830,11 +830,11 @@ newcar_f407_zero_elf_OBJECTS = \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.cpp.obj" \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp.obj" \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj" \
-"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj" \
-"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj" \
-"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj" \
-"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj" \
-"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj" \
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj" \
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj" \
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj" \
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj" \
+"CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj" \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj" \
 "CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj"
 
@@ -885,11 +885,11 @@ newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/2_Algorithm/Slope/alg_slope.cpp.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WHEELTEC/dvc_ahrs_wheeltec.cpp.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/AHRS/AHRS_WIT/dvc_ahrs_wit.cpp.obj
-newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/jetson.cpp.obj
-newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/Emm_V5.c.obj
-newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/ZDT_X42_V2.c.obj
-newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/vofa.c.obj
-newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/tjc.cpp.obj
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/HWT101/dvc_hwt101.cpp.obj
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Vofa/dvc_vofa.c.obj
+newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/tjc_screen/dvc_tjc.cpp.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/main_proc.cpp.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj
 newcar_f407_zero.elf: CMakeFiles/newcar_f407_zero.elf.dir/build.make

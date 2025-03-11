@@ -22,7 +22,7 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj: \
  C:/msys64/mingw64/arm-none-eabi/include/machine/_types.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/lock.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/stdio.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/TIM/drv_tim.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/BSP/drv_f4board.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/stm32f4xx_hal_conf.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_rcc.h \
@@ -56,6 +56,7 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/4_Task/task_config.cpp.obj: \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/tim.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/TIM/drv_tim.h \
  C:/msys64/mingw64/arm-none-eabi/include/string.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
  C:/msys64/mingw64/arm-none-eabi/include/strings.h \

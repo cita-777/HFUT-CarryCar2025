@@ -60,8 +60,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define KEY1_Pin GPIO_PIN_0
 #define KEY1_GPIO_Port GPIOA
-#define BUZZER_Pin GPIO_PIN_1
-#define BUZZER_GPIO_Port GPIOA
 #define IMU_TX_Pin GPIO_PIN_2
 #define IMU_TX_GPIO_Port GPIOA
 #define IMU_RX_Pin GPIO_PIN_3

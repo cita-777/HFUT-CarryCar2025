@@ -1,5 +1,6 @@
 CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/stm32f4xx_it.c.obj: \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Src\stm32f4xx_it.c \
+ D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/stm32f4xx_it.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/stm32f4xx_hal_conf.h \
@@ -40,7 +41,6 @@ CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/stm32f4xx_it.c.obj: \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/stm32f4xx_it.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/CAN/drv_can.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/can.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h

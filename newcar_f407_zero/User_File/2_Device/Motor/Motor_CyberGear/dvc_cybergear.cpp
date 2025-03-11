@@ -14,9 +14,9 @@
   ****************************(C)SWJTU_ROBOTCON****************************
   **/
 #include "dvc_cybergear.h"
+#include "1_Middleware/1_Driver/CAN/drv_can.h"
 #include "can.h"
 #include "main.h"
-
 CAN_RxHeaderTypeDef rxMsg;                 // 发送接收结构体
 CAN_TxHeaderTypeDef txMsg;                 // 发送配置结构体
 uint8_t             rx_data[8];            // 接收数据
@@ -282,19 +282,44 @@ void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition, float 
  * @param[in]      hcan:CAN句柄指针
  * @retval         none
  */
+// 统一处理所有CAN消息
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 {
-    // HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);                // LED闪烁指示
-    HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxMsg, rx_data);   // 接收数据
-    Motor_Can_ID = Get_Motor_ID(rxMsg.ExtId);                    // 首先获取回传电机ID信息
-    switch (Motor_Can_ID)                                        // 将对应ID电机信息提取至对应结构体
+    // 首先判断是哪个CAN控制器触发了中断
+    if (hcan->Instance == CAN1)
     {
-    case 0X7F:
-        if (rxMsg.ExtId >> 24 != 0)   // 检查是否为广播模式
-            Motor_Data_Handler(&mi_motor[0], rx_data, rxMsg.ExtId);
-        else
-            mi_motor[0].MCU_ID = rx_data[0];
-        break;
-    default: break;
+        // CAN1相关处理（Cybergear电机）
+        uint8_t             rx_data[8] = {0};
+        CAN_RxHeaderTypeDef rxMsg;
+
+        // 读取CAN消息
+        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxMsg, rx_data);
+
+        // 1. 处理Cybergear电机数据
+        uint32_t Motor_Can_ID = Get_Motor_ID(rxMsg.ExtId);
+        if (Motor_Can_ID == 0x7F)
+        {
+            if (rxMsg.ExtId >> 24 != 0)
+                Motor_Data_Handler(&mi_motor[0], rx_data, rxMsg.ExtId);
+            else
+                mi_motor[0].MCU_ID = rx_data[0];
+        }
+
+        // 2. 兼容zdt_x42电机数据 - 修复结构体赋值和volatile问题
+        can.CAN_RxMsg.IDE              = rxMsg.IDE;
+        can.CAN_RxMsg.RTR              = rxMsg.RTR;
+        can.CAN_RxMsg.DLC              = rxMsg.DLC;
+        can.CAN_RxMsg.StdId            = rxMsg.StdId;
+        can.CAN_RxMsg.ExtId            = rxMsg.ExtId;
+        can.CAN_RxMsg.FilterMatchIndex = rxMsg.FilterMatchIndex;
+
+        // 使用循环代替memcpy，避免volatile指针问题
+        for (uint8_t i = 0; i < 8; i++)
+        {
+            can.rxData[i] = rx_data[i];
+        }
+        can.rxFrameFlag = true;
     }
+    else if (hcan->Instance == CAN2)
+    {}
 }

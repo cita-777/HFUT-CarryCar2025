@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include <string>
 
-// 替换为STM32 UART驱动
+// 替换STM32 UART驱动
 #include "1_Middleware/1_Driver/UART/drv_uart.h"
 #include "stm32f4xx_hal.h"
 

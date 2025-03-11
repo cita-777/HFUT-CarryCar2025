@@ -42,4 +42,5 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_CyberGear/dvc
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h
+ D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File/1_Middleware/1_Driver/CAN/drv_can.h

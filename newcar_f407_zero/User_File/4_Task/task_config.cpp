@@ -8,6 +8,7 @@
  */
 
 #include "task_config.h"
+#include "1_Middleware/1_Driver/BSP/drv_f4board.h"
 #include "1_Middleware/1_Driver/TIM/drv_tim.h"
 #include "1_Middleware/1_Driver/WDG/drv_wdg.h"
 #include "2_Device/HWT101/dvc_hwt101.h"   // HWT101头文件
@@ -32,7 +33,7 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {main_proc_run, "main_proc_run", 1},               // 跑地图主逻辑任务
     {feed_dog, "feed_dog", 1},                         // 喂狗任务
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
-    // {test, "test", 1},                                 // 电机等测试
+    // {test, "test", 1},                                 // 电机等测试（test）
     // {hwt101_proc, "hwt101_proc", 1},                   // HWT101处理yaw任务
     // {servo_proc, "servo_proc", 1},                     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
@@ -41,7 +42,7 @@ float                          a = 0.0f;
 float                          b = 0.0f;
 static HWT101Communicator      hwt101(&huart2);                                          // 使用UART2
 static JetsonCommunicator      jc(&huart5);                                              // 使用UART5
-static fsuservo::FSUS_Protocol servoProtocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);   // 使用UART6
+static fsuservo::FSUS_Protocol servoProtocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);   // 使用UART4
 static fsuservo::FSUS_Servo    servo1(1, &servoProtocol);                                // ID为1的舵机
 static fsuservo::FSUS_Servo    servo2(2, &servoProtocol);                                // ID为2的舵机
 /**
@@ -235,8 +236,8 @@ void Task_InitAll(void)
     servo1.init();
     servo2.init();
     Vofa_FireWater("Servo init done, servo1 online: %d, servo2 online: %d\r\n", servo1.isOnline, servo2.isOnline);
-    // 启动TIM6定时器
-    HAL_TIM_Base_Start_IT(&htim6);
+    // 两个LED都开启
+    BSP_Init(BSP_LED_RED_ON | BSP_LED_BLUE_ON, 0.0f);
     for (int i = 0; i < TASK_MAX_NUM; i++)
     {
         // 如果任务函数不为空，可以设置为默认启用状态

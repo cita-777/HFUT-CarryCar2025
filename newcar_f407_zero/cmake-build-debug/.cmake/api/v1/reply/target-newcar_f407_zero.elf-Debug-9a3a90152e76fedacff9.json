@@ -1448,12 +1448,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 2,
-			"path" : "User_File/1_Middleware/1_Driver/BSP/drv_djiboarda.cpp",
+			"path" : "User_File/1_Middleware/1_Driver/BSP/drv_f4board.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "User_File/1_Middleware/1_Driver/BSP/drv_djiboarda.h",
+			"path" : "User_File/1_Middleware/1_Driver/BSP/drv_f4board.h",
 			"sourceGroupIndex" : 0
 		},
 		{

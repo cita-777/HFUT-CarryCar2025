@@ -1,6 +1,6 @@
-CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/BSP/drv_djiboarda.cpp.obj: \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File\1_Middleware\1_Driver\BSP\drv_djiboarda.cpp \
- D:\Desktop\newCarryCar\newcar_f407_zero\User_File\1_Middleware\1_Driver\BSP\drv_djiboarda.h \
+CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/BSP/drv_f4board.cpp.obj: \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File\1_Middleware\1_Driver\BSP\drv_f4board.cpp \
+ D:\Desktop\newCarryCar\newcar_f407_zero\User_File\1_Middleware\1_Driver\BSP\drv_f4board.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/stm32f4xx_hal_conf.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_rcc.h \
@@ -38,4 +38,7 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/1_Middleware/1_Driver/BSP/drv_djib
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_pwr_ex.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim.h \
  D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_tim_ex.h \
- D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h
+ D:\Desktop\newCarryCar\newcar_f407_zero\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/tim.h \
+ D:\Desktop\newCarryCar\newcar_f407_zero\Core\Inc/main.h \
+ C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdbool.h

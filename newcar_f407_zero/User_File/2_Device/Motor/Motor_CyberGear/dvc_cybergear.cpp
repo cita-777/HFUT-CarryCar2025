@@ -24,6 +24,7 @@ uint32_t            Motor_Can_ID;          // 接收数据电机ID
 uint8_t             byte[4];               // 转换临时数据
 uint32_t            send_mail_box = {0};   // NONE
 
+volatile bool zdt_x42_data_ready = false;                                         // 标记是否接收到ZDT_X42正确数据
 #define can_txd() HAL_CAN_AddTxMessage(&hcan1, &txMsg, tx_data, &send_mail_box)   // CAN发送宏定义
 
 MI_Motor mi_motor[4];   // 预先定义四个小米电机
@@ -260,6 +261,18 @@ void init_cybergear(MI_Motor* Motor, uint8_t Can_Id, uint8_t mode)
  */
 void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition, float speed, float kp, float kd)
 {
+    // 安全限制检查 - 发送前限制速度和力矩
+    // if (fabsf(speed) > MAX_SAFE_SPEED)
+    // {
+    //     // 限制速度到安全范围
+    //     speed = (speed > 0) ? MAX_SAFE_SPEED : -MAX_SAFE_SPEED;
+    // }
+    //
+    // if (fabsf(torque) > MAX_SAFE_TORQUE)
+    // {
+    //     // 限制力矩到安全范围
+    //     torque = (torque > 0) ? MAX_SAFE_TORQUE : -MAX_SAFE_TORQUE;
+    // }
     uint8_t tx_data[8];   // 发送数据初始化
     // 装填发送数据
     tx_data[0] = float_to_uint(MechPosition, P_MIN, P_MAX, 16) >> 8;
@@ -275,6 +288,11 @@ void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition, float 
                   Motor->CAN_ID;   // 装填扩展帧数据
     can_txd();
 }
+/**
+ * @brief          检查电机是否超出安全限制并采取措施
+ * @param[in]      Motor: 目标电机结构体
+ * @retval         none
+ */
 
 /*****************************回调函数 负责接回传信息 可转移至别处*****************************/
 /**
@@ -319,6 +337,11 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
             can.rxData[i] = rx_data[i];
         }
         can.rxFrameFlag = true;
+        // 检查是否是ZDT_X42期望的数据格式，直接在中断中标记
+        if (rx_data[0] == 0xFD && rx_data[1] == 0x9F)
+        {
+            zdt_x42_data_ready = true;
+        }
     }
     else if (hcan->Instance == CAN2)
     {}

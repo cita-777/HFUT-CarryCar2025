@@ -459,23 +459,17 @@ void ZDT_X42_V2_Origin_Interrupt(uint8_t addr)
 }
 
 /**
- * @brief    接收数据
- * @retval   1 if can.rxData[0] == 0xFD && can.rxData[1] == 0x9F, 0 otherwise
+ * @brief    检查是否收到正确的ZDT_X42电机数据
+ * @retval   1 if data received correctly, 0 otherwise
  */
+extern volatile bool zdt_x42_data_ready;   // 从cybergear.cpp中声明外部变量
+
 uint8_t ZDT_X42_V2_Receive_Data_Right()
 {
-    while (can.rxData[0] != 0xFD || can.rxData[1] != 0x9F)
+    if (zdt_x42_data_ready)
     {
-        // 可以添加一些延时，避免过度占用CPU资源
-        // HAL_Delay(1);
-    }
-
-    if (can.rxData[0] == 0xFD && can.rxData[1] == 0x9F)
-    {
+        zdt_x42_data_ready = false;   // 复位标志
         return 1;
     }
-    else
-    {
-        return 0;
-    }
+    return 0;
 }

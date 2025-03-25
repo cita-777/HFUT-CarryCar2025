@@ -117,7 +117,7 @@ uint8_t TJC_Check_Receive(void)
 {
     uint8_t flag            = tjc_handle.receive_flag;
     tjc_handle.receive_flag = 0;   // 清除标志
-    HAL_Delay(1);
+    //HAL_Delay(1);
     return flag;
 }
 /**

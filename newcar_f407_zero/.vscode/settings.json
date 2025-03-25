@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "dma.h": "c",
-        "zdt_x42_v2.h": "c"
+        "zdt_x42_v2.h": "c",
+        "queue": "cpp"
     }
 }

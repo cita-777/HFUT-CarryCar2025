@@ -163,7 +163,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/Desktop/newCarryCar/newcar_f407_zero/cmake-build-debug"
+			"value" : "d:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -187,7 +187,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "31"
+			"value" : "30"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -199,7 +199,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "6"
+			"value" : "5"
 		},
 		{
 			"name" : "CMAKE_COLOR_DIAGNOSTICS",
@@ -223,7 +223,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/msys64/mingw64/bin/cmake.exe"
+			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/bin/cmake.exe"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -235,7 +235,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/msys64/mingw64/bin/cpack.exe"
+			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/bin/cpack.exe"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -247,7 +247,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/msys64/mingw64/bin/ctest.exe"
+			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/bin/ctest.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -259,10 +259,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
-			"type" : "UNINITIALIZED",
+			"type" : "STRING",
 			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-g++.exe"
 		},
 		{
@@ -387,10 +387,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "UNINITIALIZED",
+			"type" : "STRING",
 			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
 		},
 		{
@@ -635,7 +635,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Desktop/newCarryCar/newcar_f407_zero/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -695,7 +695,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Desktop/newCarryCar/newcar_f407_zero"
+			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -939,7 +939,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/msys64/mingw64/share/cmake"
+			"value" : "D:/Program Files(D)/CLion 2024.3.2/bin/cmake/win/x64/share/cmake-3.30"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1191,7 +1191,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Desktop/newCarryCar/newcar_f407_zero/cmake-build-debug"
+			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero/cmake-build-debug"
 		},
 		{
 			"name" : "newcar_f407_zero_IS_TOP_LEVEL",
@@ -1215,7 +1215,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Desktop/newCarryCar/newcar_f407_zero"
+			"value" : "D:/Desktop/new_carrycar/newcar_f407_zero"
 		}
 	],
 	"kind" : "cache",

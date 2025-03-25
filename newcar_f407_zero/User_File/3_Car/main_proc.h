@@ -1,35 +1,32 @@
-/**
- * *****************************************************************************
- * @file        main_proc.h
- * @brief
- * @author      ciat-777 (juricek.chen@gmail.com)
- * @date        2025-03-07
- * @copyright   cita
- * *****************************************************************************
- */
-#ifndef __MAIN_PROC_H__
-#define __MAIN_PROC_H__
+#ifndef MAIN_PROC_H
+#define MAIN_PROC_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#include <stdbool.h>
 #include <stdint.h>
 
-// 状态数目
-#define PROC_STATE_MAX 4
+// 状态枚举定义
+typedef enum
+{
+    PROC_STATE_TASK1 = 0,
+    PROC_STATE_TASK2,
+    PROC_STATE_TASK3,
+    PROC_STATE_DONE,
+    PROC_STATE_MAX
+} ProcState_e;
 
-// 定义状态机处理函数类型
-typedef void (*ProcHandler_t)(void);
+// 修改为返回bool的函数指针类型
+typedef bool (*ProcHandler_t)(void);
 
-// 状态机处理函数，每次调用执行当前状态函数并自动跳转到下一状态
+// 对外接口
 void main_proc_run(void);
-
-// 调试接口：手动设置当前状态（状态索引范围 0~PROC_STATE_MAX-1）
 void Proc_SetState(uint8_t state);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif   // __MAIN_PROC_H__
+#endif /* MAIN_PROC_H */

@@ -7,7 +7,7 @@
  * STM32适配: cita
  */
 #include "dvc_fsuServo.h"
-
+#include "2_Device/Vofa/dvc_vofa.h"
 using namespace fsuservo;
 
 FSUS_Servo::FSUS_Servo(uint8_t servoId, FSUS_Protocol* protocol)
@@ -51,10 +51,17 @@ void FSUS_Servo::init(uint8_t servoId, FSUS_Protocol* protocol)
 /*舵机通讯检测, 判断舵机是否在线*/
 bool FSUS_Servo::ping()
 {
-    this->protocol->emptyCache();        // 清空串口缓冲区
-    this->protocol->sendPing(servoId);   // 发送PING指令
+    this->protocol->emptyCache();
+    Vofa_FireWater("发送ping命令到ID:%d的舵机\r\n", servoId);
+    this->protocol->sendPing(servoId);
+    HAL_Delay(100);   // 给舵机一些响应时间
+
+    int queueSize = this->protocol->available();
+    Vofa_FireWater("接收队列状态: %d个字节可读\r\n", queueSize);
+
     FSUS_SERVO_ID_T servoIdTmp;
-    this->protocol->recvPing(&servoIdTmp, &(this->isOnline));
+    FSUS_STATUS     status = this->protocol->recvPing(&servoIdTmp, &(this->isOnline));
+    Vofa_FireWater("ping结果: 状态=%d, 舵机ID=%d, 在线=%d\r\n", status, servoIdTmp, this->isOnline);
     return this->isOnline;
 }
 

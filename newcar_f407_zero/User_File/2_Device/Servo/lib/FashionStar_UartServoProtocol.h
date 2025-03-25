@@ -20,7 +20,14 @@
 #include "1_Middleware/1_Driver/UART/drv_uart.h"
 #include "stm32f4xx_hal.h"
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
+// 确保这里的声明与调用方期望的完全一致
+void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length);
+#ifdef __cplusplus
+}
+#endif
 namespace fsuservo {
 
 // 定义波特率枚举（与STM32兼容）
@@ -41,7 +48,7 @@ typedef enum
 // 注: FSUS是Fashion Star Uart Servo的缩写
 
 // 串口通讯超时设置
-#define FSUS_TIMEOUT_MS 100
+#define FSUS_TIMEOUT_MS 1000
 // 舵机用户自定义数据块的大小 单位Byte
 #define FSUS_SERVO_BATCH_DATA_SIZE 32
 // 封包的长度
@@ -283,8 +290,7 @@ typedef struct
     uint8_t     recv_buffer[FSUS_PACK_RESPONSE_MAX_SIZE];   // 测试用
 } FSUS_PACKAGE_T;
 
-// 声明回调函数
-static void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length);
+
 
 // 串口通信舵机通信协议
 class FSUS_Protocol
@@ -385,6 +391,8 @@ public:
     void        sendResetMultiTurnAngle(FSUS_SERVO_ID_T servoId);
     // 接收来自UART的数据（只应由回调函数调用）
     void onReceiveData(uint8_t* data, uint16_t length);
+    // 添加静态方法获取活动实例
+    static FSUS_Protocol* getActiveInstance() { return activeInstance; }
 
 private:
     UART_HandleTypeDef* huart;      // STM32 UART句柄
@@ -395,7 +403,7 @@ private:
 
     // 静态指针指向当前实例，用于回调函数
     static FSUS_Protocol* activeInstance;
-
+    // 正确的友元声明 - 不带::前缀
     friend void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length);
 };
 

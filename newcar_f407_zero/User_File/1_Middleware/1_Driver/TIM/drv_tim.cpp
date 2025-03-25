@@ -58,21 +58,19 @@ void Class_Timer::TIM_1ms_Calculate_PeriodElapsedCallback()
 }
 bool Class_Timer::DelayNonBlocking(uint32_t __Delay)
 {
-    // 使用静态变量记录是否已启动延时
-    static bool delayInitialized = false;
-    if (!delayInitialized)
+    // 移除静态变量，改为使用状态机逻辑
+    if (Get_Now_Status() == Timer_Status_RESET)
     {
         // 未启动则初始化延时
         Set_Delay(__Delay);
-        delayInitialized = true;
         return false;   // 延时开始，但还未完成
     }
 
     // 检查当前延时状态
     if (Get_Now_Status() == Timer_Status_TRIGGER || Get_Now_Status() == Timer_Status_TIMEOUT)
     {
-        // 延时结束，复位标志，便于下次调用启动新延时
-        delayInitialized = false;
+        // 延时结束，复位定时器
+        Set_Delay(0);
         return true;
     }
     return false;

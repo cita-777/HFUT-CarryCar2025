@@ -7,24 +7,48 @@
  * STM32适配: cita
  */
 #include "FashionStar_UartServoProtocol.h"
-
+#include "2_Device/Vofa/dvc_vofa.h"
+// 命名空间外部初始化静态成员
+fsuservo::FSUS_Protocol* fsuservo::FSUS_Protocol::activeInstance = nullptr;
 using namespace fsuservo;
 
-// 静态实例指针初始化
-FSUS_Protocol* FSUS_Protocol::activeInstance = nullptr;
-
+extern "C" {
 // UART接收数据回调函数 - 修改：放在fsuservo命名空间内
-namespace fsuservo {
 void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length)
 {
-    if (FSUS_Protocol::activeInstance != nullptr)
+    static int callback_count = 0;
+    callback_count++;
+    Vofa_FireWater("UART收到数据: %d字节, 共%d次\r\n", Length, callback_count);
+
+    if (fsuservo::FSUS_Protocol::getActiveInstance() != nullptr)
     {
-        FSUS_Protocol::activeInstance->onReceiveData(Buffer, Length);
+        fsuservo::FSUS_Protocol::getActiveInstance()->onReceiveData(Buffer, Length);
     }
 }
-}   // namespace fsuservo
+}
 FSUS_Protocol::FSUS_Protocol(UART_HandleTypeDef* huart, uint32_t baudrate)
 {
+    // 增加基本调试输出，确认构造函数被调用
+    Vofa_FireWater("舵机构造函数被调用\r\n");
+    Vofa_FireWater("传入的huart地址: %p\r\n", huart);
+    if (huart != nullptr)
+    {
+        Vofa_FireWater("huart->Instance: %p\r\n", huart->Instance);
+        Vofa_FireWater("UART4地址: %p\r\n", UART4);
+        // 比较地址值
+        if (huart->Instance == UART4)
+        {
+            Vofa_FireWater("确认使用UART4初始化舵机\r\n");
+        }
+        else
+        {
+            Vofa_FireWater("警告：舵机未使用UART4初始化\r\n");
+        }
+    }
+    else
+    {
+        Vofa_FireWater("错误：huart为空指针\r\n");
+    }
     // 记录参数
     this->huart    = huart;
     this->baudrate = baudrate;
@@ -32,8 +56,31 @@ FSUS_Protocol::FSUS_Protocol(UART_HandleTypeDef* huart, uint32_t baudrate)
     // 将当前实例设置为活动实例
     activeInstance = this;
 
+
     // 初始化串口
     UART_Init(huart, FSUS_UART_Callback, UART_BUFFER_SIZE);
+    // // 添加调试信息
+    // Vofa_FireWater("舵机初始化使用UART4\r\n");
+
+    // 查看UART4的结构体是否正确
+    if (huart->Instance == UART4)
+    {
+        Vofa_FireWater("使用UART4初始化舵机\r\n");
+    }
+    // 验证回调函数是否被正确注册
+
+    if (huart->Instance == UART4)
+    {
+        Vofa_FireWater("UART4回调函数地址: %p\r\n", UART4_Manage_Object.Callback_Function);
+        if (UART4_Manage_Object.Callback_Function == FSUS_UART_Callback)
+        {
+            Vofa_FireWater("UART4回调函数正确注册\r\n");
+        }
+        else
+        {
+            Vofa_FireWater("UART4回调函数注册异常\r\n");
+        }
+    }
 }
 
 // 获取当前的时间戳，单位ms

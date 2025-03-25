@@ -15,6 +15,7 @@
   **/
 #include "can.h"
 #include "main.h"
+
 // 控制参数最值，谨慎更改
 #define P_MIN -12.5f
 #define P_MAX 12.5f
@@ -64,6 +65,7 @@
 
 #define Motor_Error 0x00
 #define Motor_OK 0X01
+extern volatile bool zdt_x42_data_ready;
 
 enum CONTROL_MODE   // 控制模式定义
 {
@@ -112,3 +114,9 @@ extern void set_zeropos_cybergear(MI_Motor* Motor);
 extern void set_CANID_cybergear(MI_Motor* Motor, uint8_t CAN_ID);
 extern void init_cybergear(MI_Motor* Motor, uint8_t Can_Id, uint8_t mode);
 extern void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition, float speed, float kp, float kd);
+
+#define MAX_SAFE_SPEED 5.0f    // 最大安全速度限制 (rad/s)
+#define MAX_SAFE_TORQUE 4.0f   // 最大安全力矩限制 (N*m)
+
+// 保护功能函数声明
+extern void check_motor_limits(MI_Motor* Motor);

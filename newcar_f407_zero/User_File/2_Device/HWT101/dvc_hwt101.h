@@ -1,7 +1,7 @@
 /**
  * *****************************************************************************
  * @file        dvc_hwt101.h
- * @brief       HWT101惯性测量单元设备驱动 (仅Yaw角度)
+ * @brief       HWT101惯性测量单元设备驱动
  * @author      ciat-777 (juricek.chen@gmail.com)
  * @date        2025-03-10
  * @copyright   cita
@@ -25,7 +25,7 @@ extern "C" {
 #    define HWT101_RX_BUFFER_SIZE 30   // 接收缓冲区大小
 #    define HWT101_DATA_LENGTH 22      // 标准数据帧长度
 #    define HWT101_HEADER1 0x55        // 数据帧头字节1
-#    define HWT101_HEADER2 0x53        // 数据帧头字节2(角度数据包)
+#    define HWT101_HEADER2 0x52        // 数据帧头字节2(角度数据包)
 
 /**
  * @brief HWT101惯性测量单元通信类
@@ -43,7 +43,7 @@ public:
      * @brief 初始化HWT101设备
      * @return uint8_t 0表示成功，非0表示错误代码
      */
-    uint8_t init();
+    uint8_t init(UART_HandleTypeDef* huart);
 
     /**
      * @brief 处理HWT101接收到的数据
@@ -90,7 +90,7 @@ private:
     float _lastYawAngle;   // 上一次角度值
 
     // 计算校验和
-    uint8_t checkSum(uint8_t* data, uint16_t length) const;
+    uint8_t checkSum(uint8_t* data) const;
 };
 
 // 全局实例声明

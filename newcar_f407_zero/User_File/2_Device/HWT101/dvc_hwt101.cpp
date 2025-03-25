@@ -1,7 +1,7 @@
 /**
  * *****************************************************************************
  * @file        dvc_hwt101.cpp
- * @brief       HWT101惯性测量单元设备驱动 (仅Yaw角度)
+ * @brief       HWT101惯性测量单元设备驱动
  * @author      ciat-777 (juricek.chen@gmail.com)
  * @date        2025-03-10
  * @copyright   cita
@@ -10,7 +10,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "dvc_hwt101.h"
-
+#include "2_Device/Vofa/dvc_vofa.h"
 /* 静态成员初始化 ----------------------------------------------------------*/
 HWT101Communicator* HWT101Communicator::_instance = nullptr;
 HWT101Communicator* g_hwt101                      = nullptr;
@@ -37,13 +37,27 @@ HWT101Communicator::HWT101Communicator(UART_HandleTypeDef* huart)
  * @brief 初始化HWT101设备
  * @return uint8_t 0表示成功，非0表示错误代码
  */
-uint8_t HWT101Communicator::init()
+uint8_t HWT101Communicator::init(UART_HandleTypeDef* huart)
 {
+    // 保存串口句柄
+    _huart = huart;
+
+    // 初始化状态
+    _dataReadyFlag = 0;
+    memset(_rxBuffer, 0, sizeof(_rxBuffer));
+
+    // 确保DMA通道已正确配置
+    if (huart->hdmarx == NULL)
+    {
+        // DMA未配置，返回错误
+        return 1;
+    }
+
     // 初始化串口，设置回调函数
-    UART_Init(_huart, receiveCallback, HWT101_RX_BUFFER_SIZE);
+    UART_Init(huart, receiveCallback, HWT101_RX_BUFFER_SIZE);
 
     // 等待设备初始化
-    HAL_Delay(100);
+    HAL_Delay(10);
 
     // 校准Z轴角度
     return calibrateYaw();
@@ -56,25 +70,10 @@ uint8_t HWT101Communicator::init()
  */
 void HWT101Communicator::receiveCallback(uint8_t* buffer, uint16_t length)
 {
-    // 确保实例存在
-    if (_instance == nullptr)
-    {
-        return;
-    }
-
-    // 仅当接收到完整数据帧时处理
-    if (length >= HWT101_DATA_LENGTH)
-    {
-        // 检查数据帧头
-        if (buffer[0] == HWT101_HEADER1 && buffer[1] == HWT101_HEADER2)
-        {
-            // 复制数据到设备缓冲区
-            memcpy(_instance->_rxBuffer, buffer, length);
-
-            // 设置数据就绪标志
-            _instance->_dataReadyFlag = 1;
-        }
-    }
+    // 复制数据到设备缓冲区
+    memcpy(_instance->_rxBuffer, buffer, length);
+    _instance->_dataReadyFlag = 1;
+    // Vofa_FireWater("数据帧有效, 已设置标志\r\n");
 }
 
 /**
@@ -85,9 +84,15 @@ uint8_t HWT101Communicator::processData()
 {
     if (_dataReadyFlag)
     {
-        // 计算校验和
-        uint8_t sum = checkSum(_rxBuffer, HWT101_DATA_LENGTH - 1);
-
+        // Vofa_FireWater("接收数据: ");
+        //  for (int i = 0; i < HWT101_DATA_LENGTH; i++)
+        //  {
+        //      Vofa_FireWater("%02X ", _rxBuffer[i]);
+        //  }
+        // Vofa_FireWater("\r\n");
+        //  计算校验和
+        uint8_t sum = checkSum(_rxBuffer);
+        // Vofa_FireWater("计算校验和: %02X, 接收校验和: %02X\r\n", sum, _rxBuffer[21]);
         // 校验数据有效性
         if (_rxBuffer[21] == sum)
         {
@@ -161,17 +166,12 @@ uint8_t HWT101Communicator::setOutputMode(uint8_t mode)
 /**
  * @brief 计算校验和
  * @param data 数据数组
- * @param length 数据长度
- * @return uint8_t 校验和结果
+ * @return uint8_t 校验和结果,0成功,1不成功
  */
-uint8_t HWT101Communicator::checkSum(uint8_t* data, uint16_t length) const
+uint8_t HWT101Communicator::checkSum(uint8_t* data) const
 {
-    uint8_t sum = 0;
-    for (uint16_t i = 0; i < length; i++)
-    {
-        sum += data[i];
-    }
-    return sum;
+    // 根据HWT101协议计算校验和
+    return (uint8_t)(0x55 + 0x53 + data[17] + data[18] + data[19] + data[20]);
 }
 
 /************************ COPYRIGHT(C) CITA **************************/

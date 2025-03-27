@@ -149,7 +149,7 @@ void TIM_1ms_UART_PeriodElapsedCallback() {}
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size)
 {
     // 判断程序初始化完成
-    Vofa_FireWater("HAL_UARTEx_RxEventCallback被调用\r\n");
+    // Vofa_FireWater("HAL_UARTEx_RxEventCallback被调用\r\n");
     if (init_finished == false)
     {
         return;
@@ -183,16 +183,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size)
     // 选择回调函数
     else if (huart->Instance == UART4)
     {
-        Vofa_FireWater("UART4收到数据，Size=%d\r\n", Size);
         if (UART4_Manage_Object.Callback_Function != nullptr)
         {
-            Vofa_FireWater("UART4准备执行回调函数\r\n");
             UART4_Manage_Object.Callback_Function(UART4_Manage_Object.Rx_Buffer, Size);
-            Vofa_FireWater("UART4回调函数执行完毕\r\n");
-        }
-        else
-        {
-            Vofa_FireWater("UART4回调函数为空\r\n");
         }
         HAL_UARTEx_ReceiveToIdle_DMA(huart, UART4_Manage_Object.Rx_Buffer, UART4_Manage_Object.Rx_Buffer_Length);
     }

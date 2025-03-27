@@ -48,7 +48,7 @@ typedef enum
 // 注: FSUS是Fashion Star Uart Servo的缩写
 
 // 串口通讯超时设置
-#define FSUS_TIMEOUT_MS 1000
+#define FSUS_TIMEOUT_MS 2000
 // 舵机用户自定义数据块的大小 单位Byte
 #define FSUS_SERVO_BATCH_DATA_SIZE 32
 // 封包的长度

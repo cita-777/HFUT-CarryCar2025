@@ -39,13 +39,13 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     // {servo_proc, "servo_proc", 1},                     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
 };
-float                          a = 0.0f;
-float                          b = 0.0f;
-static HWT101Communicator      hwt101(&huart2);                                          // 使用UART2
-static JetsonCommunicator      jc(&huart5);                                              // 使用UART5
-static fsuservo::FSUS_Protocol servoProtocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);   // 使用UART4
-static fsuservo::FSUS_Servo    servo2(2, &servoProtocol);                                // ID为1的舵机
-static fsuservo::FSUS_Servo    servo3(3, &servoProtocol);                                // ID为2的舵机
+float                     a = 0.0f;
+float                     b = 0.0f;
+static HWT101Communicator hwt101(&huart2);   // 使用UART2
+static JetsonCommunicator jc(&huart5);       // 使用UART5
+fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;
+fsuservo::FSUS_Servo*     g_servo2        = nullptr;
+fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为2的舵机
 /**
  * @brief 任务执行频率配置
  */
@@ -92,34 +92,34 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
  */
 void servo_proc()
 {
-    static uint16_t counter = 0;
-    static float    angle   = 0.0f;
-
-    // 生成一个正弦波角度
-    angle = 45.0f * arm_sin_f32(a * 0.5f);
-
-    if (servo2.isOnline)
-    {
-        // 每隔一段时间设置舵机角度
-        if (counter % 50 == 0)
-        {
-            servo2.setAngle(angle);
-
-            // 调试输出
-            Vofa_FireWater("Servo angle: %.2f\r\n", angle);
-            TJC_Send_Format("t4.txt=\"Servo: %.1f°\"", angle);
-        }
-    }
-    else
-    {
-        // 如果舵机离线，尝试重新连接
-        if (counter % 200 == 0)
-        {
-            servo2.ping();
-        }
-    }
-
-    counter++;
+    // static uint16_t counter = 0;
+    // static float    angle   = 0.0f;
+    //
+    // // 生成一个正弦波角度
+    // angle = 45.0f * arm_sin_f32(a * 0.5f);
+    //
+    // if (g_servo2servo2.isOnline)
+    // {
+    //     // 每隔一段时间设置舵机角度
+    //     if (counter % 50 == 0)
+    //     {
+    //         servo2.setAngle(angle);
+    //
+    //         // 调试输出
+    //         Vofa_FireWater("Servo angle: %.2f\r\n", angle);
+    //         TJC_Send_Format("t4.txt=\"Servo: %.1f°\"", angle);
+    //     }
+    // }
+    // else
+    // {
+    //     // 如果舵机离线，尝试重新连接
+    //     if (counter % 200 == 0)
+    //     {
+    //         servo2.ping();
+    //     }
+    // }
+    //
+    // counter++;
     Task_DisableHandle("servo_proc");
 }
 /**
@@ -253,16 +253,12 @@ void Task_InitAll(void)
     jc.init();
     g_jetson->send(0x01);   // 发送数据到Jetson
 
-    servo2.init();
-    servo3.init();
-    Vofa_FireWater("Servo init done, servo2 online: %d, servo3 online: %d\r\n", servo2.isOnline, servo3.isOnline);
-    Vofa_FireWater("开始ping舵机...\r\n");
-    bool ping2 = servo2.ping();
-    bool ping3 = servo3.ping();
-    Vofa_FireWater("舵机ping结果 - servo2: %d, servo3: %d\r\n", ping2, ping3);
+    g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
+    // g_servo2        = new fsuservo::FSUS_Servo(2, g_servoProtocol);
+    g_servo3 = new fsuservo::FSUS_Servo(3, g_servoProtocol);
 
-    // 检查通信协议状态
-    Vofa_FireWater("通信协议状态: %d\r\n", servoProtocol.responsePack.recv_status);
+    // g_servo2->init();
+    g_servo3->init();
     init_cybergear(&mi_motor[0], 0x7F, Motion_mode);
     //  两个LED都开启
     BSP_Init(BSP_LED_RED_ON, 0.5f);

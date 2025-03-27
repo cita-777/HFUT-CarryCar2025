@@ -52,12 +52,12 @@ void FSUS_Servo::init(uint8_t servoId, FSUS_Protocol* protocol)
 bool FSUS_Servo::ping()
 {
     this->protocol->emptyCache();
-    Vofa_FireWater("发送ping命令到ID:%d的舵机\r\n", servoId);
+    // Vofa_FireWater("发送ping命令到ID:%d的舵机\r\n", servoId);
     this->protocol->sendPing(servoId);
     HAL_Delay(100);   // 给舵机一些响应时间
 
     int queueSize = this->protocol->available();
-    Vofa_FireWater("接收队列状态: %d个字节可读\r\n", queueSize);
+    // Vofa_FireWater("接收队列状态: %d个字节可读\r\n", queueSize);
 
     FSUS_SERVO_ID_T servoIdTmp;
     FSUS_STATUS     status = this->protocol->recvPing(&servoIdTmp, &(this->isOnline));

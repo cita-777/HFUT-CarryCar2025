@@ -52,22 +52,23 @@ void JetsonCommunicator::init()
 }
 
 /**
- * @brief 发送数据到Jetson
+ * @brief 发送区域到达通知
+ * @param zone 区域标识 (参见宏定义)
  */
-void JetsonCommunicator::send(uint8_t data)
+void JetsonCommunicator::sendZoneReached(uint8_t zone)
 {
     // 组装发送帧
     memset(_txBuffer, 0, sizeof(_txBuffer));
-    _txBuffer[0] = JETSON_START_BYTE;
-    _txBuffer[1] = JETSON_CMD_SEND;
+    _txBuffer[0] = JETSON_START_BYTE;   // 帧头
+    _txBuffer[1] = JETSON_CMD_SEND;     // 任务B命令
 
-    // 填充数据字段
+    // 填充区域标识
     for (int i = 2; i <= 7; i++)
     {
-        _txBuffer[i] = data;
+        _txBuffer[i] = zone;
     }
 
-    _txBuffer[8] = JETSON_END_BYTE;
+    _txBuffer[8] = JETSON_END_BYTE;   // 帧尾
 
     // 发送数据
     UART_Send_Data(_huart, _txBuffer, JETSON_FRAME_SIZE);
@@ -75,7 +76,6 @@ void JetsonCommunicator::send(uint8_t data)
     // 等待发送完成
     HAL_Delay(1);
 }
-
 /**
  * @brief 获取二维码字符串
  */
@@ -213,9 +213,9 @@ void JetsonCommunicator::processQRCode()
     _qrCodeString[7] = '\0';   // 字符串结束符
 
     // 发送到串口显示
-    printf("t10.txt=\"%s\"\xff\xff\xff", _qrCodeString);
-    printf("t10.txt=\"%s\"\xff\xff\xff", _qrCodeString);
-    printf("t10.txt=\"%s\"\xff\xff\xff", _qrCodeString);
+    // printf("t10.txt=\"%s\"\xff\xff\xff", _qrCodeString);
+    // printf("t10.txt=\"%s\"\xff\xff\xff", _qrCodeString);
+    // printf("t10.txt=\"%s\"\xff\xff\xff", _qrCodeString);
 }
 
 /**
@@ -223,12 +223,12 @@ void JetsonCommunicator::processQRCode()
  */
 void JetsonCommunicator::processCoordinates()
 {
-    // 解析X坐标 - 与Y坐标使用相同的十六进制解析方式
-    int16_t x_value = (_rxBuffer[3] << 4) | _rxBuffer[4];
+    // 修改为十进制解析 - X坐标
+    int16_t x_value = (_rxBuffer[3] * 10) + _rxBuffer[4];
     _coordinates[0] = (_rxBuffer[2] == 0x0A) ? x_value : -x_value;
 
-    // 解析Y坐标
-    int16_t y_value = (_rxBuffer[6] << 4) | _rxBuffer[7];
+    // 修改为十进制解析 - Y坐标
+    int16_t y_value = (_rxBuffer[6] * 10) + _rxBuffer[7];
     _coordinates[1] = (_rxBuffer[5] == 0x0A) ? y_value : -y_value;
 }
 

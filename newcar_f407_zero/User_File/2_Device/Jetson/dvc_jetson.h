@@ -29,7 +29,10 @@ extern "C" {
 #define JETSON_CMD_COORD 0x0C   // 坐标任务
 #define JETSON_CMD_GRAB 0x0D    // 抓取任务
 #define JETSON_CMD_SEND 0x0B    // 发送命令
-
+// 区域标识定义
+#define ZONE_RAW_MATERIAL 0x04        // 原料区标识
+#define ZONE_ROUGH_PROCESSING 0x05    // 粗加工区标识
+#define ZONE_TEMPORARY_STORAGE 0x06   // 暂存区标识
 /**
  * @brief Jetson通信类
  */
@@ -47,11 +50,6 @@ public:
      */
     void init();
 
-    /**
-     * @brief 发送数据到Jetson
-     * @param data 要发送的数据字节
-     */
-    void send(uint8_t data);
 
     /**
      * @brief 获取二维码字符串
@@ -77,7 +75,7 @@ public:
      * @param isWaiting 是否等待抓取
      */
     void setWaitGrab(bool isWaiting);
-
+    void sendZoneReached(uint8_t zone);
     // 静态回调函数，用于接收UART数据
     static void receiveCallback(uint8_t* buffer, uint16_t size);
 

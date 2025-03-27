@@ -21,12 +21,15 @@
 #include "3_Car/main_proc.h"
 #include "arm_math.h"
 #include <string.h>
+/*------------------------------------task函数声明------------------------------------*/
 void feed_dog();
 void test();
 void delayed_task();
 void tjc_start_detection();
 void hwt101_proc();
 void servo_proc();
+void jetson_test();
+/*------------------------------------task注册表------------------------------------*/
 // 任务配置表, 根据需要添加任务配置项，示例中默认使能状态为1（使能）
 // 示例任务配置: {Task_Example, "Task_Example", 1},
 // 可添加任务项，比如:{NULL, NULL, 0},
@@ -36,9 +39,11 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
     //{test, "test", 1},                                 // 电机等测试（test）
     {hwt101_proc, "hwt101_proc", 1},   // HWT101处理yaw任务
+    //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
     // {servo_proc, "servo_proc", 1},                     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
 };
+/*------------------------------------静态类/全局变量------------------------------------*/
 float                     a = 0.0f;
 float                     b = 0.0f;
 static HWT101Communicator hwt101(&huart2);   // 使用UART2
@@ -46,6 +51,7 @@ static JetsonCommunicator jc(&huart5);       // 使用UART5
 fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;
 fsuservo::FSUS_Servo*     g_servo2        = nullptr;
 fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为2的舵机
+/*------------------------------------task执行频率配置------------------------------------*/
 /**
  * @brief 任务执行频率配置
  */
@@ -80,97 +86,67 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 
         if (count_num2 == 100)
         {
-
+            Task_EnableHandle("jetson_test");
             Task_EnableHandle("feed_dog");
             count_num2 = 0;
         }
     }
 }
+/*------------------------------------task初始化------------------------------------*/
+void Task_InitAll(void)
+{
 
+    while (ZDT_X42_V2_Init());
+    // HAL_Delay(1);
+    // ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
+    // HAL_Delay(1);
+    while (TJC_Init(&huart1));
+    // 初始化HWT101传感器
+    uint8_t ret = hwt101.init(&huart2);
+    if (ret != 0)
+    {
+        Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
+    }
+    jc.init();
+
+    g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
+    // g_servo2        = new fsuservo::FSUS_Servo(2, g_servoProtocol);
+    g_servo3 = new fsuservo::FSUS_Servo(3, g_servoProtocol);
+
+    // g_servo2->init();
+    g_servo3->init();
+    init_cybergear(&mi_motor[0], 0x7F, Motion_mode);
+    //  两个LED都开启
+    BSP_Init(BSP_LED_RED_ON, 0.5f);
+    for (int i = 0; i < TASK_MAX_NUM; i++)
+    {
+        // 如果任务函数不为空，可以设置为默认启用状态
+        if (taskConfigTable[i].taskFunction != NULL)
+        {
+            taskConfigTable[i].enabled = 1;
+        }
+    }
+}
+/*------------------------------------task实现函数------------------------------------*/
 /**
  * @brief 舵机控制任务
  */
 void servo_proc()
 {
-    // static uint16_t counter = 0;
-    // static float    angle   = 0.0f;
-    //
-    // // 生成一个正弦波角度
-    // angle = 45.0f * arm_sin_f32(a * 0.5f);
-    //
-    // if (g_servo2servo2.isOnline)
-    // {
-    //     // 每隔一段时间设置舵机角度
-    //     if (counter % 50 == 0)
-    //     {
-    //         servo2.setAngle(angle);
-    //
-    //         // 调试输出
-    //         Vofa_FireWater("Servo angle: %.2f\r\n", angle);
-    //         TJC_Send_Format("t4.txt=\"Servo: %.1f°\"", angle);
-    //     }
-    // }
-    // else
-    // {
-    //     // 如果舵机离线，尝试重新连接
-    //     if (counter % 200 == 0)
-    //     {
-    //         servo2.ping();
-    //     }
-    // }
-    //
-    // counter++;
+
     Task_DisableHandle("servo_proc");
 }
-/**
- * @brief 处理HWT101数据的任务
- */
-void hwt101_proc()
-{
-    // 处理接收到的数据
-    // Vofa_FireWater("调用processData()");
-    uint8_t result = g_hwt101->processData();
-    // Vofa_FireWater("processData()返回: %d\r\n", result);
 
-    // 获取偏航角，可用于调试输出或控制逻辑
-    float yaw = g_hwt101->getYawAngle();
-
-    static uint16_t counter = 0;
-    if (counter++ % 5 == 0)   // 每200ms输出一次角度
-    {
-        // 输出到VOFA或TJC屏幕
-        // Vofa_FireWater("%f\r\n", yaw);
-        // TJC_Send_Format("t3.txt=\"Yaw: %.1f°\"", yaw);
-    }
-    Task_DisableHandle("hwt101_proc");
-}
 void tjc_start_detection()
 {
     if (TJC_Check_Receive())
     {
-        TJC_Send_Command("t10.txt=\"111+222\"");
+        TJC_Send_Command("t10.txt=\"iii+iii\"");
         // HAL_Delay(1);
         Task_DisableHandle("TJC_proc");
     }
 }
-void delayed_task()
-{
-    // 打印当前 Tick 和 状态, 方便观察
-    Vofa_FireWater("Tick: %lu, Timer Status: %d\r\n", TIM_1ms.Get_Tick(), TIM_1ms.Get_Now_Status());
 
-    // 调用 DelayNonBlocking，传入延时周期（例如 500ms）
-    if (!TIM_1ms.DelayNonBlocking(500))
-    {
-        // 延时还在进行中，直接返回，非阻塞
-        return;
-    }
-
-    // 延时结束后执行实际任务操作
-    Vofa_FireWater("delayed task executed\r\n");
-
-    // 执行完毕后禁用任务
-    Task_DisableHandle("delayed_task");
-}
 void test()
 {
     static uint16_t counter          = 0;
@@ -235,43 +211,8 @@ void feed_dog()
     TIM_1ms_IWDG_PeriodElapsedCallback();
     Task_DisableHandle("feed_dog");
 }
-// 任务初始化, 可在此函数中初始化任务状态，默认为使能状态
-void Task_InitAll(void)
-{
 
-    while (ZDT_X42_V2_Init());
-    // HAL_Delay(1);
-    // ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
-    // HAL_Delay(1);
-    while (TJC_Init(&huart1));
-    // 初始化HWT101传感器
-    uint8_t ret = hwt101.init(&huart2);
-    if (ret != 0)
-    {
-        Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
-    }
-    jc.init();
-    g_jetson->send(0x01);   // 发送数据到Jetson
-
-    g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
-    // g_servo2        = new fsuservo::FSUS_Servo(2, g_servoProtocol);
-    g_servo3 = new fsuservo::FSUS_Servo(3, g_servoProtocol);
-
-    // g_servo2->init();
-    g_servo3->init();
-    init_cybergear(&mi_motor[0], 0x7F, Motion_mode);
-    //  两个LED都开启
-    BSP_Init(BSP_LED_RED_ON, 0.5f);
-    for (int i = 0; i < TASK_MAX_NUM; i++)
-    {
-        // 如果任务函数不为空，可以设置为默认启用状态
-        if (taskConfigTable[i].taskFunction != NULL)
-        {
-            taskConfigTable[i].enabled = 1;
-        }
-    }
-}
-
+/*------------------------------------逻辑核心与事件函数------------------------------------*/
 // 运行所有任务, 仅调用处于使能状态的任务函数
 void Task_RunAll(void)
 {
@@ -311,4 +252,130 @@ void Task_DisableHandle(const char* taskName)
             break;
         }
     }
+}
+/*------------------------------------test任务------------------------------------*/
+/**
+ * @brief Jetson通信测试任务
+ */
+void jetson_test()
+{
+    static uint8_t  test_stage = 0;
+    static uint32_t last_time  = 0;
+    static bool     first_run  = true;
+
+    // 首次运行初始化
+    if (first_run)
+    {
+        Vofa_FireWater("Jetson通信测试开始...\r\n");
+        test_stage = 0;
+        last_time  = HAL_GetTick();
+        first_run  = false;
+    }
+
+    // 基于测试阶段执行不同操作
+    switch (test_stage)
+    {
+    case 0:   // 发送区域到达通知
+        if (HAL_GetTick() - last_time > 1000)
+        {   // 等待1秒
+            Vofa_FireWater("发送区域到达通知: ZONE_RAW_MATERIAL\r\n");
+            jc.sendZoneReached(ZONE_RAW_MATERIAL);
+            test_stage++;
+            last_time = HAL_GetTick();
+        }
+        break;
+
+    case 1:   // 发送不同区域通知
+        if (HAL_GetTick() - last_time > 1000)
+        {
+            Vofa_FireWater("发送区域到达通知: ZONE_ROUGH_PROCESSING\r\n");
+            jc.sendZoneReached(ZONE_ROUGH_PROCESSING);
+            test_stage++;
+            last_time = HAL_GetTick();
+        }
+        break;
+
+    case 2:   // 获取二维码数据
+        if (HAL_GetTick() - last_time > 4000)
+        {
+            Vofa_FireWater("当前二维码内容: %s\r\n", jc.getQRCodeString());
+            test_stage++;
+            last_time = HAL_GetTick();
+        }
+        break;
+
+    case 3:   // 获取坐标数据
+        if (HAL_GetTick() - last_time > 4000)
+        {
+            int16_t x, y;
+            jc.getCoordinates(x, y);
+            Vofa_FireWater("当前坐标: X=%d, Y=%d\r\n", x, y);
+            test_stage++;
+            last_time = HAL_GetTick();
+        }
+        break;
+
+    case 4:   // 测试抓取状态
+        if (HAL_GetTick() - last_time > 4000)
+        {
+            Vofa_FireWater("当前抓取状态: %s\r\n", jc.canGrab() ? "可以抓取" : "不可抓取");
+            jc.setWaitGrab(true);   // 设置为等待抓取状态
+            Vofa_FireWater("已设置为等待抓取状态\r\n");
+            test_stage++;
+            last_time = HAL_GetTick();
+        }
+        break;
+
+    case 5:   // 测试结束
+        if (HAL_GetTick() - last_time > 4000)
+        {
+            Vofa_FireWater("Jetson通信测试完成\r\n");
+            // 重置测试以便下次运行
+            first_run  = true;
+            test_stage = 0;
+            // 禁用任务
+            Task_DisableHandle("jetson_test");
+        }
+        break;
+    }
+}
+/**
+ * @brief 处理HWT101数据的任务
+ */
+void hwt101_proc()
+{
+    // 处理接收到的数据
+    // Vofa_FireWater("调用processData()");
+    uint8_t result = g_hwt101->processData();
+    // Vofa_FireWater("processData()返回: %d\r\n", result);
+
+    // 获取偏航角，可用于调试输出或控制逻辑
+    float yaw = g_hwt101->getYawAngle();
+
+    static uint16_t counter = 0;
+    if (counter++ % 5 == 0)   // 每200ms输出一次角度
+    {
+        // 输出到VOFA或TJC屏幕
+        // Vofa_FireWater("%f\r\n", yaw);
+        // TJC_Send_Format("t3.txt=\"Yaw: %.1f°\"", yaw);
+    }
+    Task_DisableHandle("hwt101_proc");
+}
+void delayed_task()
+{
+    // 打印当前 Tick 和 状态, 方便观察
+    Vofa_FireWater("Tick: %lu, Timer Status: %d\r\n", TIM_1ms.Get_Tick(), TIM_1ms.Get_Now_Status());
+
+    // 调用 DelayNonBlocking，传入延时周期（例如 500ms）
+    if (!TIM_1ms.DelayNonBlocking(500))
+    {
+        // 延时还在进行中，直接返回，非阻塞
+        return;
+    }
+
+    // 延时结束后执行实际任务操作
+    Vofa_FireWater("delayed task executed\r\n");
+
+    // 执行完毕后禁用任务
+    Task_DisableHandle("delayed_task");
 }

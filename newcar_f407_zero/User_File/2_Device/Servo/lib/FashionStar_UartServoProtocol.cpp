@@ -8,79 +8,39 @@
  */
 #include "FashionStar_UartServoProtocol.h"
 #include "2_Device/Vofa/dvc_vofa.h"
-// 命名空间外部初始化静态成员
-fsuservo::FSUS_Protocol* fsuservo::FSUS_Protocol::activeInstance = nullptr;
-using namespace fsuservo;
+
+// 全局变量代替静态成员
+FSUS_Protocol* g_activeProtocolInstance = nullptr;
 
 extern "C" {
-// UART接收数据回调函数 - 修改：放在fsuservo命名空间内
+// UART接收数据回调函数
 void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length)
 {
     static int callback_count = 0;
     callback_count++;
-    Vofa_FireWater("UART收到数据: %d字节, 共%d次\r\n", Length, callback_count);
+    // Vofa_FireWater("UART收到数据: %d字节, 共%d次\r\n", Length, callback_count);
 
-    if (fsuservo::FSUS_Protocol::getActiveInstance() != nullptr)
+    if (g_activeProtocolInstance != nullptr)
     {
-        fsuservo::FSUS_Protocol::getActiveInstance()->onReceiveData(Buffer, Length);
+        g_activeProtocolInstance->onReceiveData(Buffer, Length);
     }
 }
 }
+
 FSUS_Protocol::FSUS_Protocol(UART_HandleTypeDef* huart, uint32_t baudrate)
 {
     // 增加基本调试输出，确认构造函数被调用
     Vofa_FireWater("舵机构造函数被调用\r\n");
-    Vofa_FireWater("传入的huart地址: %p\r\n", huart);
-    if (huart != nullptr)
-    {
-        Vofa_FireWater("huart->Instance: %p\r\n", huart->Instance);
-        Vofa_FireWater("UART4地址: %p\r\n", UART4);
-        // 比较地址值
-        if (huart->Instance == UART4)
-        {
-            Vofa_FireWater("确认使用UART4初始化舵机\r\n");
-        }
-        else
-        {
-            Vofa_FireWater("警告：舵机未使用UART4初始化\r\n");
-        }
-    }
-    else
-    {
-        Vofa_FireWater("错误：huart为空指针\r\n");
-    }
+
     // 记录参数
     this->huart    = huart;
     this->baudrate = baudrate;
 
     // 将当前实例设置为活动实例
-    activeInstance = this;
-
+    g_activeProtocolInstance = this;
 
     // 初始化串口
     UART_Init(huart, FSUS_UART_Callback, UART_BUFFER_SIZE);
-    // // 添加调试信息
-    // Vofa_FireWater("舵机初始化使用UART4\r\n");
-
-    // 查看UART4的结构体是否正确
-    if (huart->Instance == UART4)
-    {
-        Vofa_FireWater("使用UART4初始化舵机\r\n");
-    }
-    // 验证回调函数是否被正确注册
-
-    if (huart->Instance == UART4)
-    {
-        Vofa_FireWater("UART4回调函数地址: %p\r\n", UART4_Manage_Object.Callback_Function);
-        if (UART4_Manage_Object.Callback_Function == FSUS_UART_Callback)
-        {
-            Vofa_FireWater("UART4回调函数正确注册\r\n");
-        }
-        else
-        {
-            Vofa_FireWater("UART4回调函数注册异常\r\n");
-        }
-    }
 }
 
 // 获取当前的时间戳，单位ms
@@ -191,24 +151,42 @@ void FSUS_Protocol::initResponsePack()
 // 接收响应包
 FSUS_STATUS FSUS_Protocol::recvPack()
 {
-    uint32_t start_time = millis();
+    uint32_t start_time    = millis();
+    uint32_t last_log_time = start_time;
 
     responsePack.recv_cnt = 0;   // 数据帧接收标志位
 
+    // Vofa_FireWater("开始接收数据包...\r\n");
+
     while (true)
     {
+        uint32_t current_time = millis();
+
+        // // 每500ms输出一次等待状态
+        // if (current_time - last_log_time > 1000)
+        // {
+        //     Vofa_FireWater("等待数据中... 已等待%dms, 接收队列大小:%d\r\n", current_time - start_time, available());
+        //     last_log_time = current_time;
+        // }
+
+        // // 超时判断
+        // if ((current_time - start_time) > FSUS_TIMEOUT_MS)
+        // {
+        //     Vofa_FireWater("接收超时! 已等待%dms\r\n", FSUS_TIMEOUT_MS);
+        //     return FSUS_STATUS_TIMEOUT;
+        // }
+
         // 超时判断
-        if ((millis() - start_time) > FSUS_TIMEOUT_MS)
+        if ((current_time - start_time) > FSUS_TIMEOUT_MS)
         {
+            Vofa_FireWater("接收超时! 已等待%dms\r\n", FSUS_TIMEOUT_MS);
             return FSUS_STATUS_TIMEOUT;
-        }
-        // 等待有字节读入
-        if (available() == 0)
-        {
-            continue;
         }
         uint8_t curByte;
         read(&curByte);
+
+        // 打印接收到的每个字节
+        // Vofa_FireWater("接收字节: 0x%02X, 位置:%d\r\n", curByte, responsePack.recv_cnt);
 
         uint8_t curIdx                   = responsePack.recv_cnt;
         responsePack.recv_buffer[curIdx] = curByte;   // 接收一个字节
@@ -297,6 +275,10 @@ FSUS_PACKAGE_SIZE_T FSUS_Protocol::getPackSize(const FSUS_PACKAGE_T* package)
 // 发送PING的请求包
 void FSUS_Protocol::sendPing(FSUS_SERVO_ID_T servoId)
 {
+    // 清空接收缓冲区
+    emptyCache();
+
+    // Vofa_FireWater("发送ping到舵机ID:%d\r\n", servoId);
     requestPack.cmdId        = FSUS_CMD_PING;
     requestPack.content_size = 1;
     requestPack.content[0]   = servoId;
@@ -312,6 +294,8 @@ FSUS_STATUS FSUS_Protocol::recvPing(FSUS_SERVO_ID_T* servoId, bool* isOnline)
     *servoId                 = responsePack.content[0];   // 提取舵机ID
     *isOnline                = (status == FSUS_STATUS_SUCCESS);
     responsePack.recv_status = status;
+    // Vofa_FireWater("ping响应解析: 状态=%d, 舵机ID=%d, 校验和=0x%02X\r\n", status, *servoId, responsePack.checksum);
+    //  emptyCache();
     return status;
 }
 
@@ -389,20 +373,40 @@ void FSUS_Protocol::sendQueryAngle(FSUS_SERVO_ID_T servoId)
 FSUS_STATUS FSUS_Protocol::recvQueryAngle(FSUS_SERVO_ID_T* servoId, FSUS_SERVO_ANGLE_T* angle)
 {
     FSUS_STATUS status = recvPack();
-    int16_t     angleVal;
-    uint8_t*    angleValPtr = (uint8_t*)&angleVal;
 
-    // angleVal = responsePack.content[1] + responsePack.content[2] << 8;
-    // if(status == FSUS_STATUS_SUCCESS){
-    // 偶尔会出现校验和错误的情况, 临时允许
+    // 初始化为默认值，避免使用未赋值变量
+    *servoId = 0;
+    *angle   = 0.0f;
+
     if (status == FSUS_STATUS_SUCCESS || status == FSUS_STATUS_CHECKSUM_ERROR)
     {
-        (*servoId)     = responsePack.content[0];
-        angleValPtr[0] = responsePack.content[1];
-        angleValPtr[1] = responsePack.content[2];
-        (*angle)       = 0.1 * (float)angleVal;
-        // (*angle) = 0.1 * (uint16_t)(responsePack.content[1] | responsePack.content[2]<< 8);
+        // 提取舵机ID
+        *servoId = responsePack.content[0];
+
+        // 打印接收到的原始字节，用于调试
+        Vofa_FireWater("角度查询: 接收字节 [0x%02X, 0x%02X]\r\n", responsePack.content[1], responsePack.content[2]);
+
+        // 使用明确的位运算构建16位整数，避免指针操作带来的风险
+        int16_t angleVal = (int16_t)(responsePack.content[1] | ((int16_t)responsePack.content[2] << 8));
+
+        // 检查数值是否合理，避免异常值
+        if (angleVal > -3600 && angleVal < 3600)
+        {   // 合理范围 ±360度(放大10倍)
+            *angle = 0.1f * (float)angleVal;
+            Vofa_FireWater("角度查询: 原始值=%d, 角度=%.1f度\r\n", angleVal, *angle);
+        }
+        else
+        {
+            // 值超出范围，可能是通信错误
+            Vofa_FireWater("角度查询: 接收到异常值 %d\r\n", angleVal);
+            *angle = 0.0f;   // 设置默认值
+        }
     }
+    else
+    {
+        Vofa_FireWater("角度查询失败，状态=%d\r\n", status);
+    }
+
     responsePack.recv_status = status;
     return status;
 }

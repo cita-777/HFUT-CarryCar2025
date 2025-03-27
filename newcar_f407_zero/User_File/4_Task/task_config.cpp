@@ -36,16 +36,16 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
     //{test, "test", 1},                                 // 电机等测试（test）
     {hwt101_proc, "hwt101_proc", 1},   // HWT101处理yaw任务
-    // {servo_proc, "servo_proc", 1},                     // 舵机控制任务（test）
+    {servo_proc, "servo_proc", 1},     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
 };
-float                          a = 0.0f;
-float                          b = 0.0f;
-static HWT101Communicator      hwt101(&huart2);                                          // 使用UART2
-static JetsonCommunicator      jc(&huart5);                                              // 使用UART5
-static fsuservo::FSUS_Protocol servoProtocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);   // 使用UART4
-static fsuservo::FSUS_Servo    servo2(2, &servoProtocol);                                // ID为1的舵机
-static fsuservo::FSUS_Servo    servo3(3, &servoProtocol);                                // ID为2的舵机
+float                     a = 0.0f;
+float                     b = 0.0f;
+static HWT101Communicator hwt101(&huart2);   // 使用UART2
+static JetsonCommunicator jc(&huart5);       // 使用UART5
+static FSUS_Protocol*     s_servoProtocol = nullptr;
+static FSUS_Servo*        s_servo2        = nullptr;
+static FSUS_Servo*        s_servo3        = nullptr;
 /**
  * @brief 任务执行频率配置
  */
@@ -86,40 +86,100 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
         }
     }
 }
+// 任务初始化, 可在此函数中初始化任务状态，默认为使能状态
+void Task_InitAll(void)
+{
 
+    while (ZDT_X42_V2_Init());
+    // HAL_Delay(1);
+    // ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
+    // HAL_Delay(1);
+    while (TJC_Init(&huart1));
+    // 初始化HWT101传感器
+    uint8_t ret = hwt101.init(&huart2);
+    if (ret != 0)
+    {
+        Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
+    }
+    jc.init();
+    g_jetson->send(0x01);   // 发送数据到Jetson
+    s_servoProtocol = new FSUS_Protocol(&huart4, FSUS_BAUDRATE_115200);
+    s_servo2        = new FSUS_Servo(2, s_servoProtocol);
+    HAL_Delay(10);
+    s_servo3 = new FSUS_Servo(3, s_servoProtocol);
+    // 初始化舵机
+    s_servo2->init();
+    HAL_Delay(10);
+    s_servo2->setAngle(50.0f);
+    s_servo2->setAngle(90);
+    s_servo2->setAngle(90);
+    s_servo3->init();
+    HAL_Delay(10);
+    // s_servo3->setAngle(10.0f);
+
+    Vofa_FireWater("Servo init done, servo2 online: %d, servo3 online: %d\r\n", s_servo2->isOnline, s_servo3->isOnline);
+    // Vofa_FireWater("Servo init done, servo2 online: %d, servo3 online: %d\r\n", servo2.isOnline, servo3.isOnline);
+    // Vofa_FireWater("开始ping舵机...\r\n");
+    // bool ping2 = servo2.ping();
+    // bool ping3 = servo3.ping();
+    // Vofa_FireWater("舵机ping结果 - servo2: %d, servo3: %d\r\n", ping2, ping3);
+    // 检查通信协议状态
+    // Vofa_FireWater("通信协议状态: %d\r\n", servoProtocol.responsePack.recv_status);
+    init_cybergear(&mi_motor[0], 0x7F, Motion_mode);
+    //  两个LED都开启
+    BSP_Init(BSP_LED_RED_ON, 0.5f);
+    for (int i = 0; i < TASK_MAX_NUM; i++)
+    {
+        // 如果任务函数不为空，可以设置为默认启用状态
+        if (taskConfigTable[i].taskFunction != NULL)
+        {
+            taskConfigTable[i].enabled = 1;
+        }
+    }
+}
 /**
  * @brief 舵机控制任务
  */
 void servo_proc()
 {
-    static uint16_t counter = 0;
-    static float    angle   = 0.0f;
+    // static uint16_t counter     = 0;
+    // static float    angle_input = 0.0f;   // 控制输入累加器
+    // static float    angle       = 0.0f;   // 实际发送的角度
 
-    // 生成一个正弦波角度
-    angle = 45.0f * arm_sin_f32(a * 0.5f);
+    // // 更大步长的正弦波生成
+    // angle_input += 0.05f;                           // 增大步长，加快变化速度
+    // if (angle_input > 100.0f) angle_input = 0.0f;   // 防止数值过大溢出
 
-    if (servo2.isOnline)
-    {
-        // 每隔一段时间设置舵机角度
-        if (counter % 50 == 0)
-        {
-            servo2.setAngle(angle);
+    // // 生成更大幅度的正弦波，±45度摆动
+    // angle = 45.0f * arm_sin_f32(angle_input);
 
-            // 调试输出
-            Vofa_FireWater("Servo angle: %.2f\r\n", angle);
-            TJC_Send_Format("t4.txt=\"Servo: %.1f°\"", angle);
-        }
-    }
-    else
-    {
-        // 如果舵机离线，尝试重新连接
-        if (counter % 200 == 0)
-        {
-            servo2.ping();
-        }
-    }
+    // // 使用全局指针变量
+    // if (s_servo2 && s_servo2->isOnline)
+    // {
+    //     // 每隔一段时间设置舵机角度，降低频率
+    //     if (counter % 50 == 0)   // 减少控制频率，同时保持足够灵敏
+    //     {
+    //         s_servo2->setAngle(angle);
 
-    counter++;
+    //         // 定期打印角度信息用于监控
+    //         if (counter % 30 == 0)
+    //         {
+    //             Vofa_FireWater("舵机角度: %.2f\r\n", angle);
+    //         }
+    //     }
+    // }
+    // else if (s_servo2)
+    // {
+    //     // 如果舵机离线，尝试重新连接，但降低ping频率
+    //     if (counter % 200 == 0)
+    //     {
+    //         Vofa_FireWater("舵机离线，尝试重新连接...\r\n");
+    //         s_servo2->ping();
+    //     }
+    // }
+
+    // counter++;
+    // s_servo2->setAngle(90);
     Task_DisableHandle("servo_proc");
 }
 /**
@@ -235,46 +295,7 @@ void feed_dog()
     TIM_1ms_IWDG_PeriodElapsedCallback();
     Task_DisableHandle("feed_dog");
 }
-// 任务初始化, 可在此函数中初始化任务状态，默认为使能状态
-void Task_InitAll(void)
-{
 
-    while (ZDT_X42_V2_Init());
-    // HAL_Delay(1);
-    // ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
-    // HAL_Delay(1);
-    while (TJC_Init(&huart1));
-    // 初始化HWT101传感器
-    uint8_t ret = hwt101.init(&huart2);
-    if (ret != 0)
-    {
-        Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
-    }
-    jc.init();
-    g_jetson->send(0x01);   // 发送数据到Jetson
-
-    servo2.init();
-    servo3.init();
-    Vofa_FireWater("Servo init done, servo2 online: %d, servo3 online: %d\r\n", servo2.isOnline, servo3.isOnline);
-    Vofa_FireWater("开始ping舵机...\r\n");
-    bool ping2 = servo2.ping();
-    bool ping3 = servo3.ping();
-    Vofa_FireWater("舵机ping结果 - servo2: %d, servo3: %d\r\n", ping2, ping3);
-
-    // 检查通信协议状态
-    Vofa_FireWater("通信协议状态: %d\r\n", servoProtocol.responsePack.recv_status);
-    init_cybergear(&mi_motor[0], 0x7F, Motion_mode);
-    //  两个LED都开启
-    BSP_Init(BSP_LED_RED_ON, 0.5f);
-    for (int i = 0; i < TASK_MAX_NUM; i++)
-    {
-        // 如果任务函数不为空，可以设置为默认启用状态
-        if (taskConfigTable[i].taskFunction != NULL)
-        {
-            taskConfigTable[i].enabled = 1;
-        }
-    }
-}
 
 // 运行所有任务, 仅调用处于使能状态的任务函数
 void Task_RunAll(void)

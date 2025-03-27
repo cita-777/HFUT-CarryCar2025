@@ -28,7 +28,6 @@ void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length);
 #ifdef __cplusplus
 }
 #endif
-namespace fsuservo {
 
 // 定义波特率枚举（与STM32兼容）
 typedef enum
@@ -291,7 +290,6 @@ typedef struct
 } FSUS_PACKAGE_T;
 
 
-
 // 串口通信舵机通信协议
 class FSUS_Protocol
 {
@@ -391,8 +389,6 @@ public:
     void        sendResetMultiTurnAngle(FSUS_SERVO_ID_T servoId);
     // 接收来自UART的数据（只应由回调函数调用）
     void onReceiveData(uint8_t* data, uint16_t length);
-    // 添加静态方法获取活动实例
-    static FSUS_Protocol* getActiveInstance() { return activeInstance; }
 
 private:
     UART_HandleTypeDef* huart;      // STM32 UART句柄
@@ -400,13 +396,8 @@ private:
 
     std::queue<uint8_t> recv_queue;      // 接收队列
     uint8_t             tmp_buffer[1];   // 临时发送缓冲区
-
-    // 静态指针指向当前实例，用于回调函数
-    static FSUS_Protocol* activeInstance;
-    // 正确的友元声明 - 不带::前缀
-    friend void FSUS_UART_Callback(uint8_t* Buffer, uint16_t Length);
 };
-
-}   // namespace fsuservo
+// 全局变量代替静态成员
+extern FSUS_Protocol* g_activeProtocolInstance;
 
 #endif

@@ -8,8 +8,7 @@
  */
 #include "dvc_fsuServo.h"
 #include "2_Device/Vofa/dvc_vofa.h"
-using namespace fsuservo;
-
+#include "arm_math.h"
 FSUS_Servo::FSUS_Servo(uint8_t servoId, FSUS_Protocol* protocol)
 {
     this->servoId        = servoId;                // 设定舵机的ID号
@@ -52,12 +51,12 @@ void FSUS_Servo::init(uint8_t servoId, FSUS_Protocol* protocol)
 bool FSUS_Servo::ping()
 {
     this->protocol->emptyCache();
-    Vofa_FireWater("发送ping命令到ID:%d的舵机\r\n", servoId);
+    // Vofa_FireWater("发送ping命令到ID:%d的舵机\r\n", servoId);
     this->protocol->sendPing(servoId);
     HAL_Delay(100);   // 给舵机一些响应时间
 
     int queueSize = this->protocol->available();
-    Vofa_FireWater("接收队列状态: %d个字节可读\r\n", queueSize);
+    // Vofa_FireWater("接收队列状态: %d个字节可读\r\n", queueSize);   //
 
     FSUS_SERVO_ID_T servoIdTmp;
     FSUS_STATUS     status = this->protocol->recvPing(&servoIdTmp, &(this->isOnline));
@@ -117,14 +116,39 @@ void FSUS_Servo::setAngle(FSUS_SERVO_ANGLE_T angle)
 {
     FSUS_SERVO_ANGLE_T dAngle;     // 当前角度与目标角度之间的差值
     FSUS_INTERVAL_T    interval;   // 周期
+
+    // 打印输入角度
+    // Vofa_FireWater("舵机%d: 请求设置角度 %.2f\r\n", servoId, angle);
+
     // 检舵机查角度是否合法
     angle = (angle < this->angleMin) ? this->angleMin : angle;
     angle = (angle > this->angleMax) ? this->angleMax : angle;
+
     // 检查舵机角度查询(更新当前的角度)
     this->queryAngle();
+
+    // 输出查询结果
+    // Vofa_FireWater("舵机%d: 当前角度 %.2f, 目标角度 %.2f\r\n", servoId, this->curAngle, angle);
+
     dAngle = abs(angle - this->curAngle);
+
+    // 检查速度值是否合理
+    // Vofa_FireWater("舵机%d: 角度差 %.2f, 速度 %.2f\r\n", servoId, dAngle, this->speed);
+
     // 计算角度差, 估计周期
     interval = (FSUS_INTERVAL_T)((dAngle / speed) * 1000);
+
+    // 打印计算的interval
+    // Vofa_FireWater("舵机%d: 计算周期 %d ms\r\n", servoId, interval);
+
+    // 强制设置最小周期，确保命令有效
+    if (interval < 100)
+    {
+        interval = 100;   // 最小100ms
+        // Vofa_FireWater("舵机%d: 周期过小，调整为 %d ms\r\n", servoId, interval);
+    }
+
+    // 调用下一级函数
     setAngle(angle, interval);
 }
 
@@ -195,8 +219,26 @@ void FSUS_Servo::setRawAngleByVelocity(FSUS_SERVO_ANGLE_T rawAngle, FSUS_SERVO_S
 /* 查询舵机当前的真实角度*/
 FSUS_SERVO_ANGLE_T FSUS_Servo::queryAngle()
 {
-    queryRawAngle();
+    // 记录查询状态
+    FSUS_STATUS status = queryRawAngle();
+
+    // 检查查询是否成功
+    if (status != FSUS_STATUS_SUCCESS)
+    {
+        // Vofa_FireWater("舵机%d: 角度查询失败, 状态=%d\r\n", servoId, status);
+        return this->curAngle;   // 返回上次的角度值
+    }
+
+    // 安全转换，避免除零错误
+    // if (fabs(this->kAngleReal2Raw) < 0.0001f)
+    // {
+    //     Vofa_FireWater("舵机%d: 转换系数接近零，使用默认值\r\n", servoId);
+    //     this->kAngleReal2Raw = 1.0f;   // 使用默认值
+    // }
+
     this->curAngle = angleRaw2Real(this->curRawAngle);
+    // Vofa_FireWater("舵机%d: 原始角度=%.2f, 转换后角度=%.2f\r\n", servoId, this->curRawAngle, this->curAngle);
+
     return this->curAngle;
 }
 

@@ -14,8 +14,6 @@
 
 #include "lib/FashionStar_UartServoProtocol.h"
 
-namespace fsuservo {
-
 #define FSUS_K_ANGLE_REAL2RAW 1
 #define FSUS_B_ANGLE_REAL2RAW 0
 #define FSUS_SERVO_SPEED 100.0         // 舵机角度的默认转速
@@ -127,7 +125,5 @@ public:
 
 private:
 };   // NOTE：类的末尾要加;
-
-}   // namespace fsuservo
 
 #endif

@@ -148,4 +148,29 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/dvc_fsuServo.cpp.ob
  C:/msys64/mingw64/arm-none-eabi/include/string.h \
  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
- D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\Middlewares\ST\ARM\DSP\Inc/arm_math.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\Drivers\CMSIS\Include/cmsis_compiler.h \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/math.h \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/cmath \
+ C:/msys64/mingw64/arm-none-eabi/include/math.h \
+ C:/msys64/mingw64/arm-none-eabi/include/machine/fastmath.h \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/bits/specfun.h \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/limits \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/gamma.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/special_function_util.h \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/bessel_function.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/beta_function.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/ell_integral.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/exp_integral.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/hypergeometric.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/legendre_function.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/modified_bessel_func.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/poly_hermite.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/poly_laguerre.tcc \
+ C:/msys64/mingw64/arm-none-eabi/include/c++/13.3.0/tr1/riemann_zeta.tcc \
+ C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/float.h \
+ C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/limits.h \
+ C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/syslimits.h \
+ C:/msys64/mingw64/arm-none-eabi/include/limits.h \
+ C:/msys64/mingw64/arm-none-eabi/include/sys/syslimits.h

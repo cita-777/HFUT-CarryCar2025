@@ -289,11 +289,80 @@ void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition, float 
     can_txd();
 }
 /**
- * @brief          检查电机是否超出安全限制并采取措施
- * @param[in]      Motor: 目标电机结构体
- * @retval         none
+ * @brief          检查电机是否在线并初始化
+ * @param[in]      Motor: 电机结构体指针
+ * @param[in]      Can_Id: 电机CAN ID
+ * @param[in]      mode: 电机运行模式
+ * @param[in]      need_reset: 是否需要复位电机
+ * @retval         bool: 初始化是否成功
  */
+bool check_and_init_cybergear(MI_Motor* Motor, uint8_t Can_Id, uint8_t mode, bool need_reset)
+{
+    uint32_t timeout;
+    bool     motor_found = false;
 
+    // 配置CAN发送参数，与init_cybergear保持一致
+    txMsg.StdId = 0;              // 配置CAN发送：标准帧清零
+    txMsg.ExtId = 0;              // 配置CAN发送：扩展帧清零
+    txMsg.IDE   = CAN_ID_EXT;     // 配置CAN发送：扩展帧
+    txMsg.RTR   = CAN_RTR_DATA;   // 配置CAN发送：数据帧
+    txMsg.DLC   = 0x08;           // 配置CAN发送：数据长度
+
+    // 设置电机ID
+    Motor->CAN_ID = Can_Id;
+
+    // 清除ID，用于检测电机响应
+    Motor->MCU_ID = 0;
+
+    // 检查电机是否在线
+    chack_cybergear(Can_Id);
+
+    // 等待电机响应(最多等待200ms)
+    timeout = HAL_GetTick() + 200;
+    while (HAL_GetTick() < timeout)
+    {
+        // 检查HAL_CAN_RxFifo0MsgPendingCallback是否已更新MCU_ID
+        if (Motor->MCU_ID != 0)
+        {
+            motor_found = true;
+            break;
+        }
+        HAL_Delay(1);
+    }
+
+    // 如果未找到电机，返回失败
+    if (!motor_found)
+    {
+        return false;
+    }
+
+    // 如果需要复位电机
+    if (need_reset)
+    {
+        // 停止电机并清除错误
+        stop_cybergear(Motor, 1);
+        HAL_Delay(10);
+
+        // 先设置电机模式
+        set_mode_cybergear(Motor, mode);
+        HAL_Delay(10);
+
+        // 设置零点
+        set_zeropos_cybergear(Motor);
+        HAL_Delay(10);
+    }
+    else
+    {
+        // 仅设置模式，不复位
+        set_mode_cybergear(Motor, mode);
+        HAL_Delay(5);
+    }
+
+    // 启动电机
+    start_cybergear(Motor);
+
+    return true;
+}
 /*****************************回调函数 负责接回传信息 可转移至别处*****************************/
 /**
  * @brief          hal库CAN回调函数,接收电机数据

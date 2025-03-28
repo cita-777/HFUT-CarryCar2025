@@ -39,8 +39,8 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
     //{test, "test", 1},                                 // 电机等测试（test）
     {hwt101_proc, "hwt101_proc", 1},   // HWT101处理yaw任务
-    //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
-    // {servo_proc, "servo_proc", 1},                     // 舵机控制任务（test）
+                                       //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
+    {servo_proc, "servo_proc", 1},     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
 };
 /*------------------------------------静态类/全局变量------------------------------------*/
@@ -110,12 +110,28 @@ void Task_InitAll(void)
     jc.init();
 
     g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
-    // g_servo2        = new fsuservo::FSUS_Servo(2, g_servoProtocol);
-    g_servo3 = new fsuservo::FSUS_Servo(3, g_servoProtocol);
+    g_servo2        = new fsuservo::FSUS_Servo(2, g_servoProtocol);
+    g_servo3        = new fsuservo::FSUS_Servo(3, g_servoProtocol);
 
-    // g_servo2->init();
+    g_servo2->init();
+    HAL_Delay(1);
+    g_servo2->setAngle(0, 200);
+    HAL_Delay(1);
     g_servo3->init();
-    init_cybergear(&mi_motor[0], 0x7F, Motion_mode);
+    HAL_Delay(1);
+    g_servo3->setAngle(0, 200);
+    HAL_Delay(1000);
+    if (check_and_init_cybergear(&mi_motor[0], 0x7F, Motion_mode, 0))
+    {
+        Vofa_FireWater("Cybergear init success\r\n");
+        // 添加小角度测试转动，参数：电机指针，力矩，位置，速度，kp，kd
+        motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
+        HAL_Delay(100);   // 给电机一点响应时间
+    }
+    else
+    {
+        Vofa_FireWater("Cybergear init failed\r\n");
+    }
     //  两个LED都开启
     BSP_Init(BSP_LED_RED_ON, 0.5f);
     for (int i = 0; i < TASK_MAX_NUM; i++)
@@ -133,7 +149,64 @@ void Task_InitAll(void)
  */
 void servo_proc()
 {
+    // static uint16_t counter               = 0;
+    // static float    angle                 = 0.0f;
+    // static uint16_t position_hold_counter = 0;
+    // static uint32_t last_ping_time        = 0;
 
+    // // 每秒ping一次舵机确认连接
+    // if (HAL_GetTick() - last_ping_time > 1000)
+    // {
+    //     if (g_servo2 && g_servo3)
+    //     {
+    //         bool online2 = g_servo2->ping();
+    //         bool online3 = g_servo3->ping();
+    //         Vofa_FireWater("舵机2状态: %s, 舵机3状态: %s\r\n", online2 ? "在线" : "离线", online3 ? "在线" : "离线");
+    //         last_ping_time = HAL_GetTick();
+    //     }
+    // }
+
+    // // 执行固定位置测试
+    // position_hold_counter++;
+    // if (position_hold_counter < 100)
+    // {
+    //     angle = 45.0f;   // 位置1 - 右侧
+    // }
+    // else if (position_hold_counter < 200)
+    // {
+    //     angle = 0.0f;   // 位置2 - 中间
+    // }
+    // else if (position_hold_counter < 300)
+    // {
+    //     angle = -45.0f;   // 位置3 - 左侧
+    // }
+    // else
+    // {
+    //     position_hold_counter = 0;   // 重新开始
+    // }
+
+    // // 如果舵机在线，设置角度
+    // if (counter % 10 == 0)   // 每50ms发送一次命令
+    // {
+    //     // 同时控制两个舵机
+    //     if (g_servo2 && g_servo2->isOnline)
+    //     {
+    //         g_servo2->setAngle(angle, 200);   // 200ms周期，平滑过渡
+    //     }
+    //     HAL_Delay(1);
+    //     if (g_servo3 && g_servo3->isOnline)
+    //     {
+    //         g_servo3->setAngle(angle, 200);   // 200ms周期，平滑过渡
+    //     }
+
+    //     // 定期输出当前角度
+    //     if (counter % 40 == 0)
+    //     {
+    //         Vofa_FireWater("固定位置测试: 角度=%.1f\r\n", angle);
+    //     }
+    // }
+
+    // counter++;
     Task_DisableHandle("servo_proc");
 }
 

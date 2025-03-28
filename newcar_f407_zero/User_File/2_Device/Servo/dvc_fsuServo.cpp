@@ -123,6 +123,8 @@ void FSUS_Servo::setAngle(FSUS_SERVO_ANGLE_T angle)
     // 检查舵机角度查询(更新当前的角度)
     this->queryAngle();
     dAngle = abs(angle - this->curAngle);
+    Vofa_FireWater(
+        "舵机ID:%d 当前角度:%.2f 目标角度:%.2f 角度差:%.2f\r\n", this->servoId, this->curAngle, angle, dAngle);
     // 计算角度差, 估计周期
     interval = (FSUS_INTERVAL_T)((dAngle / speed) * 1000);
     setAngle(angle, interval);

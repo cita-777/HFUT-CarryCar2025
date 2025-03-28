@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "ios": "cpp",
-        "dvc_vofa.h": "c"
+        "dvc_vofa.h": "c",
+        "cstdint": "cpp"
     }
 }

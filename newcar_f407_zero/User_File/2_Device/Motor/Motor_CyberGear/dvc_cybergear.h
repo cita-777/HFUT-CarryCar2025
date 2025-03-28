@@ -114,9 +114,6 @@ extern void set_zeropos_cybergear(MI_Motor* Motor);
 extern void set_CANID_cybergear(MI_Motor* Motor, uint8_t CAN_ID);
 extern void init_cybergear(MI_Motor* Motor, uint8_t Can_Id, uint8_t mode);
 extern void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition, float speed, float kp, float kd);
-
+extern bool check_and_init_cybergear(MI_Motor* Motor, uint8_t Can_Id, uint8_t mode, bool need_reset);
 #define MAX_SAFE_SPEED 5.0f    // 最大安全速度限制 (rad/s)
 #define MAX_SAFE_TORQUE 4.0f   // 最大安全力矩限制 (N*m)
-
-// 保护功能函数声明
-extern void check_motor_limits(MI_Motor* Motor);

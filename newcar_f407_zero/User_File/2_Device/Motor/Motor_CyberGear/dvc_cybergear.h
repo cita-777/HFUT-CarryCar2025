@@ -1,3 +1,5 @@
+#ifndef DVC_CYBERGEAR_H
+#define DVC_CYBERGEAR_H
 /**
   ****************************(C)SWJTU_ROBOTCON****************************
   * @file       cybergear.c/h
@@ -117,3 +119,4 @@ extern void motor_controlmode(MI_Motor* Motor, float torque, float MechPosition,
 extern bool check_and_init_cybergear(MI_Motor* Motor, uint8_t Can_Id, uint8_t mode, bool need_reset);
 #define MAX_SAFE_SPEED 5.0f    // 最大安全速度限制 (rad/s)
 #define MAX_SAFE_TORQUE 4.0f   // 最大安全力矩限制 (N*m)
+#endif                         // DVC_CYBERGEAR_H  // 添加头文件结束保护

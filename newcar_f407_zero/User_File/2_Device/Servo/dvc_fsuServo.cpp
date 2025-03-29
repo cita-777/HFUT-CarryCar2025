@@ -61,7 +61,7 @@ bool FSUS_Servo::ping()
 
     FSUS_SERVO_ID_T servoIdTmp;
     FSUS_STATUS     status = this->protocol->recvPing(&servoIdTmp, &(this->isOnline));
-    Vofa_FireWater("ping结果: 状态=%d, 舵机ID=%d, 在线=%d\r\n", status, servoIdTmp, this->isOnline);
+    // Vofa_FireWater("ping结果: 状态=%d, 舵机ID=%d, 在线=%d\r\n", status, servoIdTmp, this->isOnline);
     return this->isOnline;
 }
 

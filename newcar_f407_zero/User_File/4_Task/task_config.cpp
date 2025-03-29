@@ -18,7 +18,9 @@
 #include "2_Device/Servo/dvc_fsuServo.h"
 #include "2_Device/Vofa/dvc_vofa.h"
 #include "2_Device/tjc_screen/dvc_tjc.h"
-#include "3_Car/main_proc.h"
+#include "3_Car/1_Chassis/car_chassis.h"
+#include "3_Car/2_Behavior_State_Machine/main_proc.h"
+#include "3_Car/3_Action/car_action.h"
 #include "arm_math.h"
 #include <string.h>
 /*------------------------------------task函数声明------------------------------------*/
@@ -37,24 +39,21 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     //{main_proc_run, "main_proc_run", 1},               // 跑地图主逻辑任务
     {feed_dog, "feed_dog", 1},                         // 喂狗任务
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
+    {hwt101_proc, "hwt101_proc", 1},                   // HWT101处理yaw任务
     //{test, "test", 1},                                 // 电机等测试（test）
-    {hwt101_proc, "hwt101_proc", 1},   // HWT101处理yaw任务
-                                       //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
-    {servo_proc, "servo_proc", 1},     // 舵机控制任务（test）
+    //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
+    //{servo_proc, "servo_proc", 1},     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
 };
 /*------------------------------------静态类/全局变量------------------------------------*/
 float                     a = 0.0f;
 float                     b = 0.0f;
-static HWT101Communicator hwt101(&huart2);   // 使用UART2
-static JetsonCommunicator jc(&huart5);       // 使用UART5
-fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;
-fsuservo::FSUS_Servo*     g_servo2        = nullptr;
-fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为2的舵机
+static HWT101Communicator hwt101(&huart2);             // hwt101通讯类
+static JetsonCommunicator jc(&huart5);                 // jetson通讯类
+fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;   // 舵机通讯类
+fsuservo::FSUS_Servo*     g_servo2        = nullptr;   // ID为2的舵机实例
+fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为3的舵机实例
 /*------------------------------------task执行频率配置------------------------------------*/
-/**
- * @brief 任务执行频率配置
- */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     if (htim == (&htim6))   // 0.001s触发一次中断
@@ -70,8 +69,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
         if (count_num1 == 1)
         {
             count_num1 = 0;
-
-
             TIM_1ms.TIM_1ms_Calculate_PeriodElapsedCallback();
         }
 
@@ -96,10 +93,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 void Task_InitAll(void)
 {
 
-    while (ZDT_X42_V2_Init());
-    // HAL_Delay(1);
-    // ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
-    // HAL_Delay(1);
+    while (ZDT_X42_V2_Init());   // 初始化ZDT_X42电机
     while (TJC_Init(&huart1));
     // 初始化HWT101传感器
     uint8_t ret = hwt101.init(&huart2);
@@ -134,6 +128,26 @@ void Task_InitAll(void)
     }
     //  两个LED都开启
     BSP_Init(BSP_LED_RED_ON, 0.5f);
+    // 初始化底盘控制类
+    g_chassis = new Chassis();
+    if (g_chassis->init())
+    {
+        Vofa_FireWater("底盘初始化成功\r\n");
+    }
+    else
+    {
+        Vofa_FireWater("底盘初始化失败\r\n");
+    }
+    // 初始化车辆动作控制类
+    g_carAction = new CarAction();
+    if (g_carAction->init())
+    {
+        Vofa_FireWater("车辆动作控制初始化成功\r\n");
+    }
+    else
+    {
+        Vofa_FireWater("车辆动作控制初始化失败\r\n");
+    }
     for (int i = 0; i < TASK_MAX_NUM; i++)
     {
         // 如果任务函数不为空，可以设置为默认启用状态
@@ -144,71 +158,7 @@ void Task_InitAll(void)
     }
 }
 /*------------------------------------task实现函数------------------------------------*/
-/**
- * @brief 舵机控制任务
- */
-void servo_proc()
-{
-    // static uint16_t counter               = 0;
-    // static float    angle                 = 0.0f;
-    // static uint16_t position_hold_counter = 0;
-    // static uint32_t last_ping_time        = 0;
 
-    // // 每秒ping一次舵机确认连接
-    // if (HAL_GetTick() - last_ping_time > 1000)
-    // {
-    //     if (g_servo2 && g_servo3)
-    //     {
-    //         bool online2 = g_servo2->ping();
-    //         bool online3 = g_servo3->ping();
-    //         Vofa_FireWater("舵机2状态: %s, 舵机3状态: %s\r\n", online2 ? "在线" : "离线", online3 ? "在线" : "离线");
-    //         last_ping_time = HAL_GetTick();
-    //     }
-    // }
-
-    // // 执行固定位置测试
-    // position_hold_counter++;
-    // if (position_hold_counter < 100)
-    // {
-    //     angle = 45.0f;   // 位置1 - 右侧
-    // }
-    // else if (position_hold_counter < 200)
-    // {
-    //     angle = 0.0f;   // 位置2 - 中间
-    // }
-    // else if (position_hold_counter < 300)
-    // {
-    //     angle = -45.0f;   // 位置3 - 左侧
-    // }
-    // else
-    // {
-    //     position_hold_counter = 0;   // 重新开始
-    // }
-
-    // // 如果舵机在线，设置角度
-    // if (counter % 10 == 0)   // 每50ms发送一次命令
-    // {
-    //     // 同时控制两个舵机
-    //     if (g_servo2 && g_servo2->isOnline)
-    //     {
-    //         g_servo2->setAngle(angle, 200);   // 200ms周期，平滑过渡
-    //     }
-    //     HAL_Delay(1);
-    //     if (g_servo3 && g_servo3->isOnline)
-    //     {
-    //         g_servo3->setAngle(angle, 200);   // 200ms周期，平滑过渡
-    //     }
-
-    //     // 定期输出当前角度
-    //     if (counter % 40 == 0)
-    //     {
-    //         Vofa_FireWater("固定位置测试: 角度=%.1f\r\n", angle);
-    //     }
-    // }
-
-    // counter++;
-    Task_DisableHandle("servo_proc");
-}
 
 void tjc_start_detection()
 {
@@ -327,6 +277,71 @@ void Task_DisableHandle(const char* taskName)
     }
 }
 /*------------------------------------test任务------------------------------------*/
+/**
+ * @brief 舵机控制任务
+ */
+void servo_proc()
+{
+    // static uint16_t counter               = 0;
+    // static float    angle                 = 0.0f;
+    // static uint16_t position_hold_counter = 0;
+    // static uint32_t last_ping_time        = 0;
+
+    // // 每秒ping一次舵机确认连接
+    // if (HAL_GetTick() - last_ping_time > 1000)
+    // {
+    //     if (g_servo2 && g_servo3)
+    //     {
+    //         bool online2 = g_servo2->ping();
+    //         bool online3 = g_servo3->ping();
+    //         Vofa_FireWater("舵机2状态: %s, 舵机3状态: %s\r\n", online2 ? "在线" : "离线", online3 ? "在线" : "离线");
+    //         last_ping_time = HAL_GetTick();
+    //     }
+    // }
+
+    // // 执行固定位置测试
+    // position_hold_counter++;
+    // if (position_hold_counter < 100)
+    // {
+    //     angle = 45.0f;   // 位置1 - 右侧
+    // }
+    // else if (position_hold_counter < 200)
+    // {
+    //     angle = 0.0f;   // 位置2 - 中间
+    // }
+    // else if (position_hold_counter < 300)
+    // {
+    //     angle = -45.0f;   // 位置3 - 左侧
+    // }
+    // else
+    // {
+    //     position_hold_counter = 0;   // 重新开始
+    // }
+
+    // // 如果舵机在线，设置角度
+    // if (counter % 10 == 0)   // 每50ms发送一次命令
+    // {
+    //     // 同时控制两个舵机
+    //     if (g_servo2 && g_servo2->isOnline)
+    //     {
+    //         g_servo2->setAngle(angle, 200);   // 200ms周期，平滑过渡
+    //     }
+    //     HAL_Delay(1);
+    //     if (g_servo3 && g_servo3->isOnline)
+    //     {
+    //         g_servo3->setAngle(angle, 200);   // 200ms周期，平滑过渡
+    //     }
+
+    //     // 定期输出当前角度
+    //     if (counter % 40 == 0)
+    //     {
+    //         Vofa_FireWater("固定位置测试: 角度=%.1f\r\n", angle);
+    //     }
+    // }
+
+    // counter++;
+    Task_DisableHandle("servo_proc");
+}
 /**
  * @brief Jetson通信测试任务
  */

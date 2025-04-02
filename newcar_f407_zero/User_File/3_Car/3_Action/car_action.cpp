@@ -32,7 +32,7 @@ CarAction::CarAction()
 bool CarAction::init()
 {
     // 检查各组件是否已经初始化
-    if (!g_servo2 || !g_servo3)
+    if (!g_servo1 || !g_servo3)
     {
         Vofa_FireWater("CarAction初始化失败: 舵机组件未完全初始化\r\n");
         return false;
@@ -55,13 +55,13 @@ bool CarAction::init()
  */
 bool CarAction::checkServoConnection()
 {
-    bool servo2_online = g_servo2->ping();
+    bool servo1_online = g_servo1->ping();
     bool servo3_online = g_servo3->ping();
 
     Vofa_FireWater(
-        "舵机2状态: %s, 舵机3状态: %s\r\n", servo2_online ? "在线" : "离线", servo3_online ? "在线" : "离线");
+        "舵机1状态: %s, 舵机3状态: %s\r\n", servo1_online ? "在线" : "离线", servo3_online ? "在线" : "离线");
 
-    return servo2_online && servo3_online;
+    return servo1_online && servo3_online;
 }
 
 /**
@@ -78,7 +78,7 @@ bool CarAction::setServo2Position(ServoPosition position, uint16_t interval)
         return false;
     }
 
-    if (!g_servo2 || !g_servo2->isOnline)
+    if (!g_servo1 || !g_servo1->isOnline)
     {
         Vofa_FireWater("舵机2未连接或未初始化\r\n");
         return false;
@@ -102,7 +102,7 @@ bool CarAction::setServo2Position(ServoPosition position, uint16_t interval)
     default: Vofa_FireWater("未知的舵机2位置\r\n"); return false;
     }
 
-    g_servo2->setAngle(angle, interval);
+    g_servo1->setAngle(angle, interval);
     return true;
 }
 
@@ -214,7 +214,7 @@ bool CarAction::setSliderHeight(SliderHeight height)
     }
 
     // 控制ZDT_X42电机(滑轨电机)，使用绝对位置模式(raf=1)
-    ZDT_X42_V2_Traj_Position_Control(SLIDER_MOTOR_ADDR, dir, 201, 201, 3000, position, 1, 1);
+    ZDT_X42_V2_Traj_Position_Control(SLIDER_MOTOR_ADDR, dir, 1000, 1000, 2000, position, 1, 0);
     return true;
 }
 
@@ -229,10 +229,10 @@ void CarAction::waitForServo2()
         return;
     }
 
-    if (g_servo2 && g_servo2->isOnline)
+    if (g_servo1 && g_servo1->isOnline)
     {
         Vofa_FireWater("等待舵机2动作完成...\r\n");
-        g_servo2->wait();
+        g_servo1->wait();
         Vofa_FireWater("舵机2动作完成\r\n");
     }
 }

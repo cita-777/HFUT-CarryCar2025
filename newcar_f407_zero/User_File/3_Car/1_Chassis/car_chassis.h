@@ -23,10 +23,10 @@ extern "C" {
 #    endif
 
 /* 定义常量 ------------------------------------------------------------------*/
-#    define CHASSIS_ACC_DEFAULT 201       // 默认加速度
-#    define CHASSIS_DEC_DEFAULT 201       // 默认减速度
-#    define CHASSIS_MOTOR_SPEED 1000.0f   // 默认电机速度
-#    define CHASSIS_MOTOR_DELAY 30        // 电机到位后的等待时间(ms)
+#    define CHASSIS_ACC_DEFAULT 100      // 默认加速度
+#    define CHASSIS_DEC_DEFAULT 100      // 默认减速度
+#    define CHASSIS_MOTOR_SPEED 200.0f   // 默认电机速度
+#    define CHASSIS_MOTOR_DELAY 30       // 电机到位后的等待时间(ms)
 
 #    define CHASSIS_MOTOR_ALL 0     // 用于同步所有电机
 #    define CHASSIS_MOTOR_RF 0x01   // 右前轮
@@ -72,7 +72,8 @@ public:
      * @return 是否完成动作，true完成，false未完成
      */
     bool moveBackward(float distance);
-
+    bool moveRight(float distance);
+    bool moveLeft(float distance);
     /**
      * @brief 左转指定角度
      * @param angle 角度值，正值

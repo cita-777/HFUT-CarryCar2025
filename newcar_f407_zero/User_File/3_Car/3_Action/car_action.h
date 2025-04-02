@@ -23,7 +23,7 @@ extern "C" {
 
 /* 前置声明 ------------------------------------------------------------------*/
 extern fsuservo::FSUS_Protocol* g_servoProtocol;
-extern fsuservo::FSUS_Servo*    g_servo2;   // 云台舵机
+extern fsuservo::FSUS_Servo*    g_servo1;   // 云台舵机
 extern fsuservo::FSUS_Servo*    g_servo3;   // 爪子舵机
 
 /* 定义常量 ------------------------------------------------------------------*/
@@ -33,18 +33,21 @@ extern fsuservo::FSUS_Servo*    g_servo3;   // 爪子舵机
 #    define SERVO2_C_ANGLE 45.0f    // C位置角度
 
 // 夹爪舵机3状态对应的角度值
-#    define SERVO3_OPEN_ANGLE 30.0f   // 爪子打开角度
-#    define SERVO3_CLOSE_ANGLE 0.0f   // 爪子关闭角度
+#    define SERVO3_OPEN_ANGLE 0.0f      // 爪子打开角度
+#    define SERVO3_CLOSE_ANGLE -47.0f   // 爪子关闭角度
 
 // Cybergear云台位置对应的角度值
 #    define CYBERGEAR_FRONT_ANGLE 0.1f   // 前方位置角度
 #    define CYBERGEAR_BACK_ANGLE 3.0f    // 后方位置角度
 
 // ZDT_X42滑轨高度对应的位置值
-#    define SLIDER_PICK_FROM_TURNTABLE 1000.0f   // 从转盘上拿取物料的高度
-#    define SLIDER_PLACE_ON_TEMP 2000.0f         // 放到车上转盘临时存放的高度
-#    define SLIDER_PLACE_ON_GROUND 3000.0f       // 放到地上的高度
-#    define SLIDER_STACKING 4000.0f              // 码垛的高度
+// #    define SLIDER_PICK_FROM_TURNTABLE 6000.0f   // 从转盘上拿取物料的高度
+// #    define SLIDER_PLACE_ON_TEMP 2000.0f         // 放到车上转盘临时存放的高度
+// #    define SLIDER_PLACE_ON_GROUND 10000.0f      // 放到地上的高度
+#    define SLIDER_PICK_FROM_TURNTABLE 6000.0f   // 从转盘上拿取物料的高度
+#    define SLIDER_PLACE_ON_TEMP 0.0f            // 放到车上转盘临时存放的高度
+#    define SLIDER_PLACE_ON_GROUND 2000.0f       // 放到地上的高度
+#    define SLIDER_STACKING 7000.0f              // 码垛的高度
 
 // ZDT_X42电机地址
 #    define SLIDER_MOTOR_ADDR 5   // 滑轨电机地址

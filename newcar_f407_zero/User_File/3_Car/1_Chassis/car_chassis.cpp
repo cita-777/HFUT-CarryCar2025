@@ -140,36 +140,42 @@ bool Chassis::moveForward(float distance)
                                      CHASSIS_DEC_DEFAULT,
                                      CHASSIS_MOTOR_SPEED,
                                      distance,
-                                     1,
+                                     0,
                                      1);
+    HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_RB,
                                      CHASSIS_DIR_CCW,
                                      CHASSIS_ACC_DEFAULT,
                                      CHASSIS_DEC_DEFAULT,
                                      CHASSIS_MOTOR_SPEED,
                                      distance,
-                                     1,
+                                     0,
                                      1);
+    HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LB,
                                      CHASSIS_DIR_CW,
                                      CHASSIS_ACC_DEFAULT,
                                      CHASSIS_DEC_DEFAULT,
                                      CHASSIS_MOTOR_SPEED,
                                      distance,
-                                     1,
+                                     0,
                                      1);
+    HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LF,
                                      CHASSIS_DIR_CW,
                                      CHASSIS_ACC_DEFAULT,
                                      CHASSIS_DEC_DEFAULT,
                                      CHASSIS_MOTOR_SPEED,
                                      distance,
-                                     1,
+                                     0,
                                      1);
+    HAL_Delay(1);
+    // HAL_Delay(10);
 
     // 触发同步运动
     syncMotion();
-
+    // HAL_Delay(1);
+    //  HAL_Delay(10);
     _motorBusy = true;
     Vofa_FireWater("开始前进 %.1f 单位\r\n", distance);
 
@@ -222,6 +228,7 @@ bool Chassis::moveBackward(float distance)
                                      distance,
                                      1,
                                      1);
+    HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_RB,
                                      CHASSIS_DIR_CW,
                                      CHASSIS_ACC_DEFAULT,
@@ -230,6 +237,7 @@ bool Chassis::moveBackward(float distance)
                                      distance,
                                      1,
                                      1);
+    HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LB,
                                      CHASSIS_DIR_CCW,
                                      CHASSIS_ACC_DEFAULT,
@@ -238,6 +246,7 @@ bool Chassis::moveBackward(float distance)
                                      distance,
                                      1,
                                      1);
+    HAL_Delay(1);
     ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LF,
                                      CHASSIS_DIR_CCW,
                                      CHASSIS_ACC_DEFAULT,
@@ -246,6 +255,7 @@ bool Chassis::moveBackward(float distance)
                                      distance,
                                      1,
                                      1);
+    HAL_Delay(1);
 
     // 触发同步运动
     syncMotion();
@@ -255,7 +265,173 @@ bool Chassis::moveBackward(float distance)
 
     return false;
 }
+/**
+ * @brief 向右横移指定距离
+ * @param distance 距离值，正值
+ * @return 是否完成动作，true完成，false未完成
+ */
+bool Chassis::moveRight(float distance)
+{
+    if (!_initialized) return false;
 
+    // 如果电机繁忙，检查是否已完成
+    if (_motorBusy)
+    {
+        if (isMotorReady())
+        {
+            // 电机已到位，但需要额外等待确保所有电机都到位
+            if (!_waitingDelay)
+            {
+                _motorReadyTime = HAL_GetTick();
+                _waitingDelay   = true;
+            }
+
+            // 额外等待一段时间
+            if (HAL_GetTick() - _motorReadyTime >= CHASSIS_MOTOR_DELAY)
+            {
+                _motorBusy    = false;
+                _waitingDelay = false;
+                Vofa_FireWater("右移完成\r\n");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 重置位置，开始新的移动
+    resetPosition();
+
+    // 控制四个电机同步运动 - 右移模式 (麦克纳姆轮)
+    // RF和LB顺时针, RB和LF逆时针
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_RF,
+                                     CHASSIS_DIR_CW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_RB,
+                                     CHASSIS_DIR_CCW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LB,
+                                     CHASSIS_DIR_CW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LF,
+                                     CHASSIS_DIR_CCW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+
+    // 触发同步运动
+    syncMotion();
+
+    _motorBusy = true;
+    Vofa_FireWater("开始右移 %.1f 单位\r\n", distance);
+
+    return false;
+}
+
+/**
+ * @brief 向左横移指定距离
+ * @param distance 距离值，正值
+ * @return 是否完成动作，true完成，false未完成
+ */
+bool Chassis::moveLeft(float distance)
+{
+    if (!_initialized) return false;
+
+    // 如果电机繁忙，检查是否已完成
+    if (_motorBusy)
+    {
+        if (isMotorReady())
+        {
+            // 电机已到位，但需要额外等待确保所有电机都到位
+            if (!_waitingDelay)
+            {
+                _motorReadyTime = HAL_GetTick();
+                _waitingDelay   = true;
+            }
+
+            // 额外等待一段时间
+            if (HAL_GetTick() - _motorReadyTime >= CHASSIS_MOTOR_DELAY)
+            {
+                _motorBusy    = false;
+                _waitingDelay = false;
+                Vofa_FireWater("左移完成\r\n");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 重置位置，开始新的移动
+    resetPosition();
+
+    // 控制四个电机同步运动 - 左移模式 (麦克纳姆轮)
+    // RF和LB逆时针, RB和LF顺时针
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_RF,
+                                     CHASSIS_DIR_CCW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_RB,
+                                     CHASSIS_DIR_CW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LB,
+                                     CHASSIS_DIR_CCW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+    ZDT_X42_V2_Traj_Position_Control(CHASSIS_MOTOR_LF,
+                                     CHASSIS_DIR_CW,
+                                     CHASSIS_ACC_DEFAULT,
+                                     CHASSIS_DEC_DEFAULT,
+                                     CHASSIS_MOTOR_SPEED,
+                                     distance,
+                                     0,
+                                     1);
+    HAL_Delay(1);
+
+    // 触发同步运动
+    syncMotion();
+
+    _motorBusy = true;
+    Vofa_FireWater("开始左移 %.1f 单位\r\n", distance);
+
+    return false;
+}
 /**
  * @brief 左转指定角度
  * @param angle 角度值，正值
@@ -539,7 +715,40 @@ void Chassis::syncMotion()
  */
 bool Chassis::isMotorReady() const
 {
-    return ZDT_X42_V2_Receive_Data_Right() == 1;
-}
+    static uint32_t lastDebugTime      = 0;
+    static uint32_t callCount          = 0;
+    static uint32_t operationStartTime = 0;
 
+    if (callCount == 0 && _motorBusy)
+    {
+        // 记录操作开始时间(第一次检查时)
+        operationStartTime = HAL_GetTick();
+    }
+
+    callCount++;
+    uint8_t status = ZDT_X42_V2_Receive_Data_Right();
+
+    // 每500ms打印一次状态信息，避免刷屏
+    if (HAL_GetTick() - lastDebugTime > 500)
+    {
+        lastDebugTime = HAL_GetTick();
+        Vofa_FireWater("电机状态检查: status=%d, 调用次数=%lu\r\n", status, callCount);
+
+        // 如果长时间不返回ready状态，打印更多调试信息
+        if (_motorBusy)
+        {
+            uint32_t busyTime = HAL_GetTick() - _motorReadyTime;
+            Vofa_FireWater("电机繁忙已持续: %lu ms\r\n", busyTime);
+
+            // 如果超过5秒，强制认为电机就绪
+            if (HAL_GetTick() - operationStartTime > 2000)
+            {
+                Vofa_FireWater("警告: 电机操作超时(5秒)，强制认为就绪!\r\n");
+                return true;   // 关键修改：超时后强制返回true
+            }
+        }
+    }
+
+    return status == 1;
+}
 /************************ COPYRIGHT(C) CITA **************************/

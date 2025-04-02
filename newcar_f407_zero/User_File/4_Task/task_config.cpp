@@ -51,7 +51,7 @@ float                     b = 0.0f;
 static HWT101Communicator hwt101(&huart2);             // hwt101通讯类
 static JetsonCommunicator jc(&huart5);                 // jetson通讯类
 fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;   // 舵机通讯类
-fsuservo::FSUS_Servo*     g_servo2        = nullptr;   // ID为2的舵机实例
+fsuservo::FSUS_Servo*     g_servo1        = nullptr;   // ID为2的舵机实例
 fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为3的舵机实例
 /*------------------------------------task执行频率配置------------------------------------*/
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
@@ -104,22 +104,22 @@ void Task_InitAll(void)
     jc.init();
 
     g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
-    g_servo2        = new fsuservo::FSUS_Servo(2, g_servoProtocol);
+    g_servo1        = new fsuservo::FSUS_Servo(1, g_servoProtocol);
     g_servo3        = new fsuservo::FSUS_Servo(3, g_servoProtocol);
 
-    g_servo2->init();
+    g_servo1->init();
     HAL_Delay(1);
-    g_servo2->setAngle(0, 200);
+    g_servo1->setAngle(0, 200);
     HAL_Delay(1);
     g_servo3->init();
     HAL_Delay(1);
     g_servo3->setAngle(0, 200);
     HAL_Delay(1000);
-    if (check_and_init_cybergear(&mi_motor[0], 0x7F, Motion_mode, 0))
+    if (check_and_init_cybergear(&mi_motor[0], 0x7F, Motion_mode, 1))
     {
         Vofa_FireWater("Cybergear init success\r\n");
         // 添加小角度测试转动，参数：电机指针，力矩，位置，速度，kp，kd
-        motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
+        // motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
         HAL_Delay(100);   // 给电机一点响应时间
     }
     else
@@ -133,6 +133,7 @@ void Task_InitAll(void)
     if (g_chassis->init())
     {
         Vofa_FireWater("底盘初始化成功\r\n");
+        // g_chassis->moveForward(1000);
     }
     else
     {
@@ -143,11 +144,32 @@ void Task_InitAll(void)
     if (g_carAction->init())
     {
         Vofa_FireWater("车辆动作控制初始化成功\r\n");
+        // g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
     }
     else
     {
         Vofa_FireWater("车辆动作控制初始化失败\r\n");
     }
+    g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
+    while (!g_chassis->moveBackward(2000))
+    {
+        HAL_Delay(10);   // 短暂延时避免过度占用CPU
+    }
+
+    // // 前进完成后等待2秒
+    // HAL_Delay(2000);
+
+    // // 开始右移并等待完成
+    while (!g_chassis->moveLeft(1000))
+    {
+        HAL_Delay(10);
+    }
+    // HAL_Delay(500);
+    g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
+    // HAL_Delay(1000);
+    g_carAction->setGripperState(GripperState::CLOSE, 200);   // 打开爪子
+    // // 右移完成后等待2秒
+    // HAL_Delay(2000);
     for (int i = 0; i < TASK_MAX_NUM; i++)
     {
         // 如果任务函数不为空，可以设置为默认启用状态
@@ -290,9 +312,9 @@ void servo_proc()
     // // 每秒ping一次舵机确认连接
     // if (HAL_GetTick() - last_ping_time > 1000)
     // {
-    //     if (g_servo2 && g_servo3)
+    //     if (g_servo1 && g_servo3)
     //     {
-    //         bool online2 = g_servo2->ping();
+    //         bool online2 = g_servo1->ping();
     //         bool online3 = g_servo3->ping();
     //         Vofa_FireWater("舵机2状态: %s, 舵机3状态: %s\r\n", online2 ? "在线" : "离线", online3 ? "在线" : "离线");
     //         last_ping_time = HAL_GetTick();
@@ -322,9 +344,9 @@ void servo_proc()
     // if (counter % 10 == 0)   // 每50ms发送一次命令
     // {
     //     // 同时控制两个舵机
-    //     if (g_servo2 && g_servo2->isOnline)
+    //     if (g_servo1 && g_servo1->isOnline)
     //     {
-    //         g_servo2->setAngle(angle, 200);   // 200ms周期，平滑过渡
+    //         g_servo1->setAngle(angle, 200);   // 200ms周期，平滑过渡
     //     }
     //     HAL_Delay(1);
     //     if (g_servo3 && g_servo3->isOnline)

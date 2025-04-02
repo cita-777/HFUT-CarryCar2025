@@ -1,161 +1,83 @@
 /**
  * *****************************************************************************
  * @file        car_chassis.h
- * @brief       底盘控制类
+ * @brief       底盘控制类声明
  * @author      ciat-777 (juricek.chen@gmail.com)
  * @date        2025-03-28
  * @copyright   cita
  * *****************************************************************************
  */
 
-#ifndef CAR_CHASSIS_H
-#    define CAR_CHASSIS_H
+#ifndef __CAR_CHASSIS_H
+#define __CAR_CHASSIS_H
 
 /* Includes ------------------------------------------------------------------*/
-#    include "2_Device/HWT101/dvc_hwt101.h"
-#    include "2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h"
-#    include "2_Device/Vofa/dvc_vofa.h"
-#    include <stdbool.h>
-#    include <stdint.h>
+#include "2_Device/HWT101/dvc_hwt101.h"
+#include "2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.h"
 
-#    ifdef __cplusplus
-extern "C" {
-#    endif
+/* Defines -------------------------------------------------------------------*/
+// 底盘电机编号定义
+#define CHASSIS_MOTOR_RF 1    // 右前轮
+#define CHASSIS_MOTOR_RB 2    // 右后轮
+#define CHASSIS_MOTOR_LB 3    // 左后轮
+#define CHASSIS_MOTOR_LF 4    // 左前轮
+#define CHASSIS_MOTOR_ALL 0   // 所有电机
 
-/* 定义常量 ------------------------------------------------------------------*/
-#    define CHASSIS_ACC_DEFAULT 100      // 默认加速度
-#    define CHASSIS_DEC_DEFAULT 100      // 默认减速度
-#    define CHASSIS_MOTOR_SPEED 200.0f   // 默认电机速度
-#    define CHASSIS_MOTOR_DELAY 30       // 电机到位后的等待时间(ms)
+// 底盘电机方向定义
+#define CHASSIS_DIR_CW 0    // 顺时针
+#define CHASSIS_DIR_CCW 1   // 逆时针
 
-#    define CHASSIS_MOTOR_ALL 0     // 用于同步所有电机
-#    define CHASSIS_MOTOR_RF 0x01   // 右前轮
-#    define CHASSIS_MOTOR_RB 0x02   // 右后轮
-#    define CHASSIS_MOTOR_LB 0x03   // 左后轮
-#    define CHASSIS_MOTOR_LF 0x04   // 左前轮
-
-#    define CHASSIS_DIR_CW 0    // 顺时针方向
-#    define CHASSIS_DIR_CCW 1   // 逆时针方向
+// 底盘参数定义
+#define CHASSIS_MOTOR_SPEED 200   // 电机基础速度
+#define CHASSIS_ACC_DEFAULT 50    // 默认加速度
+#define CHASSIS_MOTOR_DELAY 50    // 电机到位后额外等待时间(ms)
 
 /**
- * @brief 底盘控制类，封装四轮车底盘的基本控制功能
+ * @brief 底盘控制类
  */
 class Chassis
 {
 public:
-    /**
-     * @brief 构造函数
-     */
+    // 构造和析构
     Chassis();
-
-    /**
-     * @brief 析构函数
-     */
     ~Chassis();
 
-    /**
-     * @brief 初始化底盘
-     * @return 初始化结果，true成功，false失败
-     */
-    bool init();
+    // 基本功能
+    bool init();                  // 初始化底盘
+    void setEnable(bool state);   // 设置电机使能状态
+    void resetPosition();         // 重置电机位置为零
+    void stop();                  // 停止动作
 
-    /**
-     * @brief 前进指定距离
-     * @param distance 距离值，正值
-     * @return 是否完成动作，true完成，false未完成
-     */
-    bool moveForward(float distance);
+    // 移动功能
+    bool moveForward(float distance);    // 前进
+    bool moveBackward(float distance);   // 后退
+    bool moveLeft(float distance);       // 左移
+    bool moveRight(float distance);      // 右移
 
-    /**
-     * @brief 后退指定距离
-     * @param distance 距离值，正值
-     * @return 是否完成动作，true完成，false未完成
-     */
-    bool moveBackward(float distance);
-    bool moveRight(float distance);
-    bool moveLeft(float distance);
-    /**
-     * @brief 左转指定角度
-     * @param angle 角度值，正值
-     * @return 是否完成动作，true完成，false未完成
-     */
-    bool turnLeft(float angle);
+    // 转向功能
+    bool turnLeft(float angle);              // 左转
+    bool turnRight(float angle);             // 右转
+    bool rotateToAngle(float targetAngle);   // 旋转到绝对角度
 
-    /**
-     * @brief 右转指定角度
-     * @param angle 角度值，正值
-     * @return 是否完成动作，true完成，false未完成
-     */
-    bool turnRight(float angle);
-
-    /**
-     * @brief 停止动作
-     */
-    void stop();
-
-    /**
-     * @brief 旋转到绝对角度
-     * @param targetAngle 目标角度，范围0-360度
-     * @return 是否完成旋转，true完成，false未完成
-     */
-    bool rotateToAngle(float targetAngle);
-
-    /**
-     * @brief 设置电机使能状态
-     * @param state 使能状态，true使能，false禁用
-     */
-    void setEnable(bool state);
-
-    /**
-     * @brief 重置电机位置为零
-     */
-    void resetPosition();
-
-    /**
-     * @brief 获取IMU航向角
-     * @return 当前航向角，范围0-360度
-     */
-    float getYawAngle() const;
+    // 状态查询
+    float getYawAngle() const;   // 获取当前航向角
 
 private:
-    // 电机参数和状态
-    bool _initialized;   // 初始化状态
-    bool _motorBusy;     // 电机繁忙状态
+    // 内部辅助函数
+    void  syncMotion();                                       // 触发电机同步运动
+    bool  isMotorReady() const;                               // 检查电机是否到位
+    float calculateAngleError(float current, float target);   // 计算角度误差
+    bool  checkMotionStatus();                                // 检查运动状态(带超时保护)
 
-    // 角度控制相关
-    float _angleError;   // 角度误差
-
-    // 等待电机到位的额外延时
-    uint32_t _motorReadyTime;   // 记录电机到位的时间戳
-    bool     _waitingDelay;     // 电机到位后的额外等待标志
-
-    /**
-     * @brief 触发电机同步运动
-     */
-    void syncMotion();
-
-    /**
-     * @brief 计算角度误差
-     * @param current 当前角度
-     * @param target 目标角度
-     * @return 最短路径的角度误差
-     */
-    float calculateAngleError(float current, float target);
-
-    /**
-     * @brief 检查电机是否到位
-     * @return 是否到位，true已到位，false未到位
-     */
-    bool isMotorReady() const;
+    // 成员变量
+    bool     _initialized;      // 初始化状态
+    bool     _motorBusy;        // 电机繁忙状态
+    float    _angleError;       // 角度误差
+    uint32_t _motorReadyTime;   // 电机就绪时间
+    bool     _waitingDelay;     // 等待延时状态
 };
 
 // 全局实例声明
 extern Chassis* g_chassis;
 
-#    ifdef __cplusplus
-}
-#    endif
-
-#endif   // CAR_CHASSIS_H
-
-/************************ COPYRIGHT(C) CITA **************************/
+#endif /* __CAR_CHASSIS_H */

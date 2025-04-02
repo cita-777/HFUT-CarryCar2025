@@ -101,6 +101,7 @@ void can_SendCmd(__IO uint8_t* cmd, uint8_t len)
         }
 
         // 发送数据
+        while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0);
         while (HAL_CAN_AddTxMessage(
                    (&hcan1), (CAN_TxHeaderTypeDef*)(&can.CAN_TxMsg), (uint8_t*)(&can.txData), (&TxMailbox)) != HAL_OK);
 

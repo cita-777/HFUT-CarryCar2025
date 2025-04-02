@@ -92,6 +92,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Jetson/dvc_jetson.cpp.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.obj"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.cpp.obj.d"
+  "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.c.obj"
+  "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.c.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.c.obj.d"
   "CMakeFiles/newcar_f407_zero.elf.dir/User_File/2_Device/Servo/dvc_fsuServo.cpp.obj"

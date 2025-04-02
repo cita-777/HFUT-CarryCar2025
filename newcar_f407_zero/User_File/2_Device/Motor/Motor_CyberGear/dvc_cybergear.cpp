@@ -24,7 +24,9 @@ uint32_t            Motor_Can_ID;          // 接收数据电机ID
 uint8_t             byte[4];               // 转换临时数据
 uint32_t            send_mail_box = {0};   // NONE
 
-volatile bool zdt_x42_data_ready = false;                                         // 标记是否接收到ZDT_X42正确数据
+volatile bool zdt_x42_data_ready = false;
+volatile bool emmv5_data_ready   = false;
+// 标记是否接收到ZDT_X42正确数据
 #define can_txd() HAL_CAN_AddTxMessage(&hcan1, &txMsg, tx_data, &send_mail_box)   // CAN发送宏定义
 
 MI_Motor mi_motor[4];   // 预先定义四个小米电机
@@ -409,7 +411,8 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
         // 检查是否是ZDT_X42期望的数据格式，直接在中断中标记
         if (rx_data[0] == 0xFD && rx_data[1] == 0x9F)
         {
-            zdt_x42_data_ready = true;
+            // zdt_x42_data_ready = true;
+            emmv5_data_ready = true;
         }
     }
     else if (hcan->Instance == CAN2)

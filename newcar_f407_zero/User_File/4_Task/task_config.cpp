@@ -14,7 +14,7 @@
 #include "2_Device/HWT101/dvc_hwt101.h"   // HWT101头文件
 #include "2_Device/Jetson/dvc_jetson.h"
 #include "2_Device/Motor/Motor_CyberGear/dvc_cybergear.h"
-#include "2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h"
+#include "2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.h"
 #include "2_Device/Servo/dvc_fsuServo.h"
 #include "2_Device/Vofa/dvc_vofa.h"
 #include "2_Device/tjc_screen/dvc_tjc.h"
@@ -31,6 +31,7 @@ void tjc_start_detection();
 void hwt101_proc();
 void servo_proc();
 void jetson_test();
+void chassis_move_task();
 /*------------------------------------task注册表------------------------------------*/
 // 任务配置表, 根据需要添加任务配置项，示例中默认使能状态为1（使能）
 // 示例任务配置: {Task_Example, "Task_Example", 1},
@@ -40,11 +41,24 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {feed_dog, "feed_dog", 1},                         // 喂狗任务
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
     {hwt101_proc, "hwt101_proc", 1},                   // HWT101处理yaw任务
+    {chassis_move_task, "chassis_move_task", 1},
     //{test, "test", 1},                                 // 电机等测试（test）
     //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
     //{servo_proc, "servo_proc", 1},     // 舵机控制任务（test）
     // {delayed_task, "delayed_task", 1},                 // 延时任务（test）
+
 };
+enum ChassisTaskState
+{
+    IDLE,
+    MOVING_BACKWARD,
+    MOVING_LEFT,
+    PLACING_ON_GROUND,
+    CLOSING_GRIPPER,
+    FINISHED
+};
+
+static ChassisTaskState chassis_state = IDLE;
 /*------------------------------------静态类/全局变量------------------------------------*/
 float                     a = 0.0f;
 float                     b = 0.0f;
@@ -93,7 +107,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 void Task_InitAll(void)
 {
 
-    while (ZDT_X42_V2_Init());   // 初始化ZDT_X42电机
+    // while (ZDT_X42_V2_Init());   // 初始化ZDT_X42电机
+    while (EMMV5_Init());   // 初始化EMMV5电机
     while (TJC_Init(&huart1));
     // 初始化HWT101传感器
     uint8_t ret = hwt101.init(&huart2);
@@ -144,30 +159,32 @@ void Task_InitAll(void)
     if (g_carAction->init())
     {
         Vofa_FireWater("车辆动作控制初始化成功\r\n");
-        // g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
+        // g_chassis->moveLeft(1000);
+        //  g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
     }
     else
     {
         Vofa_FireWater("车辆动作控制初始化失败\r\n");
     }
-    g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
-    while (!g_chassis->moveBackward(2000))
-    {
-        HAL_Delay(10);   // 短暂延时避免过度占用CPU
-    }
+    Task_EnableHandle("chassis_move_task");
+    // g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
+    // while (!g_chassis->moveBackward(2000))
+    // {
+    //     HAL_Delay(10);   // 短暂延时避免过度占用CPU
+    // }
 
-    // // 前进完成后等待2秒
-    // HAL_Delay(2000);
+    // // // 前进完成后等待2秒
+    // // HAL_Delay(2000);
 
-    // // 开始右移并等待完成
-    while (!g_chassis->moveLeft(1000))
-    {
-        HAL_Delay(10);
-    }
-    // HAL_Delay(500);
-    g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
-    // HAL_Delay(1000);
-    g_carAction->setGripperState(GripperState::CLOSE, 200);   // 打开爪子
+    // // // 开始右移并等待完成
+    // while (!g_chassis->moveLeft(1000))
+    // {
+    //     HAL_Delay(10);
+    // }
+    // // HAL_Delay(500);
+    // g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
+    // // HAL_Delay(1000);
+    // g_carAction->setGripperState(GripperState::CLOSE, 200);   // 打开爪子
     // // 右移完成后等待2秒
     // HAL_Delay(2000);
     for (int i = 0; i < TASK_MAX_NUM; i++)
@@ -181,7 +198,74 @@ void Task_InitAll(void)
 }
 /*------------------------------------task实现函数------------------------------------*/
 
+// 实现底盘移动任务
+void chassis_move_task()
+{
+    static uint32_t delay_start = 0;
+    static uint32_t debug_tick  = 0;
 
+    // 添加定期日志记录，帮助调试
+    if (HAL_GetTick() - debug_tick > 1000)
+    {
+        debug_tick = HAL_GetTick();
+        Vofa_FireWater("当前状态机状态: %d\r\n", chassis_state);
+    }
+
+    switch (chassis_state)
+    {
+    case IDLE:
+        // 开始后退任务
+        g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
+        g_chassis->moveBackward(2000);
+        chassis_state = MOVING_BACKWARD;
+        Vofa_FireWater("开始执行后退任务\r\n");
+        break;
+
+    case MOVING_BACKWARD:
+        // 检查后退是否完成 - 无论成功或超时都认为是完成
+        if (g_chassis->moveBackward(2000))
+        {
+            // 后退完成，开始左移
+            Vofa_FireWater("后退任务完成，准备左移\r\n");
+            chassis_state = MOVING_LEFT;
+        }
+        break;
+
+    case MOVING_LEFT:
+        // 检查左移是否完成
+        if (g_chassis->moveLeft(1000))
+        {
+            // 左移完成，放下滑架
+            Vofa_FireWater("左移任务完成，准备放下滑架\r\n");
+            chassis_state = PLACING_ON_GROUND;
+        }
+        break;
+
+    case PLACING_ON_GROUND:
+        // 放下滑架到地面
+        g_carAction->setSliderHeight(SliderHeight::PLACE_ON_GROUND);
+        Vofa_FireWater("滑架放下中...\r\n");
+        delay_start   = HAL_GetTick();
+        chassis_state = CLOSING_GRIPPER;
+        break;
+
+    case CLOSING_GRIPPER:
+        // 等待滑架稳定后关闭夹爪
+        if (HAL_GetTick() - delay_start > 200)
+        {
+            g_carAction->setGripperState(GripperState::CLOSE, 200);
+            Vofa_FireWater("关闭夹爪\r\n");
+            chassis_state = FINISHED;
+        }
+        break;
+
+    case FINISHED:
+        // 所有操作完成，禁用此任务
+        Vofa_FireWater("任务完成\r\n");
+        Task_DisableHandle("chassis_move_task");
+        break;
+    }
+}
 void tjc_start_detection()
 {
     if (TJC_Check_Receive())
@@ -207,21 +291,22 @@ void test()
         last_cmd_value = b;   // 记录本次发送的值
     }
 
-    // 打印当前计算值，无论是否在等待响应
-    // Vofa_FireWater("%.2f,%.2f\r\n", a, b);
-    // HAL_Delay(0);
-    //  初始设置
+    // 初始设置
     if (flag == 0)
     {
         flag = 1;
-        ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
+        // 修改前:
+        // ZDT_X42_V2_Traj_Position_Control(1, 1, 1000, 1000, 2000, 0, 1, 0);
+
+        // 修改后:
+        EMMV5_Pos_Control(1, 1, 200, 200, 0, true, false);
     }
 
     // 检查通信状态
     if (waiting_response)
     {
         // 正在等待响应
-        if (ZDT_X42_V2_Receive_Data_Right())
+        if (EMMV5_Receive_Data_Right())
         {
             waiting_response = false;   // 收到响应，可以发送新命令
         }
@@ -231,19 +316,43 @@ void test()
         // 没有待响应命令，发送新命令
         if (last_cmd_value > 0)
         {
-            ZDT_X42_V2_Traj_Position_Control(1, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Traj_Position_Control(2, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Traj_Position_Control(3, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Traj_Position_Control(4, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Synchronous_motion(0);
+            // 修改前:
+            // ZDT_X42_V2_Traj_Position_Control(1, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Traj_Position_Control(2, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Traj_Position_Control(3, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Traj_Position_Control(4, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Synchronous_motion(0);
+
+            // 修改后:
+            EMMV5_Pos_Control(1, 1, 3000, 201, (uint32_t)(last_cmd_value * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(2, 1, 3000, 201, (uint32_t)(last_cmd_value * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(3, 0, 3000, 201, (uint32_t)(last_cmd_value * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(4, 0, 3000, 201, (uint32_t)(last_cmd_value * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Synchronous_motion(0);
         }
         else
         {
-            ZDT_X42_V2_Traj_Position_Control(1, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Traj_Position_Control(2, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Traj_Position_Control(3, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Traj_Position_Control(4, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
-            ZDT_X42_V2_Synchronous_motion(0);
+            // 修改前:
+            // ZDT_X42_V2_Traj_Position_Control(1, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Traj_Position_Control(2, 0, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Traj_Position_Control(3, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Traj_Position_Control(4, 1, 201, 201, 3000, last_cmd_value * 3000, 1, 1);
+            // ZDT_X42_V2_Synchronous_motion(0);
+
+            // 修改后:
+            EMMV5_Pos_Control(1, 0, 3000, 201, (uint32_t)(fabs(last_cmd_value) * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(2, 0, 3000, 201, (uint32_t)(fabs(last_cmd_value) * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(3, 1, 3000, 201, (uint32_t)(fabs(last_cmd_value) * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(4, 1, 3000, 201, (uint32_t)(fabs(last_cmd_value) * 3000), true, true);
+            HAL_Delay(1);
+            EMMV5_Synchronous_motion(0);
         }
         waiting_response = true;   // 标记为等待响应状态
     }

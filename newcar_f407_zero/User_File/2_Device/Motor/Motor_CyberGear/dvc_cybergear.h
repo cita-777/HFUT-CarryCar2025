@@ -68,6 +68,7 @@
 #define Motor_Error 0x00
 #define Motor_OK 0X01
 extern volatile bool zdt_x42_data_ready;
+extern volatile bool emmv5_data_ready;
 
 enum CONTROL_MODE   // 控制模式定义
 {

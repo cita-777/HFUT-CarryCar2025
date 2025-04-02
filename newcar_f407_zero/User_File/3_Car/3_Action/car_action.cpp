@@ -177,7 +177,7 @@ bool CarAction::setCybergearPosition(CybergearPosition position)
 }
 
 /**
- * @brief ZDT_X42电机控制(滑轨高度)
+ * @brief 滑轨电机控制(高度)
  * @param height 滑轨高度
  * @return bool 操作结果，true成功，false失败
  */
@@ -213,8 +213,13 @@ bool CarAction::setSliderHeight(SliderHeight height)
     default: Vofa_FireWater("未知的滑轨高度\r\n"); return false;
     }
 
-    // 控制ZDT_X42电机(滑轨电机)，使用绝对位置模式(raf=1)
-    ZDT_X42_V2_Traj_Position_Control(SLIDER_MOTOR_ADDR, dir, 1000, 1000, 2000, position, 1, 0);
+    // 修改前:
+    // ZDT_X42_V2_Traj_Position_Control(SLIDER_MOTOR_ADDR, dir, 1000, 1000, 2000, position, 1, 0);
+
+    // 修改后:
+    // EMMV5_Pos_Control(addr, dir, vel, acc, clk, raF, snF)
+    EMMV5_Pos_Control(SLIDER_MOTOR_ADDR, dir, 2000, 100, (uint32_t)position, true, false);
+
     return true;
 }
 
@@ -288,7 +293,7 @@ void CarAction::waitForSlider()
 
     // 等待ZDT_X42电机响应
     uint32_t startTime = HAL_GetTick();
-    while (!ZDT_X42_V2_Receive_Data_Right())
+    while (!EMMV5_Receive_Data_Right())
     {
         // 超时检测，10秒
         if (HAL_GetTick() - startTime > 10000)

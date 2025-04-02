@@ -13,7 +13,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #    include "2_Device/Motor/Motor_CyberGear/dvc_cybergear.h"
-#    include "2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h"
+#    include "2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.h"
 #    include "2_Device/Servo/dvc_fsuServo.h"
 #    include <stdint.h>
 

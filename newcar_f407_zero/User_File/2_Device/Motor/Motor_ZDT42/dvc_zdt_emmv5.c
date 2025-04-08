@@ -420,6 +420,7 @@ uint8_t EMMV5_Receive_Data_Right()
 {
     if (emmv5_data_ready)
     {
+        // Vofa_FireWater("电机响应成功: 到位确认\r\n");
         emmv5_data_ready = false;   // 复位标志
         return 1;
     }

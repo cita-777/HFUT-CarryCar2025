@@ -18,6 +18,9 @@
 // 全局实例定义
 Chassis* g_chassis = nullptr;
 
+// 全局静态变量，记录电机响应状态
+static bool g_motorResponse = false;
+
 /**
  * @brief 构造函数
  */
@@ -98,36 +101,49 @@ void Chassis::resetPosition()
 }
 
 /**
+ * @brief 重置电机响应标志
+ */
+void Chassis::resetMotorResponse()
+{
+    g_motorResponse = false;
+}
+
+/**
  * @brief 前进指定距离
  * @param distance 距离值，正值
  * @return 是否完成动作，true完成，false未完成
  */
-bool Chassis::moveForward(float distance)
+bool Chassis::moveForward(uint32_t distance)
 {
     if (!_initialized) return false;
 
     // 新动作初始化
     if (!_motorBusy)
     {
+        // 重置电机响应标志
+        resetMotorResponse();
+
         // 重置位置，配置电机
         // resetPosition();
         // 右侧电机(1,2)逆时针，左侧电机(3,4)顺时针
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 200, false, true);
+            CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 200, false, true);
+            CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 200, false, true);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 200, false, true);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
 
         // 触发同步运动
         syncMotion();
 
         _motorBusy = true;
-        Vofa_FireWater("开始前进 %.1f 单位\r\n", distance);
+        Vofa_FireWater("开始前进 %lu 单位\r\n", distance);
         return false;
     }
 
@@ -140,38 +156,41 @@ bool Chassis::moveForward(float distance)
  * @param distance 距离值，正值
  * @return 是否完成动作，true完成，false未完成
  */
-bool Chassis::moveBackward(float distance)
+bool Chassis::moveBackward(uint32_t distance)
 {
     if (!_initialized) return false;
 
     // 新动作初始化
     if (!_motorBusy)
     {
+        // 重置电机响应标志
+        resetMotorResponse();
+
         // 重置位置，配置电机
         // resetPosition();
         // 右侧电机(1,2)顺时针，左侧电机(3,4)逆时针
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 1000, false, true);
-        // HAL_Delay(10);
+            CHASSIS_MOTOR_RF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 1000, false, true);
-        // HAL_Delay(10);
+            CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 1000, false, true);
-        // HAL_Delay(10);
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 1000, false, true);
-        // HAL_Delay(10);
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
+
 
         // 触发同步运动
         syncMotion();
 
         _motorBusy = true;
-        Vofa_FireWater("开始后退 %.1f 单位\r\n", distance);
+        Vofa_FireWater("开始后退 %lu 单位\r\n", distance);
         return false;
     }
-    // Vofa_FireWater("_motorbusy!!!\r\n");
-    //  检查完成状态
+    // 检查完成状态
     return checkMotionStatus();
 }
 
@@ -180,55 +199,38 @@ bool Chassis::moveBackward(float distance)
  * @param distance 距离值，正值
  * @return 是否完成动作，true完成，false未完成
  */
-bool Chassis::moveRight(float distance)
+bool Chassis::moveRight(uint32_t distance)
 {
     if (!_initialized) return false;
 
     // 新动作初始化
     if (!_motorBusy)
     {
+        // 重置电机响应标志
+        resetMotorResponse();
+
         // 重置位置，配置电机
         // resetPosition();
         // 控制四个电机同步运动 - 右移模式 (麦克纳姆轮)
         // RF和LB顺时针, RB和LF逆时针
-        EMMV5_Pos_Control(CHASSIS_MOTOR_RF,
-                          CHASSIS_DIR_CW,
-                          CHASSIS_MOTOR_SPEED,
-                          CHASSIS_ACC_DEFAULT,
-                          (uint32_t)distance,
-                          false,
-                          true);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_RF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_RB,
-                          CHASSIS_DIR_CCW,
-                          CHASSIS_MOTOR_SPEED,
-                          CHASSIS_ACC_DEFAULT,
-                          (uint32_t)distance,
-                          false,
-                          true);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_LB,
-                          CHASSIS_DIR_CW,
-                          CHASSIS_MOTOR_SPEED,
-                          CHASSIS_ACC_DEFAULT,
-                          (uint32_t)distance,
-                          false,
-                          true);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_LF,
-                          CHASSIS_DIR_CCW,
-                          CHASSIS_MOTOR_SPEED,
-                          CHASSIS_ACC_DEFAULT,
-                          (uint32_t)distance,
-                          false,
-                          true);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
 
         // 触发同步运动
         syncMotion();
 
         _motorBusy = true;
-        Vofa_FireWater("开始右移 %.1f 单位\r\n", distance);
+        Vofa_FireWater("开始右移 %lu 单位\r\n", distance);
         return false;
     }
 
@@ -241,33 +243,38 @@ bool Chassis::moveRight(float distance)
  * @param distance 距离值，正值
  * @return 是否完成动作，true完成，false未完成
  */
-bool Chassis::moveLeft(float distance)
+bool Chassis::moveLeft(uint32_t distance)
 {
     if (!_initialized) return false;
 
     // 新动作初始化
     if (!_motorBusy)
     {
+        // 重置电机响应标志
+        resetMotorResponse();
+
         // 重置位置，配置电机
         // resetPosition();
         // 控制四个电机同步运动 - 左移模式 (麦克纳姆轮)
         // RF和LB逆时针, RB和LF顺时针
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 500, false, true);
-        // HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 500, false, true);
-        // HAL_Delay(1);
+            CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 500, false, true);
-        // HAL_Delay(1);
-        EMMV5_Pos_Control(CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, 500, false, true);
-        // HAL_Delay(1);
+            CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
+        EMMV5_Pos_Control(
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+        HAL_Delay(1);
 
         // 触发同步运动
         syncMotion();
 
         _motorBusy = true;
-        Vofa_FireWater("开始左移 %.1f 单位\r\n", distance);
+        Vofa_FireWater("开始左移 %lu 单位\r\n", distance);
         return false;
     }
 
@@ -280,35 +287,38 @@ bool Chassis::moveLeft(float distance)
  * @param angle 角度值，正值
  * @return 是否完成动作，true完成，false未完成
  */
-bool Chassis::turnLeft(float angle)
+bool Chassis::turnLeft(uint32_t angle)
 {
     if (!_initialized) return false;
 
     // 新动作初始化
     if (!_motorBusy)
     {
+        // 重置电机响应标志
+        resetMotorResponse();
+
         // 重置位置，配置电机
         // resetPosition();
         // 控制四个电机同步运动 - 左转模式
         // 右侧电机(1,2)逆时针，左侧电机(3,4)逆时针
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
 
         // 触发同步运动
         syncMotion();
 
         _motorBusy = true;
-        Vofa_FireWater("开始左转 %.1f 单位\r\n", angle);
+        Vofa_FireWater("开始左转 %lu 单位\r\n", angle);
         return false;
     }
 
@@ -321,35 +331,38 @@ bool Chassis::turnLeft(float angle)
  * @param angle 角度值，正值
  * @return 是否完成动作，true完成，false未完成
  */
-bool Chassis::turnRight(float angle)
+bool Chassis::turnRight(uint32_t angle)
 {
     if (!_initialized) return false;
 
     // 新动作初始化
     if (!_motorBusy)
     {
+        // 重置电机响应标志
+        resetMotorResponse();
+
         // 重置位置，配置电机
         // resetPosition();
         // 控制四个电机同步运动 - 右转模式
         // 右侧电机(1,2)顺时针，左侧电机(3,4)顺时针
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_RF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, (uint32_t)angle, false, true);
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, angle, false, true);
         HAL_Delay(1);
 
         // 触发同步运动
         syncMotion();
 
         _motorBusy = true;
-        Vofa_FireWater("开始右转 %.1f 单位\r\n", angle);
+        Vofa_FireWater("开始右转 %lu 单位\r\n", angle);
         return false;
     }
 
@@ -366,91 +379,72 @@ bool Chassis::rotateToAngle(float targetAngle)
 {
     if (!_initialized) return false;
 
-    // 如果电机繁忙，检查是否已完成
-    if (_motorBusy)
-    {
-        if (isMotorReady())
-        {
-            // 电机已到位，但需要额外等待确保所有电机都到位
-            if (!_waitingDelay)
-            {
-                _motorReadyTime = HAL_GetTick();
-                _waitingDelay   = true;
-            }
-
-            // 额外等待一段时间
-            if (HAL_GetTick() - _motorReadyTime >= CHASSIS_MOTOR_DELAY)
-            {
-                _motorBusy    = false;
-                _waitingDelay = false;
-
-                // 检查是否达到目标角度
-                float currentAngle = g_hwt101->getYawAngle();
-                float angleError   = calculateAngleError(currentAngle, targetAngle);
-
-                if (fabs(angleError) < 3.0f)   // 使用fabs代替arm_abs_f32
-                {
-                    Vofa_FireWater("旋转完成，当前角度:%.1f\r\n", currentAngle);
-                    return true;
-                }
-
-                // 未达到目标角度，需要继续旋转
-                Vofa_FireWater(
-                    "继续调整角度，当前:%.1f 目标:%.1f 误差:%.1f\r\n", currentAngle, targetAngle, angleError);
-
-                // 根据误差决定旋转方向
-                if (angleError > 0)
-                {
-                    // 顺时针旋转(右转)
-                    float rotationAngle = fabs(angleError) * 5.0f;      // 使用fabs代替arm_abs_f32
-                    if (rotationAngle > 50.0f) rotationAngle = 50.0f;   // 限制最大旋转单位
-                    turnRight(rotationAngle);
-                }
-                else
-                {
-                    // 逆时针旋转(左转)
-                    float rotationAngle = fabs(angleError) * 5.0f;      // 使用fabs代替arm_abs_f32
-                    if (rotationAngle > 50.0f) rotationAngle = 50.0f;   // 限制最大旋转单位
-                    turnLeft(rotationAngle);
-                }
-
-                return false;
-            }
-        }
-        return false;
-    }
-
-    // 电机不忙，开始新的旋转
-    // 获取当前角度
     float currentAngle = g_hwt101->getYawAngle();
+    float angleError   = calculateAngleError(currentAngle, targetAngle);
 
-    // 计算角度误差
-    _angleError = calculateAngleError(currentAngle, targetAngle);
-
-    // 如果误差很小，认为已经到达目标角度
-    if (fabs(_angleError) < 3.0f)   // 使用fabs代替arm_abs_f32
+    // 如果误差很小，认为已到达目标角度
+    if (fabs(angleError) < 2.0f)
     {
-        Vofa_FireWater("已在目标角度附近，无需旋转\r\n");
+        if (_motorBusy)
+        {
+            Vofa_FireWater("旋转完成，当前角度:%.1f，目标角度:%.1f\r\n", currentAngle, targetAngle);
+        }
+        else
+        {
+            Vofa_FireWater("已在目标角度附近，无需旋转\r\n");
+        }
+        _motorBusy = false;
         return true;
     }
 
-    Vofa_FireWater("开始旋转到 %.1f 度，当前角度 %.1f 度\r\n", targetAngle, currentAngle);
-
-    // 根据误差决定旋转方向
-    if (_angleError > 0)
+    // 如果电机繁忙，等待当前动作完成
+    if (_motorBusy && !checkMotionStatus())
     {
-        // 顺时针旋转(右转)
-        float rotationAngle = fabs(_angleError) * 5.0f;     // 使用fabs代替arm_abs_f32
-        if (rotationAngle > 50.0f) rotationAngle = 50.0f;   // 限制最大旋转单位
-        turnRight(rotationAngle);
+        return false;   // 电机仍在执行动作
+    }
+
+    // 到这里说明：要么电机不忙，要么电机已完成但需要继续调整
+
+    // 计算旋转角度并应用补偿
+    float rotationAngle = fabs(angleError);
+
+    // 适当调整旋转系数
+    if (rotationAngle > 90.0f)
+        rotationAngle *= 1.1f;
+    else if (rotationAngle > 45.0f)
+        rotationAngle *= 1.3f;
+    else
+        rotationAngle *= 1.5f;
+
+    // 限制最大旋转角度
+    if (rotationAngle > 90.0f) rotationAngle = 90.0f;
+
+    // 如果是继续调整，记录日志
+    if (_motorBusy)
+    {
+        Vofa_FireWater("需要继续调整，当前:%.1f 目标:%.1f 误差:%.1f\r\n", currentAngle, targetAngle, angleError);
     }
     else
     {
-        // 逆时针旋转(左转)
-        float rotationAngle = fabs(_angleError) * 5.0f;     // 使用fabs代替arm_abs_f32
-        if (rotationAngle > 50.0f) rotationAngle = 50.0f;   // 限制最大旋转单位
-        turnLeft(rotationAngle);
+        // 记录角度误差并打印开始旋转日志
+        _angleError = angleError;
+        Vofa_FireWater("开始旋转到 %.1f 度，当前角度 %.1f 度，误差 %.1f 度\r\n", targetAngle, currentAngle, angleError);
     }
+
+    // 将角度转换为脉冲数 (假设100脉冲=1度，需要根据实际情况调整)
+    const float PULSE_PER_DEGREE = 100.0f;   // 每度对应的脉冲数
+    uint32_t    rotationPulse    = (uint32_t)(rotationAngle * PULSE_PER_DEGREE);
+
+    // 确保至少有一定数量的脉冲
+    if (rotationPulse < 10) rotationPulse = 10;
+
+    // 执行旋转
+    if (angleError > 0)
+        turnRight(rotationPulse);
+    else
+        turnLeft(rotationPulse);
+
+    Vofa_FireWater("旋转 %.1f 度 (对应 %lu 脉冲)\r\n", rotationAngle, rotationPulse);
 
     return false;
 }
@@ -523,22 +517,41 @@ void Chassis::syncMotion()
 }
 
 /**
- * @brief 检查电机是否到位
- * @return 是否到位，true已到位，false未到位
+ * @brief 检查电机响应状态
+ * @return 是否收到响应，true已响应，false未响应
  */
-bool Chassis::isMotorReady() const
+bool Chassis::checkMotorResponse() const
 {
     static uint32_t lastDebugTime = 0;
-    uint8_t         status        = EMMV5_Receive_Data_Right();
-    // uint8_t status = 1;
-    //  每500ms输出一次状态，避免日志刷屏
+
+    // 如果已经收到响应，直接返回true
+    if (g_motorResponse)
+    {
+        // 定期打印状态
+        if (HAL_GetTick() - lastDebugTime > 500)
+        {
+            lastDebugTime = HAL_GetTick();
+            Vofa_FireWater("电机状态: 就绪\r\n");
+        }
+        return true;
+    }
+
+    // 未收到响应，检查是否有新响应
+    uint8_t status = EMMV5_Receive_Data_Right();
+    if (status == 1)
+    {
+        g_motorResponse = true;
+        Vofa_FireWater("收到电机到位响应!\r\n");
+    }
+
+    // 定期打印状态
     if (HAL_GetTick() - lastDebugTime > 500)
     {
         lastDebugTime = HAL_GetTick();
-        Vofa_FireWater("电机状态: %d\r\n", status);
+        Vofa_FireWater("电机状态: %s\r\n", g_motorResponse ? "就绪" : "等待响应");
     }
 
-    return status == 1;
+    return g_motorResponse;
 }
 
 /**
@@ -555,18 +568,17 @@ bool Chassis::checkMotionStatus()
         operationStartTime = HAL_GetTick();
     }
 
-    // 超时保护 (5秒)
+    // 超时保护 (2.5秒)
     if (HAL_GetTick() - operationStartTime > 2500)
     {
         Vofa_FireWater("警告: 操作超时(2.5秒)，强制结束\r\n");
-        // HAL_Delay(10);
         _motorBusy         = false;
         operationStartTime = 0;
         return true;
     }
 
     // 检查电机是否就绪
-    if (isMotorReady())
+    if (checkMotorResponse())
     {
         if (!_waitingDelay)
         {

@@ -38,7 +38,7 @@ extern fsuservo::FSUS_Servo*    g_servo3;   // 爪子舵机
 
 // Cybergear云台位置对应的角度值
 #    define CYBERGEAR_FRONT_ANGLE 0.1f   // 前方位置角度
-#    define CYBERGEAR_BACK_ANGLE 3.0f    // 后方位置角度
+#    define CYBERGEAR_BACK_ANGLE 1.0f    // 后方位置角度
 
 // ZDT_X42滑轨高度对应的位置值
 // #    define SLIDER_PICK_FROM_TURNTABLE 6000.0f   // 从转盘上拿取物料的高度

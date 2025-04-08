@@ -55,6 +55,8 @@ enum ChassisTaskState
     MOVING_LEFT,
     PLACING_ON_GROUND,
     CLOSING_GRIPPER,
+    WAITING_AFTER_GRIP,   // 新增：夹爪关闭后等待状态
+    ROTATING_GIMBAL,
     FINISHED
 };
 
@@ -65,7 +67,7 @@ float                     b = 0.0f;
 static HWT101Communicator hwt101(&huart2);             // hwt101通讯类
 static JetsonCommunicator jc(&huart5);                 // jetson通讯类
 fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;   // 舵机通讯类
-fsuservo::FSUS_Servo*     g_servo1        = nullptr;   // ID为2的舵机实例
+fsuservo::FSUS_Servo*     g_servo1        = nullptr;   // ID为1的舵机实例
 fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为3的舵机实例
 /*------------------------------------task执行频率配置------------------------------------*/
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
@@ -119,8 +121,8 @@ void Task_InitAll(void)
     jc.init();
 
     g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
-    g_servo1        = new fsuservo::FSUS_Servo(1, g_servoProtocol);
-    g_servo3        = new fsuservo::FSUS_Servo(3, g_servoProtocol);
+    g_servo1        = new fsuservo::FSUS_Servo(1, g_servoProtocol);   // 转盘
+    g_servo3        = new fsuservo::FSUS_Servo(3, g_servoProtocol);   // 夹爪
 
     g_servo1->init();
     HAL_Delay(1);
@@ -135,7 +137,7 @@ void Task_InitAll(void)
         Vofa_FireWater("Cybergear init success\r\n");
         // 添加小角度测试转动，参数：电机指针，力矩，位置，速度，kp，kd
         // motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
-        HAL_Delay(100);   // 给电机一点响应时间
+        // HAL_Delay(100);   // 给电机一点响应时间
     }
     else
     {
@@ -148,7 +150,7 @@ void Task_InitAll(void)
     if (g_chassis->init())
     {
         Vofa_FireWater("底盘初始化成功\r\n");
-        // g_chassis->moveForward(1000);
+        // while (!g_chassis->moveForward(10000));
     }
     else
     {
@@ -201,8 +203,9 @@ void Task_InitAll(void)
 // 实现底盘移动任务
 void chassis_move_task()
 {
-    static uint32_t delay_start = 0;
-    static uint32_t debug_tick  = 0;
+    static uint32_t delay_start       = 0;
+    static uint32_t debug_tick        = 0;
+    static uint32_t gimbal_start_time = 0;   // 云台转动计时器
 
     // 添加定期日志记录，帮助调试
     if (HAL_GetTick() - debug_tick > 1000)
@@ -216,14 +219,14 @@ void chassis_move_task()
     case IDLE:
         // 开始后退任务
         g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
-        g_chassis->moveBackward(2000);
+        g_chassis->moveBackward(20000);
         chassis_state = MOVING_BACKWARD;
         Vofa_FireWater("开始执行后退任务\r\n");
         break;
 
     case MOVING_BACKWARD:
         // 检查后退是否完成 - 无论成功或超时都认为是完成
-        if (g_chassis->moveBackward(2000))
+        if (g_chassis->moveBackward(30000))
         {
             // 后退完成，开始左移
             Vofa_FireWater("后退任务完成，准备左移\r\n");
@@ -233,7 +236,7 @@ void chassis_move_task()
 
     case MOVING_LEFT:
         // 检查左移是否完成
-        if (g_chassis->moveLeft(1000))
+        if (g_chassis->moveRight(25000))
         {
             // 左移完成，放下滑架
             Vofa_FireWater("左移任务完成，准备放下滑架\r\n");
@@ -255,6 +258,34 @@ void chassis_move_task()
         {
             g_carAction->setGripperState(GripperState::CLOSE, 200);
             Vofa_FireWater("关闭夹爪\r\n");
+
+            // 修改：切换到等待状态而不是直接转动云台
+            delay_start   = HAL_GetTick();   // 重置计时器
+            chassis_state = WAITING_AFTER_GRIP;
+        }
+        break;
+
+    case WAITING_AFTER_GRIP:
+        // 夹爪关闭后额外等待1秒，确保稳定
+        if (HAL_GetTick() - delay_start > 1000)
+        {
+            Vofa_FireWater("夹爪稳定完成，准备转动云台\r\n");
+
+            // 更新状态为云台旋转
+            chassis_state     = ROTATING_GIMBAL;
+            gimbal_start_time = HAL_GetTick();   // 记录云台操作开始时间
+
+            // 使用CarAction中的方法控制云台
+            g_carAction->setCybergearPosition(CybergearPosition::BACK);
+            Vofa_FireWater("开始转动云台\r\n");
+        }
+        break;
+
+    case ROTATING_GIMBAL:
+        // 等待云台转动完成
+        if (HAL_GetTick() - gimbal_start_time > 2500)   // 2.5秒完成转动
+        {
+            Vofa_FireWater("云台转动完成\r\n");
             chassis_state = FINISHED;
         }
         break;

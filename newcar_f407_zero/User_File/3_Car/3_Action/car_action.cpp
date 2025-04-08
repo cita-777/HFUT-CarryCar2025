@@ -173,6 +173,7 @@ bool CarAction::setCybergearPosition(CybergearPosition position)
 
     // 控制Cybergear电机，使用位置控制模式
     motor_controlmode(&mi_motor[0], 0.5f, angle, 1.0f, 0.5f, 0.1f);
+    // motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
     return true;
 }
 

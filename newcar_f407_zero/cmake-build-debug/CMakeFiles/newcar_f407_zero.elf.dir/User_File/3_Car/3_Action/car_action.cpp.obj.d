@@ -154,4 +154,9 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/3_Action/car_action.cpp.obj:
  C:/msys64/mingw64/arm-none-eabi/include/string.h \
  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
- D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/1_Middleware/1_Driver/TIM/drv_tim.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/tim.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Jetson/dvc_jetson.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/3_Car/1_Chassis/car_chassis.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/HWT101/dvc_hwt101.h

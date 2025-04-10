@@ -10,8 +10,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "car_action.h"
+#include "1_Middleware/1_Driver/TIM/drv_tim.h"
+#include "2_Device/Jetson/dvc_jetson.h"
 #include "2_Device/Vofa/dvc_vofa.h"
-
+#include "3_Car/1_Chassis/car_chassis.h"
 /* 静态成员初始化 ----------------------------------------------------------*/
 // 全局实例定义
 CarAction* g_carAction = nullptr;
@@ -21,6 +23,13 @@ CarAction* g_carAction = nullptr;
  */
 CarAction::CarAction()
     : _isInitialized(false)
+    , _actionState(ActionState::IDLE)
+    , _mapActionState(MapActionState::IDLE)
+    , _currentPosition(0)
+    , _mapStateCounter(0)
+    , _currentSequence(MaterialSequence::SEQ_321)
+    , _actionTimer(0)
+    , _isSendOk(false)
 {
     g_carAction = this;
 }
@@ -156,7 +165,7 @@ bool CarAction::setCybergearPosition(CybergearPosition position)
         Vofa_FireWater("错误: CarAction未初始化\r\n");
         return false;
     }
-
+    // static float temp_degree = 0.0f;
     float angle;
     switch (position)
     {
@@ -170,10 +179,9 @@ bool CarAction::setCybergearPosition(CybergearPosition position)
         break;
     default: Vofa_FireWater("未知的Cybergear云台位置\r\n"); return false;
     }
-
-    // 控制Cybergear电机，使用位置控制模式
-    motor_controlmode(&mi_motor[0], 0.5f, angle, 1.0f, 0.5f, 0.1f);
-    // motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
+    // temp_degree += 0.15f;
+    //  控制Cybergear电机，使用位置控制模式
+    motor_controlmode(&mi_motor[0], 0.0f, angle, 0, 0.55f, 0.1f);
     return true;
 }
 
@@ -195,6 +203,10 @@ bool CarAction::setSliderHeight(SliderHeight height)
 
     switch (height)
     {
+    case SliderHeight::MOST_HIGH:
+        position = SLIDER_MOSTHIGH;
+        Vofa_FireWater("设置滑轨到最高位置: %.1f\r\n", position);
+        break;
     case SliderHeight::PICK_FROM_TURNTABLE:
         position = SLIDER_PICK_FROM_TURNTABLE;
         Vofa_FireWater("设置滑轨到转盘取料高度: %.1f\r\n", position);
@@ -214,235 +226,838 @@ bool CarAction::setSliderHeight(SliderHeight height)
     default: Vofa_FireWater("未知的滑轨高度\r\n"); return false;
     }
 
-    // 修改前:
-    // ZDT_X42_V2_Traj_Position_Control(SLIDER_MOTOR_ADDR, dir, 1000, 1000, 2000, position, 1, 0);
-
-    // 修改后:
     // EMMV5_Pos_Control(addr, dir, vel, acc, clk, raF, snF)
-    EMMV5_Pos_Control(SLIDER_MOTOR_ADDR, dir, 2000, 100, (uint32_t)position, true, false);
+    EMMV5_Pos_Control(SLIDER_MOTOR_ADDR, dir, 1500, 250, (uint32_t)position, true, false);
 
     return true;
 }
 
 /**
- * @brief 等待舵机2完成动作
+ * @brief 执行抓取物体到转盘动作 - 非阻塞状态机实现
+ * @param position 物体位置(1-3)
+ * @return bool 如果完成返回true，否则返回false
  */
-void CarAction::waitForServo2()
+bool CarAction::catchObjToTurntable(uint8_t position)
 {
-    if (!_isInitialized)
+    if (!_isInitialized) return false;
+
+    // 如果当前没有活动操作，初始化新操作
+    if (_actionState == ActionState::IDLE)
     {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
-        return;
+        Vofa_FireWater("开始抓取物体到转盘, 位置: %d\r\n", position);
+        _currentPosition = position;
+        _actionState     = ActionState::CATCH_OPEN_GRIPPER;
+        _actionTimer     = HAL_GetTick();
+        return false;
     }
 
-    if (g_servo1 && g_servo1->isOnline)
+    // 执行状态机逻辑
+    switch (_actionState)
     {
-        Vofa_FireWater("等待舵机2动作完成...\r\n");
-        g_servo1->wait();
-        Vofa_FireWater("舵机2动作完成\r\n");
-    }
-}
-
-/**
- * @brief 等待舵机3完成动作
- */
-void CarAction::waitForServo3()
-{
-    if (!_isInitialized)
-    {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
-        return;
-    }
-
-    if (g_servo3 && g_servo3->isOnline)
-    {
-        Vofa_FireWater("等待舵机3动作完成...\r\n");
-        g_servo3->wait();
-        Vofa_FireWater("舵机3动作完成\r\n");
-    }
-}
-
-/**
- * @brief 等待Cybergear电机完成动作
- */
-void CarAction::waitForCybergear()
-{
-    if (!_isInitialized)
-    {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
-        return;
-    }
-
-    // 由于我们没有直接的方法检查Cybergear电机是否完成动作，使用延时
-    Vofa_FireWater("等待Cybergear电机动作完成...\r\n");
-    HAL_Delay(1000);   // 假设1秒足够完成动作
-    Vofa_FireWater("Cybergear电机动作完成\r\n");
-}
-
-/**
- * @brief 等待滑轨电机完成动作
- */
-void CarAction::waitForSlider()
-{
-    if (!_isInitialized)
-    {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
-        return;
-    }
-
-    Vofa_FireWater("等待滑轨电机动作完成...\r\n");
-
-    // 等待ZDT_X42电机响应
-    uint32_t startTime = HAL_GetTick();
-    while (!EMMV5_Receive_Data_Right())
-    {
-        // 超时检测，10秒
-        if (HAL_GetTick() - startTime > 10000)
+    case ActionState::CATCH_OPEN_GRIPPER:
+        // 打开爪子
+        if (setGripperState(GripperState::OPEN, 200))
         {
-            Vofa_FireWater("等待滑轨电机响应超时\r\n");
-            return;
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::CATCH_LOWER_TO_OBJECT;
+            Vofa_FireWater("爪子已打开, 准备下降滑轨\r\n");
         }
-        HAL_Delay(10);   // 小延时避免过于频繁检查
+        break;
+
+    case ActionState::CATCH_LOWER_TO_OBJECT:
+        // 下降到物体位置
+        if (setSliderHeight(SliderHeight::PICK_FROM_TURNTABLE))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+            _actionState = ActionState::CATCH_CLOSE_GRIPPER;
+            Vofa_FireWater("滑轨已下降, 准备关闭爪子\r\n");
+        }
+        break;
+
+    case ActionState::CATCH_CLOSE_GRIPPER:
+        // 关闭爪子抓取物体
+        if (setGripperState(GripperState::CLOSE, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::CATCH_RAISE_SLIDER;
+            Vofa_FireWater("爪子已关闭, 准备提升滑轨\r\n");
+        }
+        break;
+
+    case ActionState::CATCH_RAISE_SLIDER:
+        // 提升滑轨
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::CATCH_POSITION_LOCATION;
+            Vofa_FireWater("滑轨已提升, 准备定位\r\n");
+        }
+        break;
+
+    case ActionState::CATCH_POSITION_LOCATION:
+        // 定位到目标位置
+        positionToLocation(_currentPosition);
+        if (!TIM_1ms.DelayNonBlocking(700)) return false;
+        // 直接进入旋转云台状态，跳过后退
+        _actionState = ActionState::CATCH_ROTATE_TURNTABLE;
+        Vofa_FireWater("已定位, 准备旋转云台\r\n");
+        break;
+
+    case ActionState::CATCH_ROTATE_TURNTABLE:
+        // 旋转转盘
+        if (setCybergearPosition(CybergearPosition::BACK))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+            _actionState = ActionState::CATCH_RELEASE_GRIPPER;
+            Vofa_FireWater("云台已旋转, 准备释放物体\r\n");
+        }
+        break;
+
+    case ActionState::CATCH_RELEASE_GRIPPER:
+        // 释放爪子
+        if (setGripperState(GripperState::OPEN, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::CATCH_FINAL_RAISE;
+            Vofa_FireWater("物体已释放, 准备最终提升\r\n");
+        }
+        break;
+
+    case ActionState::CATCH_FINAL_RAISE:
+        // 最终提升
+        if (setSliderHeight(SliderHeight::SLIDER_MOSTHIGH))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+            // 直接完成任务，跳过前进
+            _actionState = ActionState::COMPLETED;
+            Vofa_FireWater("滑轨最终提升完成, 抓取任务结束\r\n");
+        }
+        break;
+
+    case ActionState::COMPLETED:
+        // 重置状态机
+        _actionState = ActionState::IDLE;
+        return true;
+
+    default:
+        // 异常状态处理
+        Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
+        _actionState = ActionState::IDLE;
+        break;
     }
-    Vofa_FireWater("滑轨电机动作完成\r\n");
+
+    return false;
 }
 
 /**
- * @brief 等待所有执行器完成动作
+ * @brief 执行物体放置到地图动作 - 非阻塞状态机实现
+ * @param position 目标位置(1-3)
+ * @return bool 如果完成返回true，否则返回false
  */
-void CarAction::waitForAllActuators()
+bool CarAction::putObjToMap(uint8_t position)
 {
-    if (!_isInitialized)
+    static int16_t targetX = 0, targetY = 0;
+
+    if (!_isInitialized) return false;
+
+    // 如果当前没有活动操作，初始化新操作
+    if (_actionState == ActionState::IDLE)
     {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
-        return;
+        // 获取目标坐标
+        g_jetson->getCoordinates(targetX, targetY);
+
+        Vofa_FireWater("开始放置物体到地图, 坐标: (%d, %d)\r\n", targetX, targetY);
+        _currentPosition = position;   // 保留位置编号用于兼容性
+        _actionState     = ActionState::PUT_MOVE_TO_TARGET;
+        _actionTimer     = HAL_GetTick();
+        return false;
     }
 
-    waitForServo2();
-    waitForServo3();
-    waitForCybergear();
-    waitForSlider();
-    Vofa_FireWater("所有执行器动作完成\r\n");
+    // 执行状态机逻辑
+    switch (_actionState)
+    {
+    case ActionState::PUT_MOVE_TO_TARGET:
+        // 移动到目标位置 (需要添加g_chassis移动到坐标的实现)
+        // 假设已有moveToCoordinates函数
+        if (g_chassis->moveToCoordinates(targetX, targetY, 200, 100))
+        {
+            _actionState = ActionState::PUT_POSITION_LOCATION;
+            Vofa_FireWater("移动到目标坐标完成, 准备定位\r\n");
+        }
+        break;
+
+    case ActionState::PUT_POSITION_LOCATION:
+        // 根据位置进行定位
+        positionToLocation(_currentPosition);   // 或者使用坐标计算适合的定位
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        _actionState = ActionState::PUT_ROTATE_BACK;
+        Vofa_FireWater("已定位, 准备旋转云台到后方\r\n");
+        break;
+
+    case ActionState::PUT_ROTATE_BACK:
+        // 旋转转盘到后方
+        if (setCybergearPosition(CybergearPosition::BACK))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+            _actionState = ActionState::PUT_OPEN_GRIPPER_FIRST;
+            Vofa_FireWater("云台已旋转到后方, 准备打开爪子\r\n");
+        }
+        break;
+
+    case ActionState::PUT_OPEN_GRIPPER_FIRST:
+        // 打开爪子
+        if (setGripperState(GripperState::OPEN, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::PUT_LOWER_FIRST;
+            Vofa_FireWater("爪子已打开, 准备下降滑轨\r\n");
+        }
+        break;
+
+    case ActionState::PUT_LOWER_FIRST:
+        // 下降滑轨
+        if (setSliderHeight(SliderHeight::PICK_FROM_TURNTABLE))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PUT_CLOSE_GRIPPER;
+            Vofa_FireWater("滑轨已下降, 准备关闭爪子\r\n");
+        }
+        break;
+
+    case ActionState::PUT_CLOSE_GRIPPER:
+        // 关闭爪子
+        if (setGripperState(GripperState::CLOSE, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::PUT_RAISE_SLIDER;
+            Vofa_FireWater("爪子已关闭, 准备提升滑轨\r\n");
+        }
+        break;
+
+    case ActionState::PUT_RAISE_SLIDER:
+        // 提升滑轨
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PUT_ROTATE_FRONT;
+            Vofa_FireWater("滑轨已提升, 准备旋转云台到前方\r\n");
+        }
+        break;
+
+    case ActionState::PUT_ROTATE_FRONT:
+        // 旋转转盘到前方
+        if (setCybergearPosition(CybergearPosition::FRONT))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+            _actionState = ActionState::PUT_LOWER_TO_PLACE;
+            Vofa_FireWater("云台已旋转到前方, 准备下降放置\r\n");
+        }
+        break;
+
+    case ActionState::PUT_LOWER_TO_PLACE:
+        // 下降放置
+        if (setSliderHeight(SliderHeight::PLACE_ON_GROUND))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PUT_OPEN_GRIPPER;
+            Vofa_FireWater("滑轨已下降, 准备打开爪子\r\n");
+        }
+        break;
+
+    case ActionState::PUT_OPEN_GRIPPER:
+        // 打开爪子
+        if (setGripperState(GripperState::OPEN, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::PUT_FINAL_RAISE;
+            Vofa_FireWater("爪子已打开, 准备最终提升\r\n");
+        }
+        break;
+
+    case ActionState::PUT_FINAL_RAISE:
+        // 最终提升
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::COMPLETED;
+            Vofa_FireWater("最终提升完成, 放置任务结束\r\n");
+        }
+        break;
+
+    case ActionState::COMPLETED:
+        // 重置状态机
+        _actionState = ActionState::IDLE;
+        return true;
+
+    default:
+        // 异常状态处理
+        Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
+        _actionState = ActionState::IDLE;
+        break;
+    }
+
+    return false;
 }
 
 /**
- * @brief 抓取物料组合动作
- * @return bool 操作结果，true成功，false失败
+ * @brief 执行码垛版本的物体放置到地图动作
+ * @param position 目标位置(1-3)
+ * @return bool 如果完成返回true，否则返回false
+ */
+// bool CarAction::putObjToMapMaDuo(uint8_t position)
+// {
+//     if (!_isInitialized) return false;
+
+//     // 码垛版本与普通版本相似，但使用不同的高度
+//     // 使用状态机简化实现，与putObjToMap类似但有不同的高度设置
+
+//     // 如果当前没有活动操作，初始化新操作
+//     if (_actionState == ActionState::IDLE)
+//     {
+//         Vofa_FireWater("开始码垛放置物体到地图, 位置: %d\r\n", position);
+//         _currentPosition = position;
+//         _actionState     = ActionState::PUT_MOVE_BACKWARD;
+//         _actionTimer     = HAL_GetTick();
+//         return false;
+//     }
+
+//     // 执行状态机逻辑 - 基本与putObjToMap相同，只是在放置高度上有差异
+//     switch (_actionState)
+//     {
+//     case ActionState::PUT_MOVE_BACKWARD:
+//         if (g_chassis->moveBackward(_currentPosition * DISTANCE_WITH_SEHUAN))
+//         {
+//             _actionState = ActionState::PUT_POSITION_LOCATION;
+//             Vofa_FireWater("后退完成, 准备定位\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_POSITION_LOCATION:
+//         positionToLocation(_currentPosition);
+//         if (!TIM_1ms.DelayNonBlocking(500)) return false;
+//         _actionState = ActionState::PUT_ROTATE_TURNTABLE;
+//         Vofa_FireWater("已定位, 准备旋转云台\r\n");
+//         break;
+
+//     case ActionState::PUT_ROTATE_TURNTABLE:
+//         if (setCybergearPosition(CybergearPosition::FRONT))
+//         {
+//             if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+//             _actionState = ActionState::PUT_CLOSE_GRIPPER;
+//             Vofa_FireWater("云台已旋转, 准备关闭爪子\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_CLOSE_GRIPPER:
+//         if (setGripperState(GripperState::CLOSE, 200))
+//         {
+//             if (!TIM_1ms.DelayNonBlocking(500)) return false;
+//             _actionState = ActionState::PUT_RAISE_SLIDER;
+//             Vofa_FireWater("爪子已关闭, 准备提升滑轨\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_RAISE_SLIDER:
+//         if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+//         {
+//             if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+//             _actionState = ActionState::PUT_MOVE_FORWARD;
+//             Vofa_FireWater("滑轨已提升, 准备前进\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_MOVE_FORWARD:
+//         if (g_chassis->moveForward(_currentPosition * DISTANCE_WITH_SEHUAN))
+//         {
+//             _actionState = ActionState::PUT_LOWER_TO_PLACE;
+//             Vofa_FireWater("前进完成, 准备下降放置\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_LOWER_TO_PLACE:
+//         // 码垛时使用码垛高度
+//         if (setSliderHeight(SliderHeight::STACKING))
+//         {
+//             if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+//             _actionState = ActionState::PUT_OPEN_GRIPPER;
+//             Vofa_FireWater("滑轨已下降到码垛高度, 准备打开爪子\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_OPEN_GRIPPER:
+//         if (setGripperState(GripperState::OPEN, 200))
+//         {
+//             if (!TIM_1ms.DelayNonBlocking(500)) return false;
+//             _actionState = ActionState::PUT_FINAL_RAISE;
+//             Vofa_FireWater("爪子已打开, 准备最终提升\r\n");
+//         }
+//         break;
+
+//     case ActionState::PUT_FINAL_RAISE:
+//         if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+//         {
+//             if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+//             _actionState = ActionState::COMPLETED;
+//             Vofa_FireWater("最终提升完成, 码垛放置任务结束\r\n");
+//         }
+//         break;
+
+//     case ActionState::COMPLETED: _actionState = ActionState::IDLE; return true;
+
+//     default:
+//         Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
+//         _actionState = ActionState::IDLE;
+//         break;
+//     }
+
+//     return false;
+// }
+
+/**
+ * @brief 执行从地图获取物体动作 - 非阻塞状态机实现
+ * @param position 目标位置(1-3)
+ * @return bool 如果完成返回true，否则返回false
+ */
+bool CarAction::getObjFromMap(uint8_t position)
+{
+    if (!_isInitialized) return false;
+
+    // 如果当前没有活动操作，初始化新操作
+    if (_actionState == ActionState::IDLE)
+    {
+        Vofa_FireWater("开始从地图获取物体, 位置: %d\r\n", position);
+        _currentPosition = position;
+        _actionState     = ActionState::GET_POSITION_LOCATION;
+        _actionTimer     = HAL_GetTick();
+        return false;
+    }
+
+    // 执行状态机逻辑
+    switch (_actionState)
+    {
+    case ActionState::GET_POSITION_LOCATION:
+        // 定位到目标位置
+        positionToLocation(_currentPosition);
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        _actionState = ActionState::GET_LOWER_TO_OBJECT;
+        Vofa_FireWater("已定位, 准备下降到物体\r\n");
+        break;
+
+    case ActionState::GET_LOWER_TO_OBJECT:
+        // 下降到物体位置
+        if (setSliderHeight(SliderHeight::PLACE_ON_GROUND))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::GET_CLOSE_GRIPPER;
+            Vofa_FireWater("滑轨已下降, 准备关闭爪子\r\n");
+        }
+        break;
+
+    case ActionState::GET_CLOSE_GRIPPER:
+        // 关闭爪子抓取物体
+        if (setGripperState(GripperState::CLOSE, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::GET_RAISE_SLIDER;
+            Vofa_FireWater("爪子已关闭, 准备提升滑轨\r\n");
+        }
+        break;
+
+    case ActionState::GET_RAISE_SLIDER:
+        // 提升滑轨
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::GET_MOVE_BACKWARD;
+            Vofa_FireWater("滑轨已提升, 准备后退\r\n");
+        }
+        break;
+
+    case ActionState::GET_MOVE_BACKWARD:
+        // 后退操作
+        if (g_chassis->moveBackward(_currentPosition * DISTANCE_WITH_SEHUAN))
+        {
+            _actionState = ActionState::GET_ROTATE_TURNTABLE;
+            Vofa_FireWater("后退完成, 准备旋转云台\r\n");
+        }
+        break;
+
+    case ActionState::GET_ROTATE_TURNTABLE:
+        // 旋转转盘
+        if (setCybergearPosition(CybergearPosition::BACK))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
+            _actionState = ActionState::GET_OPEN_GRIPPER;
+            Vofa_FireWater("云台已旋转, 准备释放物体\r\n");
+        }
+        break;
+
+    case ActionState::GET_OPEN_GRIPPER:
+        // 打开爪子释放物体
+        if (setGripperState(GripperState::OPEN, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::GET_FINAL_RAISE;
+            Vofa_FireWater("爪子已打开, 准备最终提升\r\n");
+        }
+        break;
+
+    case ActionState::GET_FINAL_RAISE:
+        // 最终提升
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::GET_MOVE_FORWARD;
+            Vofa_FireWater("最终提升完成, 准备前进\r\n");
+        }
+        break;
+
+    case ActionState::GET_MOVE_FORWARD:
+        // 前进操作
+        if (g_chassis->moveForward(_currentPosition * DISTANCE_WITH_SEHUAN))
+        {
+            _actionState = ActionState::COMPLETED;
+            Vofa_FireWater("前进完成, 获取任务结束\r\n");
+        }
+        break;
+
+    case ActionState::COMPLETED:
+        // 重置状态机
+        _actionState = ActionState::IDLE;
+        return true;
+
+    default:
+        // 异常状态处理
+        Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
+        _actionState = ActionState::IDLE;
+        break;
+    }
+
+    return false;
+}
+
+/**
+ * @brief 按指定顺序执行物体放置和获取动作序列 - 非阻塞状态机实现
+ * @param sequence 顺序枚举
+ * @return bool 如果完成返回true，否则返回false
+ */
+bool CarAction::executeSequence(MaterialSequence sequence)
+{
+    if (!_isInitialized) return false;
+
+    // 如果当前没有活动操作，初始化新序列
+    if (_mapActionState == MapActionState::IDLE)
+    {
+        Vofa_FireWater("开始执行序列: %d\r\n", (int)sequence);
+        _currentSequence = sequence;
+        _mapActionState  = MapActionState::MOVE_TO_POSITION;
+        _mapStateCounter = 0;
+        return false;
+    }
+
+    // 获取当前需要处理的位置
+    uint8_t currentPos;
+    switch (_currentSequence)
+    {
+    case MaterialSequence::SEQ_321: currentPos = 3 - _mapStateCounter; break;
+    case MaterialSequence::SEQ_312: currentPos = _mapStateCounter == 0 ? 3 : (_mapStateCounter == 1 ? 1 : 2); break;
+    case MaterialSequence::SEQ_123: currentPos = _mapStateCounter + 1; break;
+    case MaterialSequence::SEQ_132: currentPos = _mapStateCounter == 0 ? 1 : (_mapStateCounter == 1 ? 3 : 2); break;
+    case MaterialSequence::SEQ_213: currentPos = _mapStateCounter == 0 ? 2 : (_mapStateCounter == 1 ? 1 : 3); break;
+    case MaterialSequence::SEQ_231: currentPos = _mapStateCounter == 0 ? 2 : (_mapStateCounter == 1 ? 3 : 1); break;
+    default:
+        Vofa_FireWater("错误: 未知序列类型 %d\r\n", (int)_currentSequence);
+        _mapActionState = MapActionState::IDLE;
+        return false;
+    }
+
+    // 执行序列状态机
+    switch (_mapActionState)
+    {
+    case MapActionState::MOVE_TO_POSITION:
+        // 移动到当前位置
+        Vofa_FireWater("移动到位置 %d (序列计数: %d)\r\n", currentPos, _mapStateCounter);
+        if (currentPos >= 1 && currentPos <= 3)
+        {
+            _mapActionState = MapActionState::PLACE_OBJECT;
+        }
+        else
+        {
+            Vofa_FireWater("错误: 无效位置 %d\r\n", currentPos);
+            _mapActionState = MapActionState::COMPLETED;
+        }
+        break;
+
+    case MapActionState::PLACE_OBJECT:
+        // 放置物体
+        if (putObjToMap(currentPos))
+        {
+            _mapActionState = MapActionState::MOVE_TO_NEXT;
+            Vofa_FireWater("物体放置完成, 准备下一步\r\n");
+        }
+        break;
+
+    case MapActionState::MOVE_TO_NEXT:
+        // 移动到下一个位置或完成
+        _mapStateCounter++;
+        if (_mapStateCounter >= 3)
+        {
+            _mapActionState = MapActionState::COMPLETED;
+            Vofa_FireWater("所有位置处理完毕\r\n");
+        }
+        else
+        {
+            _mapActionState = MapActionState::MOVE_TO_POSITION;
+            Vofa_FireWater("准备处理下一个位置\r\n");
+        }
+        break;
+
+    case MapActionState::COMPLETED:
+        // 序列完成
+        Vofa_FireWater("序列执行完成\r\n");
+        _mapActionState = MapActionState::IDLE;
+        return true;
+
+    default:
+        Vofa_FireWater("错误: 非法序列状态 %d\r\n", (int)_mapActionState);
+        _mapActionState = MapActionState::IDLE;
+        break;
+    }
+
+    return false;
+}
+
+/**
+ * @brief 仅放置物体到地图（简化版本）
+ * @param sequence 顺序枚举
+ * @return bool 如果完成返回true，否则返回false
+ */
+bool CarAction::placeOnlySequence(MaterialSequence sequence)
+{
+    // 简化版本的executeSequence，只执行放置操作
+    return executeSequence(sequence);
+}
+
+/**
+ * @brief 非阻塞抓取物料 - 状态机实现
+ * @return bool 如果完成返回true，否则返回false
  */
 bool CarAction::pickMaterial()
 {
-    if (!_isInitialized)
+    if (!_isInitialized) return false;
+
+    // 如果当前没有活动操作，初始化新操作
+    if (_actionState == ActionState::IDLE)
     {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
+        Vofa_FireWater("开始执行抓取物料动作序列\r\n");
+        _actionState = ActionState::PICK_SET_CYBERGEAR;
+        _actionTimer = HAL_GetTick();
         return false;
     }
 
-    Vofa_FireWater("开始执行抓取物料动作序列\r\n");
-
-    // 1. 设置云台到前方位置
-    if (!setCybergearPosition(CybergearPosition::FRONT))
+    // 执行状态机逻辑
+    switch (_actionState)
     {
-        return false;
-    }
-    waitForCybergear();
+    case ActionState::PICK_SET_CYBERGEAR:
+        // 1. 设置云台到前方位置
+        if (setCybergearPosition(CybergearPosition::FRONT))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PICK_SET_SERVO_POSITION;
+            Vofa_FireWater("云台已设置到前方位置, 准备设置舵机位置\r\n");
+        }
+        break;
 
-    // 2. 设置舵机到中心位置
-    if (!setServo2Position(ServoPosition::B))
-    {   // 中间位置
-        return false;
-    }
-    waitForServo2();
+    case ActionState::PICK_SET_SERVO_POSITION:
+        // 2. 设置舵机到中心位置
+        if (setServo2Position(ServoPosition::A, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(300)) return false;
+            _actionState = ActionState::PICK_OPEN_GRIPPER;
+            Vofa_FireWater("舵机已设置到中心位置, 准备打开爪子\r\n");
+        }
+        break;
 
-    // 3. 打开爪子
-    if (!setGripperState(GripperState::OPEN))
-    {
-        return false;
-    }
-    waitForServo3();
+    case ActionState::PICK_OPEN_GRIPPER:
+        // 3. 打开爪子
+        if (setGripperState(GripperState::OPEN, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(300)) return false;
+            _actionState = ActionState::PICK_LOWER_SLIDER;
+            Vofa_FireWater("爪子已打开, 准备下降滑轨\r\n");
+        }
+        break;
 
-    // 4. 下降滑轨到取料高度
-    if (!setSliderHeight(SliderHeight::PICK_FROM_TURNTABLE))
-    {
-        return false;
-    }
-    waitForSlider();
+    case ActionState::PICK_LOWER_SLIDER:
+        // 4. 下降滑轨到取料高度
+        if (setSliderHeight(SliderHeight::PICK_FROM_TURNTABLE))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PICK_CLOSE_GRIPPER;
+            Vofa_FireWater("滑轨已下降到取料高度, 准备关闭爪子\r\n");
+        }
+        break;
 
-    // 5. 关闭爪子抓取物料
-    if (!setGripperState(GripperState::CLOSE))
-    {
-        return false;
-    }
-    waitForServo3();
+    case ActionState::PICK_CLOSE_GRIPPER:
+        // 5. 关闭爪子抓取物料
+        if (setGripperState(GripperState::CLOSE, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::PICK_RAISE_SLIDER;
+            Vofa_FireWater("爪子已关闭抓取物料, 准备提升滑轨\r\n");
+        }
+        break;
 
-    // 6. 提升滑轨到临时存放高度
-    if (!setSliderHeight(SliderHeight::PLACE_ON_TEMP))
-    {
-        return false;
-    }
-    waitForSlider();
+    case ActionState::PICK_RAISE_SLIDER:
+        // 6. 提升滑轨到临时存放高度
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::COMPLETED;
+            Vofa_FireWater("滑轨已提升到临时存放高度, 抓取物料完成\r\n");
+        }
+        break;
 
-    Vofa_FireWater("抓取物料动作序列完成\r\n");
-    return true;
+    case ActionState::COMPLETED:
+        // 完成操作
+        _actionState = ActionState::IDLE;
+        return true;
+
+    default:
+        // 异常状态处理
+        Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
+        _actionState = ActionState::IDLE;
+        break;
+    }
+
+    return false;
 }
 
 /**
- * @brief 放置物料组合动作
- * @return bool 操作结果，true成功，false失败
+ * @brief 非阻塞放置物料 - 状态机实现
+ * @return bool 如果完成返回true，否则返回false
  */
 bool CarAction::placeMaterial()
 {
-    if (!_isInitialized)
+    if (!_isInitialized) return false;
+
+    // 如果当前没有活动操作，初始化新操作
+    if (_actionState == ActionState::IDLE)
     {
-        Vofa_FireWater("错误: CarAction未初始化\r\n");
+        Vofa_FireWater("开始执行放置物料动作序列\r\n");
+        _actionState = ActionState::PLACE_SET_CYBERGEAR;
+        _actionTimer = HAL_GetTick();
         return false;
     }
 
-    Vofa_FireWater("开始执行放置物料动作序列\r\n");
-
-    // 1. 设置云台到后方位置
-    if (!setCybergearPosition(CybergearPosition::BACK))
+    // 执行状态机逻辑
+    switch (_actionState)
     {
-        return false;
-    }
-    waitForCybergear();
+    case ActionState::PLACE_SET_CYBERGEAR:
+        // 1. 设置云台到后方位置
+        if (setCybergearPosition(CybergearPosition::BACK))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PLACE_SET_SERVO_POSITION;
+            Vofa_FireWater("云台已设置到后方位置, 准备设置舵机位置\r\n");
+        }
+        break;
 
-    // 2. 设置舵机到左侧或右侧位置
-    if (!setServo2Position(ServoPosition::C))
-    {   // 右侧位置
-        return false;
-    }
-    waitForServo2();
+    case ActionState::PLACE_SET_SERVO_POSITION:
+        // 2. 设置舵机到右侧位置
+        if (setServo2Position(ServoPosition::C, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(300)) return false;
+            _actionState = ActionState::PLACE_LOWER_SLIDER;
+            Vofa_FireWater("舵机已设置到右侧位置, 准备下降滑轨\r\n");
+        }
+        break;
 
-    // 3. 下降滑轨到放置高度
-    if (!setSliderHeight(SliderHeight::PLACE_ON_GROUND))
+    case ActionState::PLACE_LOWER_SLIDER:
+        // 3. 下降滑轨到放置高度
+        if (setSliderHeight(SliderHeight::PLACE_ON_GROUND))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PLACE_OPEN_GRIPPER;
+            Vofa_FireWater("滑轨已下降到放置高度, 准备打开爪子\r\n");
+        }
+        break;
+
+    case ActionState::PLACE_OPEN_GRIPPER:
+        // 4. 打开爪子释放物料
+        if (setGripperState(GripperState::OPEN, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::PLACE_RAISE_SLIDER;
+            Vofa_FireWater("爪子已打开释放物料, 准备提升滑轨\r\n");
+        }
+        break;
+
+    case ActionState::PLACE_RAISE_SLIDER:
+        // 5. 提升滑轨
+        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        {
+            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            _actionState = ActionState::PLACE_CLOSE_GRIPPER;
+            Vofa_FireWater("滑轨已提升, 准备关闭爪子\r\n");
+        }
+        break;
+
+    case ActionState::PLACE_CLOSE_GRIPPER:
+        // 6. 关闭爪子
+        if (setGripperState(GripperState::CLOSE, 200))
+        {
+            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            _actionState = ActionState::COMPLETED;
+            Vofa_FireWater("爪子已关闭, 放置物料完成\r\n");
+        }
+        break;
+
+    case ActionState::COMPLETED:
+        // 完成操作
+        _actionState = ActionState::IDLE;
+        return true;
+
+    default:
+        // 异常状态处理
+        Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
+        _actionState = ActionState::IDLE;
+        break;
+    }
+
+    return false;
+}
+
+/**
+ * @brief 根据位置选择相应的定位
+ * @param position 目标位置(1-3)
+ */
+void CarAction::positionToLocation(uint8_t position)
+{
+    if (!_isInitialized) return;
+
+    ServoPosition servoPos;
+
+    // 根据位置选择对应的舵机位置
+    switch (position)
     {
-        return false;
+    case 1:
+        servoPos = ServoPosition::A;   // 左侧
+        Vofa_FireWater("定位到位置1(左侧)\r\n");
+        break;
+    case 2:
+        servoPos = ServoPosition::B;   // 中间
+        Vofa_FireWater("定位到位置2(中间)\r\n");
+        break;
+    case 3:
+        servoPos = ServoPosition::C;   // 右侧
+        Vofa_FireWater("定位到位置3(右侧)\r\n");
+        break;
+    default: Vofa_FireWater("错误: 无效位置 %d\r\n", position); return;
     }
-    waitForSlider();
 
-    // 4. 打开爪子释放物料
-    if (!setGripperState(GripperState::OPEN))
-    {
-        return false;
-    }
-    waitForServo3();
-
-    // 5. 提升滑轨
-    if (!setSliderHeight(SliderHeight::PLACE_ON_TEMP))
-    {
-        return false;
-    }
-    waitForSlider();
-
-    // 6. 关闭爪子
-    if (!setGripperState(GripperState::CLOSE))
-    {
-        return false;
-    }
-    waitForServo3();
-
-    Vofa_FireWater("放置物料动作序列完成\r\n");
-    return true;
+    // 设置舵机位置
+    setServo2Position(servoPos);
 }
 
 /************************ COPYRIGHT(C) CITA **************************/

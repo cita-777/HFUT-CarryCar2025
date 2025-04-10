@@ -3,6 +3,7 @@
         "ios": "cpp",
         "dvc_vofa.h": "c",
         "cstdint": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "random": "cpp"
     }
 }

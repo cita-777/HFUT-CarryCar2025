@@ -220,10 +220,10 @@ bool Chassis::moveRight(uint32_t distance)
             CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
 
         // 触发同步运动
@@ -264,10 +264,10 @@ bool Chassis::moveLeft(uint32_t distance)
             CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+            CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
         EMMV5_Pos_Control(
-            CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
+            CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT, distance, false, true);
         HAL_Delay(1);
 
         // 触发同步运动
@@ -383,7 +383,7 @@ bool Chassis::rotateToAngle(float targetAngle)
     float angleError   = calculateAngleError(currentAngle, targetAngle);
 
     // 如果误差很小，认为已到达目标角度
-    if (fabs(angleError) < 2.0f)
+    if (fabs(angleError) < 0.4f)
     {
         if (_motorBusy)
         {
@@ -410,14 +410,17 @@ bool Chassis::rotateToAngle(float targetAngle)
 
     // 适当调整旋转系数
     if (rotationAngle > 90.0f)
-        rotationAngle *= 1.1f;
+        rotationAngle *= 1.2f;
     else if (rotationAngle > 45.0f)
-        rotationAngle *= 1.3f;
+        rotationAngle *= 10.4f;
+    else if (rotationAngle > 8.0f)
+        rotationAngle *= 6.5f;
     else
         rotationAngle *= 1.5f;
 
+
     // 限制最大旋转角度
-    if (rotationAngle > 90.0f) rotationAngle = 90.0f;
+    if (rotationAngle > 1500.0f) rotationAngle = 1500.0f;
 
     // 如果是继续调整，记录日志
     if (_motorBusy)
@@ -432,7 +435,7 @@ bool Chassis::rotateToAngle(float targetAngle)
     }
 
     // 将角度转换为脉冲数 (假设100脉冲=1度，需要根据实际情况调整)
-    const float PULSE_PER_DEGREE = 100.0f;   // 每度对应的脉冲数
+    const float PULSE_PER_DEGREE = 50.0f;   // 每度对应的脉冲数
     uint32_t    rotationPulse    = (uint32_t)(rotationAngle * PULSE_PER_DEGREE);
 
     // 确保至少有一定数量的脉冲
@@ -553,7 +556,102 @@ bool Chassis::checkMotorResponse() const
 
     return g_motorResponse;
 }
+/**
+ * @brief 移动到指定坐标（麦克纳姆轮矢量解算方式）
+ * @param targetX_mm 目标X坐标(毫米)
+ * @param targetY_mm 目标Y坐标(毫米)
+ * @param speed 速度参数
+ * @param acc 加速度参数
+ * @return 是否完成移动，true完成，false未完成
+ */
+bool Chassis::moveToCoordinates(int32_t targetX_mm, int32_t targetY_mm, int16_t speed, uint16_t acc)
+{
+    if (!_initialized) return false;
 
+    // 新动作初始化
+    if (!_motorBusy)
+    {
+        // 重置电机响应标志
+        resetMotorResponse();
+
+        // 麦克纳姆轮解算：从mm到脉冲数的转换
+        // 根据您的示例代码，脉冲数 = 距离(mm) * 16.15
+        const float PULSE_FACTOR = 16.15f;
+        int32_t     tarX         = (int32_t)(targetX_mm * PULSE_FACTOR);
+        int32_t     tarY         = (int32_t)(targetY_mm * PULSE_FACTOR);
+
+        // 计算速度分量
+        float distance = sqrtf(tarX * tarX + tarY * tarY);
+        if (distance < 1.0f)
+        {
+            Vofa_FireWater("目标距离太近，无需移动\r\n");
+            return true;
+        }
+
+        // 速度解算
+        int32_t v2 = (int32_t)(speed * fabsf(tarY - tarX) / (1.4f * distance));
+        int32_t v1 = (int32_t)(speed * fabsf(tarY + tarX) / (1.4f * distance));
+
+        // 防止速度为0
+        if (v1 < 10) v1 = 10;
+        if (v2 < 10) v2 = 10;
+
+        Vofa_FireWater("移动到坐标: (%ld, %ld)mm, 脉冲数: (%ld, %ld), 速度: V1=%ld, V2=%ld\r\n",
+                       targetX_mm,
+                       targetY_mm,
+                       tarX,
+                       tarY,
+                       v1,
+                       v2);
+
+        // RF=1, RB=2, LF=4, LB=3 (根据您的代码对应关系)
+
+        // Y-X分量控制(电机2和4)
+        if (tarY - tarX >= 0)
+        {
+            // 正向旋转
+            EMMV5_Pos_Control(CHASSIS_MOTOR_RB, CHASSIS_DIR_CW, v2, acc, tarY - tarX, false, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(CHASSIS_MOTOR_LF, CHASSIS_DIR_CCW, v2, acc, tarY - tarX, false, true);
+            HAL_Delay(1);
+        }
+        else
+        {
+            // 反向旋转
+            EMMV5_Pos_Control(CHASSIS_MOTOR_RB, CHASSIS_DIR_CCW, v2, acc, tarX - tarY, false, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(CHASSIS_MOTOR_LF, CHASSIS_DIR_CW, v2, acc, tarX - tarY, false, true);
+            HAL_Delay(1);
+        }
+
+        // X+Y分量控制(电机1和3)
+        if (tarX + tarY >= 0)
+        {
+            // 正向旋转
+            EMMV5_Pos_Control(CHASSIS_MOTOR_RF, CHASSIS_DIR_CCW, v1, acc, tarX + tarY, false, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(CHASSIS_MOTOR_LB, CHASSIS_DIR_CW, v1, acc, tarX + tarY, false, true);
+            HAL_Delay(1);
+        }
+        else
+        {
+            // 反向旋转
+            EMMV5_Pos_Control(CHASSIS_MOTOR_RF, CHASSIS_DIR_CW, v1, acc, -(tarX + tarY), false, true);
+            HAL_Delay(1);
+            EMMV5_Pos_Control(CHASSIS_MOTOR_LB, CHASSIS_DIR_CCW, v1, acc, -(tarX + tarY), false, true);
+            HAL_Delay(1);
+        }
+
+        // 触发同步运动
+        syncMotion();
+
+        _motorBusy = true;
+        return false;
+    }
+
+    // 检查完成状态
+    return checkMotionStatus();
+}
 /**
  * @brief 检查电机运动状态(包含超时保护)
  * @return 是否完成，true完成，false未完成

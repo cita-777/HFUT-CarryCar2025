@@ -29,7 +29,7 @@
 
 // 底盘参数定义
 #define CHASSIS_MOTOR_SPEED 500   // 电机基础速度
-#define CHASSIS_ACC_DEFAULT 100   // 默认加速度
+#define CHASSIS_ACC_DEFAULT 150   // 默认加速度
 #define CHASSIS_MOTOR_DELAY 50    // 电机到位后额外等待时间(ms)
 
 /**
@@ -53,7 +53,7 @@ public:
     bool moveBackward(uint32_t distance);   // 后退
     bool moveLeft(uint32_t distance);       // 左移
     bool moveRight(uint32_t distance);      // 右移
-
+    bool moveToCoordinates(int32_t targetX_mm, int32_t targetY_mm, int16_t speed, uint16_t acc);
     // 转向功能
     bool turnLeft(uint32_t angle);           // 左转
     bool turnRight(uint32_t angle);          // 右转

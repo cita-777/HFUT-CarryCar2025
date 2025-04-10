@@ -85,10 +85,10 @@ uint8_t HWT101Communicator::processData()
     if (_dataReadyFlag)
     {
         // Vofa_FireWater("接收数据: ");
-        //  for (int i = 0; i < HWT101_DATA_LENGTH; i++)
-        //  {
-        //      Vofa_FireWater("%02X ", _rxBuffer[i]);
-        //  }
+        // for (int i = 0; i < HWT101_DATA_LENGTH; i++)
+        // {
+        //     Vofa_FireWater("%02X ", _rxBuffer[i]);
+        // }
         // Vofa_FireWater("\r\n");
         //  计算校验和
         uint8_t sum = checkSum(_rxBuffer);

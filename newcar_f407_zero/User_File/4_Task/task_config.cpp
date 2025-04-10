@@ -37,11 +37,11 @@ void chassis_move_task();
 // 示例任务配置: {Task_Example, "Task_Example", 1},
 // 可添加任务项，比如:{NULL, NULL, 0},
 TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
-    //{main_proc_run, "main_proc_run", 1},               // 跑地图主逻辑任务
+    {main_proc_run, "main_proc_run", 1},               // 跑地图主逻辑任务
     {feed_dog, "feed_dog", 1},                         // 喂狗任务
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
     {hwt101_proc, "hwt101_proc", 1},                   // HWT101处理yaw任务
-    {chassis_move_task, "chassis_move_task", 1},
+    //{chassis_move_task, "chassis_move_task", 1},
     //{test, "test", 1},                                 // 电机等测试（test）
     //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
     //{servo_proc, "servo_proc", 1},     // 舵机控制任务（test）
@@ -168,12 +168,12 @@ void Task_InitAll(void)
     {
         Vofa_FireWater("车辆动作控制初始化失败\r\n");
     }
-    Task_EnableHandle("chassis_move_task");
-    // g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
-    // while (!g_chassis->moveBackward(2000))
-    // {
-    //     HAL_Delay(10);   // 短暂延时避免过度占用CPU
-    // }
+    // Task_EnableHandle("chassis_move_task");
+    //  g_carAction->setSliderHeight(SliderHeight::PLACE_ON_TEMP);
+    //  while (!g_chassis->moveBackward(2000))
+    //  {
+    //      HAL_Delay(10);   // 短暂延时避免过度占用CPU
+    //  }
 
     // // // 前进完成后等待2秒
     // // HAL_Delay(2000);

@@ -5594,6 +5594,7 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/2_Behavior_State_Machine/mai
  D:/Desktop/new_carrycar/newcar_f407_zero/User_File/1_Middleware/1_Driver/TIM/drv_tim.h
  D:/Desktop/new_carrycar/newcar_f407_zero/User_File/1_Middleware/1_Driver/UART/drv_uart.h
  D:/Desktop/new_carrycar/newcar_f407_zero/User_File/2_Device/HWT101/dvc_hwt101.h
+ D:/Desktop/new_carrycar/newcar_f407_zero/User_File/2_Device/Jetson/dvc_jetson.h
  D:/Desktop/new_carrycar/newcar_f407_zero/User_File/2_Device/Motor/Motor_CyberGear/dvc_cybergear.h
  D:/Desktop/new_carrycar/newcar_f407_zero/User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.h
  D:/Desktop/new_carrycar/newcar_f407_zero/User_File/2_Device/Servo/dvc_fsuServo.h

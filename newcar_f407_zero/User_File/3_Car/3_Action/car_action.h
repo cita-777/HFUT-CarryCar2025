@@ -84,7 +84,8 @@ enum class ActionState
     CATCH_ROTATE_TURNTABLE,
     CATCH_RELEASE_GRIPPER,
     CATCH_FINAL_RAISE,
-
+    CATCH_DOWN_SLIDER,
+    CATCH_POSITION_FRONT,
     // 放置状态
     PUT_MOVE_TO_TARGET,
     PUT_POSITION_LOCATION,
@@ -139,19 +140,19 @@ enum class MapActionState
 };
 
 // 设置角度参数
-#define SERVO2_A_ANGLE -30.0f    // A位置角度
-#define SERVO2_B_ANGLE 90.0f     // B位置角度
-#define SERVO2_C_ANGLE -139.0f   // C位置角度
-
+#define SERVO2_A_ANGLE -40.0f    // A位置角度
+#define SERVO2_B_ANGLE 74.0f     // B位置角度
+#define SERVO2_C_ANGLE -160.0f   // C位置角度
+// #define SERVO2_C_ANGLE -130.0f      // C位置角度
 #define SERVO3_OPEN_ANGLE 0.0f      // 爪子打开角度
-#define SERVO3_CLOSE_ANGLE -47.0f   // 爪子关闭角度
+#define SERVO3_CLOSE_ANGLE -59.0f   // 爪子关闭角度
 
 #define CYBERGEAR_FRONT_ANGLE -3.15f   // 前方位置角度
 #define CYBERGEAR_BACK_ANGLE -0.45f    // 后方位置角度
 
 #define SLIDER_MOSTHIGH 0.0f
 #define SLIDER_PICK_FROM_TURNTABLE 100000.0f   // 从转盘上拿取物料的高度
-#define SLIDER_PLACE_ON_TEMP 30000.0f          // 放到车上转盘临时存放的高度
+#define SLIDER_PLACE_ON_TEMP 33000.0f          // 放到车上转盘临时存放的高度
 #define SLIDER_PLACE_ON_GROUND 150000.0f       // 放到地上的高度
 #define SLIDER_STACKING 130000.0f              // 码垛的高度
 

@@ -9,12 +9,12 @@
 
 #include "main_proc.h"
 #include "1_Middleware/1_Driver/TIM/drv_tim.h"
+#include "2_Device/Jetson/dvc_jetson.h"
 #include "2_Device/Vofa/dvc_vofa.h"
 #include "3_Car/1_Chassis/car_chassis.h"   // 添加底盘头文件
 #include "3_Car/3_Action/car_action.h"
 #include <stdbool.h>
 #include <stdint.h>
-
 // 定义测试状态
 enum
 {
@@ -349,20 +349,35 @@ static bool State_PlaceMaterial(void)
 static bool State_CatchToTurntable(void)
 {
     static bool action_started = false;
+    static int  test_position  = 1;   // 当前测试位置：1(左侧)、2(中间)、3(右侧)
 
     if (!action_started)
     {
-        Vofa_FireWater("开始抓取物体到转盘测试 - 位置2(中间)\r\n");
-        g_carAction->catchObjToTurntable(2);   // 中间位置
+        Vofa_FireWater("开始抓取物体到转盘测试 - 位置%d\r\n", test_position);
+        g_carAction->catchObjToTurntable(test_position);
         action_started = true;
         return false;
     }
 
-    if (g_carAction->catchObjToTurntable(2))
+    if (g_carAction->catchObjToTurntable(test_position))
     {
-        Vofa_FireWater("抓取物体到转盘测试完成\r\n");
-        action_started = false;
-        return true;
+        Vofa_FireWater("抓取物体到转盘位置%d测试完成\r\n", test_position);
+
+        // 切换到下一个测试位置
+        test_position++;
+
+        if (test_position > 3)   // 测试完1、2、3三个位置后完成
+        {
+            Vofa_FireWater("所有位置抓取到转盘测试完成\r\n");
+            test_position  = 1;   // 重置为初始位置，准备下次测试
+            action_started = false;
+            return true;
+        }
+        else
+        {
+            action_started = false;   // 重置标志，准备下一个位置测试
+            return false;
+        }
     }
 
     return false;
@@ -437,8 +452,362 @@ static bool State_Done(void)
     return false;
 }
 
+static bool State_One(void)
+{
+    static int   stage            = 0;
+    static bool  action_completed = false;
+    static int   current_position = 1;        // 当前抓取位置：1、2、3
+    static float move_scale       = 200.0f;   // 移动距离调整系数，可根据需要修改
+    static bool  message_sent     = false;    // 消息是否已发送标志
 
+    switch (stage)
+    {
+    case 0:   // 向左移动150个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("开始任务: 向左移动150个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
 
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveLeft((uint32_t)(150 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向左移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 1;
+        return false;
+
+    case 1:   // 向前移动1450个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("向前移动1450个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveForward((uint32_t)(1450 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向前移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 2;
+        return false;
+
+    case 2:   // 向右移动50个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("向右移动50个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveRight((uint32_t)(50 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向右移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 3;
+        return false;
+
+    case 3:   // 向Jetson发送已到达原料区的信号
+        Vofa_FireWater("已到达原料区，发送信号\r\n");
+        g_jetson->sendZoneReached(ZONE_RAW_MATERIAL);
+        stage = 4;
+        return false;
+
+    case 4:   // 等待Jetson发送可抓取信号
+        if (g_jetson->canGrab())
+        {
+            Vofa_FireWater("收到可抓取信号，开始抓取操作\r\n");
+            stage        = 5;
+            message_sent = false;
+        }
+        else
+        {
+            static uint32_t last_print_time = 0;
+            uint32_t        current_time    = HAL_GetTick();
+
+            // 每1000ms打印一次等待消息，避免刷屏
+            if (current_time - last_print_time >= 1000)
+            {
+                Vofa_FireWater("等待可抓取信号...\r\n");
+                last_print_time = current_time;
+            }
+
+            if (!TIM_1ms.DelayNonBlocking(200)) return false;
+        }
+        return false;
+
+    case 5:   // 执行抓取到转盘的操作
+        if (!message_sent)
+        {
+            Vofa_FireWater("开始抓取物体到转盘位置%d\r\n", current_position);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_carAction->catchObjToTurntable(current_position);
+            return false;
+        }
+
+        Vofa_FireWater("抓取到转盘位置%d完成\r\n", current_position);
+        current_position++;
+        action_completed = false;
+        message_sent     = false;
+
+        if (current_position <= 3)
+        {
+            return false;   // 继续下一个位置的抓取
+        }
+
+        // 所有位置都抓取完成
+        Vofa_FireWater("所有抓取任务完成\r\n");
+        stage            = 0;
+        current_position = 1;
+        return true;
+    }
+
+    return false;
+}
+static bool State_Two(void)
+{
+    static int   stage            = 0;
+    static bool  action_completed = false;
+    static float move_scale       = 200.0f;   // 移动距离调整系数
+    static bool  message_sent     = false;    // 消息是否已发送标志
+    static char  qr_code[4]       = {0};      // 存储QR码内容
+
+    switch (stage)
+    {
+    case 0:   // 向左移动50个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("开始任务2: 向左移动50个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveLeft((uint32_t)(50 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向左移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 1;
+        return false;
+
+    case 1:   // 向后移动400个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("向后移动400个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveBackward((uint32_t)(400 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向后移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 2;
+        return false;
+
+    case 2:   // 转向到90度
+        if (!message_sent)
+        {
+            Vofa_FireWater("转向到90度\r\n");
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->rotateToAngle(90);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("转向完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 3;
+        return false;
+
+    case 3:   // 向后移动1720个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("向后移动1720个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveBackward((uint32_t)(1720 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向后移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 4;
+        return false;
+
+    case 4:   // 转向到180度
+        if (!message_sent)
+        {
+            Vofa_FireWater("转向到180度\r\n");
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->rotateToAngle(180);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("转向完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 5;
+        return false;
+
+    case 5:   // 向右移动50个单位
+        if (!message_sent)
+        {
+            Vofa_FireWater("向右移动50个单位，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveRight((uint32_t)(50 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+
+        Vofa_FireWater("向右移动完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 6;
+        return false;
+
+    case 6:   // 向Jetson发送已到达粗加工区的信号
+        Vofa_FireWater("已到达粗加工区，发送信号\r\n");
+        g_jetson->sendZoneReached(ZONE_ROUGH_PROCESSING);
+        stage = 7;
+        return false;
+
+    case 7:   // 等待Jetson发送QR码信息
+        // 获取QR码字符串
+        const char* qr_string = g_jetson->getQRCodeString();
+        if (qr_string && qr_string[0] != '\0')
+        {
+            // 复制前3个字符作为QR码顺序
+            strncpy(qr_code, qr_string, 3);
+            qr_code[3] = '\0';
+
+            Vofa_FireWater("收到QR码信息: %s，开始执行相应操作\r\n", qr_code);
+            stage        = 8;
+            message_sent = false;
+        }
+        else
+        {
+            static uint32_t last_print_time = 0;
+            uint32_t        current_time    = HAL_GetTick();
+
+            // 每1000ms打印一次等待消息，避免刷屏
+            if (current_time - last_print_time >= 1000)
+            {
+                Vofa_FireWater("等待QR码信息...\r\n");
+                last_print_time = current_time;
+            }
+
+            if (!TIM_1ms.DelayNonBlocking(200)) return false;
+        }
+        return false;
+
+    case 8:   // 根据QR码执行不同的放置序列
+        if (!message_sent)
+        {
+            Vofa_FireWater("执行QR码 %s 对应的放置序列\r\n", qr_code);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            // 根据QR码选择不同的放置顺序
+            if (qr_code[0] == '2' && qr_code[1] == '1' && qr_code[2] == '3')
+            {
+                action_completed = g_carAction->executeSequence(MaterialSequence::SEQ_213);
+            }
+            else if (qr_code[0] == '2' && qr_code[1] == '3' && qr_code[2] == '1')
+            {
+                action_completed = g_carAction->executeSequence(MaterialSequence::SEQ_231);
+            }
+            else if (qr_code[0] == '1' && qr_code[1] == '2' && qr_code[2] == '3')
+            {
+                action_completed = g_carAction->executeSequence(MaterialSequence::SEQ_123);
+            }
+            else if (qr_code[0] == '1' && qr_code[1] == '3' && qr_code[2] == '2')
+            {
+                action_completed = g_carAction->executeSequence(MaterialSequence::SEQ_132);
+            }
+            else if (qr_code[0] == '3' && qr_code[1] == '1' && qr_code[2] == '2')
+            {
+                action_completed = g_carAction->executeSequence(MaterialSequence::SEQ_312);
+            }
+            else if (qr_code[0] == '3' && qr_code[1] == '2' && qr_code[2] == '1')
+            {
+                action_completed = g_carAction->executeSequence(MaterialSequence::SEQ_321);
+            }
+            else
+            {
+                Vofa_FireWater("错误: 无效的QR码 %s\r\n", qr_code);
+                action_completed = true;   // 视为完成，跳过无效的QR码
+            }
+            return false;
+        }
+
+        Vofa_FireWater("放置序列执行完成\r\n");
+        stage            = 0;   // 重置为初始阶段，准备下一次任务
+        action_completed = false;
+        message_sent     = false;
+        return true;   // 整个State_Two任务完成
+    }
+
+    return false;
+}
 // 当前状态索引，初始为初始化状态
 static uint8_t currentState = PROC_STATE_INIT;
 // 手动设置状态的标志
@@ -447,15 +816,17 @@ static bool manualOverride = false;
 static ProcHandler_t procHandlers[PROC_STATE_MAX] = {
     State_Init,   // 初始化状态
                   // State_ServoTest,   // 舵机测试
-    //   State_GripperTest,     // 爪子测试
-    //  State_CybergearTest,   // 云台测试
-    // State_SliderTest,   // 滑轨测试
-    //    State_ChassisTest,   // 底盘测试（新增）
-    //    State_PickMaterial,       // 抓取物料测试
-    //    State_PlaceMaterial,      // 放置物料测试
-    State_CatchToTurntable,   // 抓取物体到转盘测试
-    //    State_PutToMap,           // 放置物体到地图测试
-    //    State_SequenceTest,       // 顺序执行测试
+                  //   State_GripperTest,     // 爪子测试
+                  //  State_CybergearTest,   // 云台测试
+                  // State_SliderTest,   // 滑轨测试
+                  //    State_ChassisTest,   // 底盘测试（新增）
+                  //    State_PickMaterial,       // 抓取物料测试
+                  //    State_PlaceMaterial,      // 放置物料测试
+    // State_CatchToTurntable,   // 抓取物体到转盘测试
+    //     State_PutToMap,           // 放置物体到地图测试
+    //     State_SequenceTest,       // 顺序执行测试
+    State_One,
+    State_Two,
     State_Done   // 测试完成
 };
 // 状态机处理函数

@@ -239,6 +239,10 @@ bool CarAction::setSliderHeight(SliderHeight height)
  */
 bool CarAction::catchObjToTurntable(uint8_t position)
 {
+    // 声明静态变量（放在函数开头，便于管理）
+    static bool msgSent  = false;
+    static bool msgSent1 = false;
+    static bool msgSent2 = false;
     if (!_isInitialized) return false;
 
     // 如果当前没有活动操作，初始化新操作
@@ -248,6 +252,10 @@ bool CarAction::catchObjToTurntable(uint8_t position)
         _currentPosition = position;
         _actionState     = ActionState::CATCH_OPEN_GRIPPER;
         _actionTimer     = HAL_GetTick();
+        // 重置静态变量，确保每次新操作时滑轨命令都会发送
+        msgSent  = false;
+        msgSent1 = false;
+        msgSent2 = false;
         return false;
     }
 
@@ -258,7 +266,7 @@ bool CarAction::catchObjToTurntable(uint8_t position)
         // 打开爪子
         if (setGripperState(GripperState::OPEN, 200))
         {
-            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            if (!TIM_1ms.DelayNonBlocking(400)) return false;
             _actionState = ActionState::CATCH_LOWER_TO_OBJECT;
             Vofa_FireWater("爪子已打开, 准备下降滑轨\r\n");
         }
@@ -266,19 +274,21 @@ bool CarAction::catchObjToTurntable(uint8_t position)
 
     case ActionState::CATCH_LOWER_TO_OBJECT:
         // 下降到物体位置
-        if (setSliderHeight(SliderHeight::PICK_FROM_TURNTABLE))
+        if (!msgSent)
         {
-            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
-            _actionState = ActionState::CATCH_CLOSE_GRIPPER;
-            Vofa_FireWater("滑轨已下降, 准备关闭爪子\r\n");
+            setSliderHeight(SliderHeight::PICK_FROM_TURNTABLE);
+            msgSent = true;
         }
+        if (!TIM_1ms.DelayNonBlocking(700)) return false;
+        _actionState = ActionState::CATCH_CLOSE_GRIPPER;
+        Vofa_FireWater("滑轨已下降, 准备关闭爪子\r\n");
         break;
 
     case ActionState::CATCH_CLOSE_GRIPPER:
         // 关闭爪子抓取物体
         if (setGripperState(GripperState::CLOSE, 200))
         {
-            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            if (!TIM_1ms.DelayNonBlocking(400)) return false;
             _actionState = ActionState::CATCH_RAISE_SLIDER;
             Vofa_FireWater("爪子已关闭, 准备提升滑轨\r\n");
         }
@@ -286,9 +296,9 @@ bool CarAction::catchObjToTurntable(uint8_t position)
 
     case ActionState::CATCH_RAISE_SLIDER:
         // 提升滑轨
-        if (setSliderHeight(SliderHeight::PLACE_ON_TEMP))
+        if (setSliderHeight(SliderHeight::MOST_HIGH))
         {
-            if (!TIM_1ms.DelayNonBlocking(1000)) return false;
+            if (!TIM_1ms.DelayNonBlocking(700)) return false;
             _actionState = ActionState::CATCH_POSITION_LOCATION;
             Vofa_FireWater("滑轨已提升, 准备定位\r\n");
         }
@@ -307,17 +317,29 @@ bool CarAction::catchObjToTurntable(uint8_t position)
         // 旋转转盘
         if (setCybergearPosition(CybergearPosition::BACK))
         {
-            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
-            _actionState = ActionState::CATCH_RELEASE_GRIPPER;
+            if (!TIM_1ms.DelayNonBlocking(800)) return false;
+            _actionState = ActionState::CATCH_DOWN_SLIDER;
             Vofa_FireWater("云台已旋转, 准备释放物体\r\n");
         }
+        break;
+
+    case ActionState::CATCH_DOWN_SLIDER:
+        // 下降滑轨
+        if (!msgSent1)
+        {
+            setSliderHeight(SliderHeight::PLACE_ON_TEMP);
+            msgSent1 = true;
+        }
+        if (!TIM_1ms.DelayNonBlocking(700)) return false;
+        _actionState = ActionState::CATCH_RELEASE_GRIPPER;
+        Vofa_FireWater("滑轨已下\r\n");
         break;
 
     case ActionState::CATCH_RELEASE_GRIPPER:
         // 释放爪子
         if (setGripperState(GripperState::OPEN, 200))
         {
-            if (!TIM_1ms.DelayNonBlocking(500)) return false;
+            if (!TIM_1ms.DelayNonBlocking(400)) return false;
             _actionState = ActionState::CATCH_FINAL_RAISE;
             Vofa_FireWater("物体已释放, 准备最终提升\r\n");
         }
@@ -325,24 +347,41 @@ bool CarAction::catchObjToTurntable(uint8_t position)
 
     case ActionState::CATCH_FINAL_RAISE:
         // 最终提升
-        if (setSliderHeight(SliderHeight::SLIDER_MOSTHIGH))
+        if (!msgSent2)
         {
-            if (!TIM_1ms.DelayNonBlocking(1500)) return false;
-            // 直接完成任务，跳过前进
+            setSliderHeight(SliderHeight::MOST_HIGH);
+            msgSent2 = true;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(800)) return false;
+        // 直接完成任务，跳过前进
+        _actionState = ActionState::CATCH_POSITION_FRONT;
+        Vofa_FireWater("滑轨最终提升完成, 抓取任务结束\r\n");
+        break;
+
+    case ActionState::CATCH_POSITION_FRONT:
+        if (setCybergearPosition(CybergearPosition::FRONT))
+        {
+            if (!TIM_1ms.DelayNonBlocking(900)) return false;
             _actionState = ActionState::COMPLETED;
-            Vofa_FireWater("滑轨最终提升完成, 抓取任务结束\r\n");
+            Vofa_FireWater("云台已旋转, 准备释放物体\r\n");
         }
         break;
 
     case ActionState::COMPLETED:
         // 重置状态机
         _actionState = ActionState::IDLE;
+        // 也可以在这里重置静态变量，但在IDLE初始化更合适
         return true;
 
     default:
         // 异常状态处理
         Vofa_FireWater("错误: 非法状态 %d\r\n", (int)_actionState);
         _actionState = ActionState::IDLE;
+        // 出错时也重置静态变量
+        msgSent  = false;
+        msgSent1 = false;
+        msgSent2 = false;
         break;
     }
 

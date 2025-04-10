@@ -43,10 +43,10 @@ CMakeFiles/newcar_f407_zero.elf.dir/Core/Src/main.c.obj: \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/can.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/main.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/dma.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/gpio.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/iwdg.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/tim.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/usart.h \
- D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/gpio.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_x42.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
  C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \

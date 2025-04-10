@@ -57,14 +57,15 @@ CMakeFiles/newcar_f407_zero.elf.dir/User_File/3_Car/2_Behavior_State_Machine/mai
  C:/msys64/mingw64/arm-none-eabi/include/sys/_locale.h \
  C:/msys64/mingw64/arm-none-eabi/include/strings.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/string.h \
- D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Jetson/dvc_jetson.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/1_Middleware/1_Driver/UART/drv_uart.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/usart.h \
- C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \
  C:/msys64/mingw64/arm-none-eabi/include/stdio.h \
+ C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stdarg.h \
  C:/msys64/mingw64/arm-none-eabi/include/sys/stdio.h \
+ D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Vofa/dvc_vofa.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\User_File/3_Car/1_Chassis/car_chassis.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/HWT101/dvc_hwt101.h \
- D:\Desktop\new_carrycar\newcar_f407_zero\User_File/1_Middleware/1_Driver/UART/drv_uart.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\User_File/2_Device/Motor/Motor_ZDT42/dvc_zdt_emmv5.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\User_File/1_Middleware/1_Driver/CAN/drv_can.h \
  D:\Desktop\new_carrycar\newcar_f407_zero\Core\Inc/can.h \

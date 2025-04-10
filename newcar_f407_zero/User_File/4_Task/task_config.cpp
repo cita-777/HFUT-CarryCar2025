@@ -136,8 +136,8 @@ void Task_InitAll(void)
     {
         Vofa_FireWater("Cybergear init success\r\n");
         // 添加小角度测试转动，参数：电机指针，力矩，位置，速度，kp，kd
-        // motor_controlmode(&mi_motor[0], 0.5f, 0.1f, 1.0f, 0.5f, 0.1f);
-        // HAL_Delay(100);   // 给电机一点响应时间
+        motor_controlmode(&mi_motor[0], 0.0f, -3.15f, 0, 0.55f, 0.1f);
+        HAL_Delay(500);   // 给电机一点响应时间
     }
     else
     {

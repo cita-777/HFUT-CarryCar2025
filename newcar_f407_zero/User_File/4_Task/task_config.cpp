@@ -32,6 +32,7 @@ void hwt101_proc();
 void servo_proc();
 void jetson_test();
 void chassis_move_task();
+void jetson_update_task();
 /*------------------------------------task注册表------------------------------------*/
 // 任务配置表, 根据需要添加任务配置项，示例中默认使能状态为1（使能）
 // 示例任务配置: {Task_Example, "Task_Example", 1},
@@ -41,6 +42,7 @@ TaskConfig_t taskConfigTable[TASK_MAX_NUM] = {
     {feed_dog, "feed_dog", 1},                         // 喂狗任务
     {tjc_start_detection, "tjc_start_detection", 1},   // TJC检测一键启动任务
     {hwt101_proc, "hwt101_proc", 1},                   // HWT101处理yaw任务
+    {jetson_update_task, "jetson_update_task", 1},     // Jetson数据更新任务
     //{chassis_move_task, "chassis_move_task", 1},
     //{test, "test", 1},                                 // 电机等测试（test）
     //{jetson_test, "jetson_test", 0},   // Jetson通信测试任务
@@ -64,11 +66,11 @@ static ChassisTaskState chassis_state = IDLE;
 /*------------------------------------静态类/全局变量------------------------------------*/
 float                     a = 0.0f;
 float                     b = 0.0f;
-static HWT101Communicator hwt101(&huart2);             // hwt101通讯类
-static JetsonCommunicator jc(&huart5);                 // jetson通讯类
-fsuservo::FSUS_Protocol*  g_servoProtocol = nullptr;   // 舵机通讯类
-fsuservo::FSUS_Servo*     g_servo1        = nullptr;   // ID为1的舵机实例
-fsuservo::FSUS_Servo*     g_servo3        = nullptr;   // ID为3的舵机实例
+static HWT101Communicator hwt101(&huart2);   // hwt101通讯类
+// static JetsonCommunicator jc(&huart5);                 // jetson通讯类
+fsuservo::FSUS_Protocol* g_servoProtocol = nullptr;   // 舵机通讯类
+fsuservo::FSUS_Servo*    g_servo1        = nullptr;   // ID为1的舵机实例
+fsuservo::FSUS_Servo*    g_servo3        = nullptr;   // ID为3的舵机实例
 /*------------------------------------task执行频率配置------------------------------------*/
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
@@ -92,14 +94,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
         if (count_num3 == 5)
         {
             count_num3 = 0;
-            Task_EnableHandle("test");
+            // Task_EnableHandle("test");
             Task_EnableHandle("hwt101_proc");
-            Task_EnableHandle("servo_proc");
+            // Task_EnableHandle("servo_proc");
         }
 
         if (count_num2 == 100)
         {
-            Task_EnableHandle("jetson_test");
+            // Task_EnableHandle("jetson_test");
+            Task_EnableHandle("jetson_update_task");
             Task_EnableHandle("feed_dog");
             count_num2 = 0;
         }
@@ -118,8 +121,13 @@ void Task_InitAll(void)
     {
         Vofa_FireWater("HWT101 init failed: %d\r\n", ret);
     }
-    jc.init();
+    g_jetson = new JetsonCommunicator(&huart5);
+    g_jetson->init();
 
+    //  g_jetson->sendZoneReached(ZONE_RAW_MATERIAL);
+    //  g_jetson->sendZoneReached(ZONE_RAW_MATERIAL);
+    //  jc.sendZoneReached(ZONE_RAW_MATERIAL);
+    //  g_jetson->sendZoneReached(ZONE_PROCESSING);
     g_servoProtocol = new fsuservo::FSUS_Protocol(&huart4, fsuservo::FSUS_BAUDRATE_115200);
     g_servo1        = new fsuservo::FSUS_Servo(1, g_servoProtocol);   // 转盘
     g_servo3        = new fsuservo::FSUS_Servo(3, g_servoProtocol);   // 夹爪
@@ -131,10 +139,11 @@ void Task_InitAll(void)
     g_servo3->init();
     HAL_Delay(1);
     g_servo3->setAngle(0, 200);
-    HAL_Delay(1000);
+    HAL_Delay(2000);
     if (check_and_init_cybergear(&mi_motor[0], 0x7F, Motion_mode, 1))
     {
         Vofa_FireWater("Cybergear init success\r\n");
+        HAL_Delay(10);
         // 添加小角度测试转动，参数：电机指针，力矩，位置，速度，kp，kd
         motor_controlmode(&mi_motor[0], 0.0f, -3.15f, 0, 0.55f, 0.1f);
         HAL_Delay(500);   // 给电机一点响应时间
@@ -199,7 +208,20 @@ void Task_InitAll(void)
     }
 }
 /*------------------------------------task实现函数------------------------------------*/
+/**
+ * @brief Jetson数据更新任务
+ */
+void jetson_update_task()
+{
+    // 调用更新显示方法处理接收到的数据
+    if (g_jetson != nullptr)
+    {
+        g_jetson->updateDisplay();
+    }
 
+    // 完成后禁用任务，等待下次触发
+    Task_DisableHandle("jetson_update_task");
+}
 // 实现底盘移动任务
 void chassis_move_task()
 {
@@ -529,7 +551,7 @@ void jetson_test()
         if (HAL_GetTick() - last_time > 1000)
         {   // 等待1秒
             Vofa_FireWater("发送区域到达通知: ZONE_RAW_MATERIAL\r\n");
-            jc.sendZoneReached(ZONE_RAW_MATERIAL);
+            g_jetson->sendZoneReached(ZONE_RAW_MATERIAL);   // 将jc改为g_jetson
             test_stage++;
             last_time = HAL_GetTick();
         }
@@ -539,7 +561,7 @@ void jetson_test()
         if (HAL_GetTick() - last_time > 1000)
         {
             Vofa_FireWater("发送区域到达通知: ZONE_ROUGH_PROCESSING\r\n");
-            jc.sendZoneReached(ZONE_ROUGH_PROCESSING);
+            g_jetson->sendZoneReached(ZONE_ROUGH_PROCESSING);   // 将jc改为g_jetson
             test_stage++;
             last_time = HAL_GetTick();
         }
@@ -548,7 +570,7 @@ void jetson_test()
     case 2:   // 获取二维码数据
         if (HAL_GetTick() - last_time > 4000)
         {
-            Vofa_FireWater("当前二维码内容: %s\r\n", jc.getQRCodeString());
+            Vofa_FireWater("当前二维码内容: %s\r\n", g_jetson->getQRCodeString());
             test_stage++;
             last_time = HAL_GetTick();
         }
@@ -558,7 +580,7 @@ void jetson_test()
         if (HAL_GetTick() - last_time > 4000)
         {
             int16_t x, y;
-            jc.getCoordinates(x, y);
+            g_jetson->getCoordinates(x, y);
             Vofa_FireWater("当前坐标: X=%d, Y=%d\r\n", x, y);
             test_stage++;
             last_time = HAL_GetTick();
@@ -568,8 +590,8 @@ void jetson_test()
     case 4:   // 测试抓取状态
         if (HAL_GetTick() - last_time > 4000)
         {
-            Vofa_FireWater("当前抓取状态: %s\r\n", jc.canGrab() ? "可以抓取" : "不可抓取");
-            jc.setWaitGrab(true);   // 设置为等待抓取状态
+            Vofa_FireWater("当前抓取状态: %s\r\n", g_jetson->canGrab() ? "可以抓取" : "不可抓取");
+            g_jetson->setWaitGrab(true);   // 设置为等待抓取状态
             Vofa_FireWater("已设置为等待抓取状态\r\n");
             test_stage++;
             last_time = HAL_GetTick();

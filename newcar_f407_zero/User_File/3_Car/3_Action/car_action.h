@@ -109,7 +109,7 @@ enum class ActionState
     GET_OPEN_GRIPPER,
     GET_FINAL_RAISE,
     GET_MOVE_FORWARD,
-
+    GET_FINAL_FRONT,
     // 抓取物料状态
     PICK_SET_CYBERGEAR,
     PICK_SET_SERVO_POSITION,
@@ -135,8 +135,9 @@ enum class MapActionState
     IDLE,               // 空闲状态
     MOVE_TO_POSITION,   // 移动到位置
     PLACE_OBJECT,       // 放置物体
-    MOVE_TO_NEXT,       // 移动到下一个
-    COMPLETED           // 完成状态
+    GET_OBJECT,
+    MOVE_TO_NEXT,   // 移动到下一个
+    COMPLETED       // 完成状态
 };
 
 // 设置角度参数
@@ -144,17 +145,17 @@ enum class MapActionState
 #define SERVO2_B_ANGLE 74.0f     // B位置角度
 #define SERVO2_C_ANGLE -160.0f   // C位置角度
 // #define SERVO2_C_ANGLE -130.0f      // C位置角度
-#define SERVO3_OPEN_ANGLE 0.0f      // 爪子打开角度
-#define SERVO3_CLOSE_ANGLE -59.0f   // 爪子关闭角度
+#define SERVO3_OPEN_ANGLE -15.0f    // 爪子打开角度
+#define SERVO3_CLOSE_ANGLE -64.0f   // 爪子关闭角度
 
 #define CYBERGEAR_FRONT_ANGLE -3.15f   // 前方位置角度
 #define CYBERGEAR_BACK_ANGLE -0.45f    // 后方位置角度
 
 #define SLIDER_MOSTHIGH 0.0f
-#define SLIDER_PICK_FROM_TURNTABLE 100000.0f   // 从转盘上拿取物料的高度
-#define SLIDER_PLACE_ON_TEMP 33000.0f          // 放到车上转盘临时存放的高度
-#define SLIDER_PLACE_ON_GROUND 150000.0f       // 放到地上的高度
-#define SLIDER_STACKING 130000.0f              // 码垛的高度
+#define SLIDER_PICK_FROM_TURNTABLE 70000.0f   // 从转盘上拿取物料的高度
+#define SLIDER_PLACE_ON_TEMP 33000.0f         // 放到车上转盘临时存放的高度
+#define SLIDER_PLACE_ON_GROUND 150000.0f      // 放到地上的高度
+#define SLIDER_STACKING 130000.0f             // 码垛的高度
 
 #define SLIDER_MOTOR_ADDR 5   // 滑轨电机地址
 
@@ -205,7 +206,7 @@ private:
     bool             _isSendOk;
 
     // 常量
-    static constexpr uint16_t DISTANCE_WITH_SEHUAN = 150;
+    static constexpr uint16_t DISTANCE_WITH_SEHUAN = 150 * 210;
 };
 
 // 全局实例声明

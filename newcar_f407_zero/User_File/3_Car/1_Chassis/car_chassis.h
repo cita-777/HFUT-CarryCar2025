@@ -28,8 +28,8 @@
 #define CHASSIS_DIR_CCW 1   // 逆时针
 
 // 底盘参数定义
-#define CHASSIS_MOTOR_SPEED 500   // 电机基础速度
-#define CHASSIS_ACC_DEFAULT 150   // 默认加速度
+#define CHASSIS_MOTOR_SPEED 200   // 电机基础速度
+#define CHASSIS_ACC_DEFAULT 200   // 默认加速度
 #define CHASSIS_MOTOR_DELAY 50    // 电机到位后额外等待时间(ms)
 
 /**

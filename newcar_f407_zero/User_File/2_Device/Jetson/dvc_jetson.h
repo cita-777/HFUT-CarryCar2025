@@ -20,9 +20,10 @@ extern "C" {
 #endif
 
 /* 定义常量 ------------------------------------------------------------------*/
-#define JETSON_FRAME_SIZE 9      // Jetson通信帧长度
-#define JETSON_START_BYTE 0x00   // 起始字节
-#define JETSON_END_BYTE 0xEF     // 结束字节
+#define JETSON_FRAME_SIZE 10         // Jetson通信帧长度 (原9字节+1字节额外帧头)
+#define JETSON_START_BYTE 0xFF       // 起始字节
+#define JETSON_START_BYTES_COUNT 2   // 帧头由两个连续的0xFF组成
+#define JETSON_END_BYTE 0xEF         // 结束字节
 
 // 命令标识
 #define JETSON_CMD_QR 0x0A      // 二维码任务
@@ -69,7 +70,7 @@ public:
      * @return 是否可以抓取
      */
     bool canGrab() const;
-
+    void updateDisplay();
     /**
      * @brief 更新抓取等待状态
      * @param isWaiting 是否等待抓取
@@ -97,9 +98,12 @@ private:
     char    _qrCodeString[8];
     int16_t _coordinates[2];
     bool    _canGrab;
-
+    bool    _qrCodeUpdated = false;
     // 是否等待抓取
     bool _isWaitingGrab;
+
+    // 用于检测双字节帧头
+    bool _lastByteWasFF = false;
 
     // 处理接收到的数据
     void processReceivedData(uint8_t byte);

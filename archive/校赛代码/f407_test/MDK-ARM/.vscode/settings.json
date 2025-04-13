@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "usart_api.h": "c",
+        "servo.h": "c",
+        "delay.h": "c"
+    }
+}

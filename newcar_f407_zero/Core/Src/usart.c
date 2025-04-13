@@ -274,14 +274,14 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     */
     GPIO_InitStruct.Pin = JETSON_TX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
     HAL_GPIO_Init(JETSON_TX_GPIO_Port, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = JETSON_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
     HAL_GPIO_Init(JETSON_RX_GPIO_Port, &GPIO_InitStruct);
@@ -296,7 +296,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     hdma_uart5_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
     hdma_uart5_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_uart5_rx.Init.Mode = DMA_NORMAL;
-    hdma_uart5_rx.Init.Priority = DMA_PRIORITY_LOW;
+    hdma_uart5_rx.Init.Priority = DMA_PRIORITY_VERY_HIGH;
     hdma_uart5_rx.Init.FIFOMode = DMA_FIFOMODE_ENABLE;
     hdma_uart5_rx.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_FULL;
     hdma_uart5_rx.Init.MemBurst = DMA_MBURST_SINGLE;
@@ -317,7 +317,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     hdma_uart5_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
     hdma_uart5_tx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_uart5_tx.Init.Mode = DMA_NORMAL;
-    hdma_uart5_tx.Init.Priority = DMA_PRIORITY_LOW;
+    hdma_uart5_tx.Init.Priority = DMA_PRIORITY_VERY_HIGH;
     hdma_uart5_tx.Init.FIFOMode = DMA_FIFOMODE_ENABLE;
     hdma_uart5_tx.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_FULL;
     hdma_uart5_tx.Init.MemBurst = DMA_MBURST_SINGLE;

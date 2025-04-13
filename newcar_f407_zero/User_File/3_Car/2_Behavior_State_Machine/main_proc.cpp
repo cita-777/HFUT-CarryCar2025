@@ -457,7 +457,7 @@ static bool State_One(void)
     static int   stage            = 0;
     static bool  action_completed = false;
     static int   current_position = 1;        // 当前抓取位置：1、2、3
-    static float move_scale       = 200.0f;   // 移动距离调整系数，可根据需要修改
+    static float move_scale       = 235.0f;   // 移动距离调整系数，可根据需要修改
     static bool  message_sent     = false;    // 消息是否已发送标志
 
     switch (stage)
@@ -471,11 +471,11 @@ static bool State_One(void)
 
         if (!action_completed)
         {
-            action_completed = g_chassis->moveLeft((uint32_t)(150 * move_scale));
+            action_completed = g_chassis->moveLeft((uint32_t)(175 * move_scale));
             return false;
         }
 
-        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        if (!TIM_1ms.DelayNonBlocking(350)) return false;
 
         Vofa_FireWater("向左移动完成\r\n");
         action_completed = false;
@@ -483,28 +483,49 @@ static bool State_One(void)
         stage            = 1;
         return false;
 
-    case 1:   // 向前移动1450个单位
+    case 1:   // 向前移动第一段(一半距离)
         if (!message_sent)
         {
-            Vofa_FireWater("向前移动1450个单位，系数%.2f\r\n", move_scale);
+            Vofa_FireWater("向前移动第一段(635单位)，系数%.2f\r\n", move_scale);
             message_sent = true;
         }
 
         if (!action_completed)
         {
-            action_completed = g_chassis->moveForward((uint32_t)(1450 * move_scale));
+            action_completed = g_chassis->moveForward((uint32_t)(550 * move_scale));
             return false;
         }
 
-        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        if (!TIM_1ms.DelayNonBlocking(400)) return false;
 
-        Vofa_FireWater("向前移动完成\r\n");
+        Vofa_FireWater("向前移动第一段完成\r\n");
         action_completed = false;
         message_sent     = false;
         stage            = 2;
         return false;
 
-    case 2:   // 向右移动50个单位
+    case 2:   // 向前移动第二段(一半距离)
+        if (!message_sent)
+        {
+            Vofa_FireWater("向前移动第二段(635单位)，系数%.2f\r\n", move_scale);
+            message_sent = true;
+        }
+
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveForward((uint32_t)(735 * move_scale));
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(600)) return false;
+
+        Vofa_FireWater("向前移动第二段完成\r\n");
+        action_completed = false;
+        message_sent     = false;
+        stage            = 3;
+        return false;
+
+    case 3:   // 向右移动50个单位 (原case 2)
         if (!message_sent)
         {
             Vofa_FireWater("向右移动50个单位，系数%.2f\r\n", move_scale);
@@ -513,7 +534,7 @@ static bool State_One(void)
 
         if (!action_completed)
         {
-            action_completed = g_chassis->moveRight((uint32_t)(50 * move_scale));
+            action_completed = g_chassis->moveRight((uint32_t)(91 * move_scale));
             return false;
         }
 
@@ -522,21 +543,32 @@ static bool State_One(void)
         Vofa_FireWater("向右移动完成\r\n");
         action_completed = false;
         message_sent     = false;
-        stage            = 3;
+        stage            = 4;
         return false;
 
-    case 3:   // 向Jetson发送已到达原料区的信号
+    case 4:   // 向Jetson发送已到达原料区的信号 (原case 3)
         Vofa_FireWater("已到达原料区，发送信号\r\n");
+        //  HAL_Delay(1);
         g_jetson->sendZoneReached(ZONE_RAW_MATERIAL);
-        stage = 4;
+        stage = 5;
         return false;
 
-    case 4:   // 等待Jetson发送可抓取信号
+    case 5:   // 等待Jetson发送可抓取信号 (原case 4)
+        // 如果已经完成了3次抓取，任务完成
+        if (current_position > 3)
+        {
+            Vofa_FireWater("所有抓取任务完成\r\n");
+            stage            = 0;
+            current_position = 1;
+            return true;
+        }
+
         if (g_jetson->canGrab())
         {
-            Vofa_FireWater("收到可抓取信号，开始抓取操作\r\n");
-            stage        = 5;
-            message_sent = false;
+            Vofa_FireWater("收到可抓取信号，开始抓取位置%d\r\n", current_position);
+            stage            = 6;
+            message_sent     = false;
+            action_completed = false;
         }
         else
         {
@@ -546,7 +578,7 @@ static bool State_One(void)
             // 每1000ms打印一次等待消息，避免刷屏
             if (current_time - last_print_time >= 1000)
             {
-                Vofa_FireWater("等待可抓取信号...\r\n");
+                Vofa_FireWater("等待可抓取信号...(当前位置:%d)\r\n", current_position);
                 last_print_time = current_time;
             }
 
@@ -554,7 +586,7 @@ static bool State_One(void)
         }
         return false;
 
-    case 5:   // 执行抓取到转盘的操作
+    case 6:   // 执行抓取到转盘的操作 (原case 5)
         if (!message_sent)
         {
             Vofa_FireWater("开始抓取物体到转盘位置%d\r\n", current_position);
@@ -567,32 +599,28 @@ static bool State_One(void)
             return false;
         }
 
+        // 抓取完成，消息重置
         Vofa_FireWater("抓取到转盘位置%d完成\r\n", current_position);
         current_position++;
         action_completed = false;
         message_sent     = false;
 
-        if (current_position <= 3)
-        {
-            return false;   // 继续下一个位置的抓取
-        }
+        // 设置Jetson等待下一次抓取信号
+        g_jetson->setWaitGrab(true);
 
-        // 所有位置都抓取完成
-        Vofa_FireWater("所有抓取任务完成\r\n");
-        stage            = 0;
-        current_position = 1;
-        return true;
+        // 返回case 5，等待下一次信号
+        stage = 5;
+        return false;
     }
-
-    return false;
 }
 static bool State_Two(void)
 {
     static int   stage            = 0;
     static bool  action_completed = false;
-    static float move_scale       = 200.0f;   // 移动距离调整系数
+    static float move_scale       = 213.0f;   // 移动距离调整系数
     static bool  message_sent     = false;    // 消息是否已发送标志
     static char  qr_code[4]       = {0};      // 存储QR码内容
+    const char*  qr_string        = nullptr;
 
     switch (stage)
     {
@@ -651,7 +679,7 @@ static bool State_Two(void)
             return false;
         }
 
-        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        if (!TIM_1ms.DelayNonBlocking(2500)) return false;
 
         Vofa_FireWater("转向完成\r\n");
         action_completed = false;
@@ -668,11 +696,11 @@ static bool State_Two(void)
 
         if (!action_completed)
         {
-            action_completed = g_chassis->moveBackward((uint32_t)(1720 * move_scale));
+            action_completed = g_chassis->moveBackward((uint32_t)(1690 * move_scale));
             return false;
         }
 
-        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        if (!TIM_1ms.DelayNonBlocking(3000)) return false;
 
         Vofa_FireWater("向后移动完成\r\n");
         action_completed = false;
@@ -693,7 +721,7 @@ static bool State_Two(void)
             return false;
         }
 
-        if (!TIM_1ms.DelayNonBlocking(500)) return false;
+        if (!TIM_1ms.DelayNonBlocking(2500)) return false;
 
         Vofa_FireWater("转向完成\r\n");
         action_completed = false;
@@ -724,13 +752,13 @@ static bool State_Two(void)
 
     case 6:   // 向Jetson发送已到达粗加工区的信号
         Vofa_FireWater("已到达粗加工区，发送信号\r\n");
-        g_jetson->sendZoneReached(ZONE_ROUGH_PROCESSING);
+        // g_jetson->sendZoneReached(ZONE_ROUGH_PROCESSING);
         stage = 7;
         return false;
 
     case 7:   // 等待Jetson发送QR码信息
         // 获取QR码字符串
-        const char* qr_string = g_jetson->getQRCodeString();
+        qr_string = g_jetson->getQRCodeString();
         if (qr_string && qr_string[0] != '\0')
         {
             // 复制前3个字符作为QR码顺序
@@ -808,6 +836,114 @@ static bool State_Two(void)
 
     return false;
 }
+// 测试坐标移动
+static bool State_CoordinatesMoveTest(void)
+{
+    static int     stage            = 0;
+    static bool    action_completed = false;
+    static float   currFactor       = 16.15f;   // 当前使用的系数
+    static int32_t testDistance     = 100;      // 测试距离，单位mm
+
+    switch (stage)
+    {
+    case 0:
+        Vofa_FireWater("开始坐标移动测试，当前系数: %.2f\r\n", currFactor);
+        Vofa_FireWater("测试前进 %ld mm\r\n", testDistance);
+        action_completed = false;
+        stage            = 1;
+        return false;
+
+    case 1:   // 前进测试
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveToCoordinates(0, testDistance, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(2000)) return false;
+
+        Vofa_FireWater("测试后退 %ld mm\r\n", testDistance);
+        action_completed = false;
+        stage            = 2;
+        return false;
+
+    case 2:   // 后退测试
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveToCoordinates(0, -testDistance, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(2000)) return false;
+
+        Vofa_FireWater("测试右移 %ld mm\r\n", testDistance);
+        action_completed = false;
+        stage            = 3;
+        return false;
+
+    case 3:   // 右移测试
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveToCoordinates(testDistance, 0, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(2000)) return false;
+
+        Vofa_FireWater("测试左移 %ld mm\r\n", testDistance);
+        action_completed = false;
+        stage            = 4;
+        return false;
+
+    case 4:   // 左移测试
+        if (!action_completed)
+        {
+            action_completed = g_chassis->moveToCoordinates(-testDistance, 0, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(2000)) return false;
+
+        // 对角线移动测试
+        Vofa_FireWater("测试右前方对角线 %ld mm\r\n", testDistance);
+        action_completed = false;
+        stage            = 5;
+        return false;
+
+    case 5:   // 右前方对角线测试
+        if (!action_completed)
+        {
+            action_completed =
+                g_chassis->moveToCoordinates(testDistance, testDistance, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(2000)) return false;
+
+        Vofa_FireWater("测试左后方对角线 %ld mm\r\n", testDistance);
+        action_completed = false;
+        stage            = 6;
+        return false;
+
+    case 6:   // 左后方对角线测试
+        if (!action_completed)
+        {
+            action_completed =
+                g_chassis->moveToCoordinates(-testDistance, -testDistance, CHASSIS_MOTOR_SPEED, CHASSIS_ACC_DEFAULT);
+            return false;
+        }
+
+        if (!TIM_1ms.DelayNonBlocking(2000)) return false;
+
+        Vofa_FireWater("坐标移动测试完成。请测量实际移动距离，调整系数。\r\n");
+        Vofa_FireWater("理论距离: %ld mm, 当前系数: %.2f\r\n", testDistance, currFactor);
+        Vofa_FireWater("如果实际距离为X mm，新系数应为: %.2f * (%ld / X)\r\n", currFactor, testDistance);
+        stage = 0;
+        return true;
+    }
+
+    return false;
+}
 // 当前状态索引，初始为初始化状态
 static uint8_t currentState = PROC_STATE_INIT;
 // 手动设置状态的标志
@@ -822,11 +958,12 @@ static ProcHandler_t procHandlers[PROC_STATE_MAX] = {
                   //    State_ChassisTest,   // 底盘测试（新增）
                   //    State_PickMaterial,       // 抓取物料测试
                   //    State_PlaceMaterial,      // 放置物料测试
-    // State_CatchToTurntable,   // 抓取物体到转盘测试
-    //     State_PutToMap,           // 放置物体到地图测试
-    //     State_SequenceTest,       // 顺序执行测试
+                  // State_CatchToTurntable,   // 抓取物体到转盘测试
+                  //     State_PutToMap,           // 放置物体到地图测试
+                  //     State_SequenceTest,       // 顺序执行测试
     State_One,
     State_Two,
+    // State_CoordinatesMoveTest,   // 坐标移动测试
     State_Done   // 测试完成
 };
 // 状态机处理函数
